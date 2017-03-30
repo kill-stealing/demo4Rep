@@ -3,5 +3,14 @@
 *.project
 *.prefs
 org.eclipse.*.xml
+
 demo1/WebContent/WEB-INF/classes/
 demo1/.settings/
+
+ServerDemo/WebContent/WEB-INF/classes/
+ServerDemo/.settings/
+ServerDemo/bin/
+
+SormTest/WebContent/WEB-INF/classes/
+SormTest/.settings/
+SormTest/bin/
