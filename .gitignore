@@ -4,3 +4,4 @@
 *.prefs
 org.eclipse.*.xml
 classes/
+demo1/.settings/
