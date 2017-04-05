@@ -1,6 +1,9 @@
 package com.ibm.demo;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -43,8 +46,11 @@ public class MyFirstServlet implements Servlet{
 	@Override
 	public void service(ServletRequest arg0, ServletResponse arg1)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		arg1.getWriter().println("hello");
+			Date date=new Date();
+			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str=df.format(date);
+			arg1.getWriter().println("hello world111");
+			arg1.getWriter().println(str);
 	}
 
 }
