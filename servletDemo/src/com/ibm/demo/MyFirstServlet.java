@@ -46,6 +46,8 @@ public class MyFirstServlet implements Servlet{
 	@Override
 	public void service(ServletRequest arg0, ServletResponse arg1)
 			throws ServletException, IOException {
+			System.out.println("hello world "+arg0.getRemoteHost());
+			System.out.println("hello world "+arg0.getRemoteAddr());
 			Date date=new Date();
 			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String str=df.format(date);
