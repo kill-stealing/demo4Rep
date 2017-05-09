@@ -23,12 +23,42 @@
     <servlet-name>MyHttpServlet</servlet-name>
     <servlet-class>com.ibm.demo.MyHttpServlet</servlet-class>
     <init-param>
-    <param-name>encoding</param-name>
-    <param-value>gbk</param-value>
+      <param-name>encoding</param-name>
+      <param-value>gbk</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>MyHttpServlet</servlet-name>
     <url-pattern>/MyHttpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.hsp.view.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginClServlet</display-name>
+    <servlet-name>LoginClServlet</servlet-name>
+    <servlet-class>com.hsp.controller.LoginClServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginClServlet</servlet-name>
+    <url-pattern>/LoginClServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MainFrame</display-name>
+    <servlet-name>MainFrame</servlet-name>
+    <servlet-class>com.hsp.view.MainFrame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MainFrame</servlet-name>
+    <url-pattern>/MainFrame</url-pattern>
   </servlet-mapping>
 </web-app>
