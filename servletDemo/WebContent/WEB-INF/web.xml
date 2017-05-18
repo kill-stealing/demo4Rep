@@ -15,8 +15,44 @@
 		<servlet-name>myFirstServlet</servlet-name>
 		<servlet-class>com.ibm.demo.MyFirstServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DownloadServlet_ibm</display-name>
+		<servlet-name>DownloadServlet_ibm</servlet-name>
+		<servlet-class>com.ibm.demo.DownloadServlet_ibm</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetRequestHeader</display-name>
+		<servlet-name>GetRequestHeader</servlet-name>
+		<servlet-class>com.ibm.demo.GetRequestHeader</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FormServlet</display-name>
+		<servlet-name>FormServlet</servlet-name>
+		<servlet-class>com.ibm.demo.FormServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>myFirstServlet</servlet-name>
 		<url-pattern>/myFirstServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadServlet_ibm</servlet-name>
+		<url-pattern>
+		/DownloadServlet_ibm</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetRequestHeader</servlet-name>
+		<url-pattern>
+		/GetRequestHeader</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FormServlet</servlet-name>
+		<url-pattern>
+		/FormServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
