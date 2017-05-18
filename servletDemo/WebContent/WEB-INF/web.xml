@@ -171,4 +171,54 @@
     <servlet-name>GetInfoServlet3_1_lianxi</servlet-name>
     <url-pattern>/GetInfoServlet3_1_lianxi</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetHeadInfoServlet</display-name>
+    <servlet-name>GetHeadInfoServlet</servlet-name>
+    <servlet-class>com.ibm.servlet3.GetHeadInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetHeadInfoServlet</servlet-name>
+    <url-pattern>/GetHeadInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FormServlet</display-name>
+    <servlet-name>FormServlet</servlet-name>
+    <servlet-class>com.ibm.servlet3.FormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormServlet</servlet-name>
+    <url-pattern>/FormServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet_forward</display-name>
+    <servlet-name>LoginServlet_forward</servlet-name>
+    <servlet-class>com.ibm.requestforward.LoginServlet_forward</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet_forward</servlet-name>
+    <url-pattern>/LoginServlet_forward</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet1_forward</display-name>
+    <servlet-name>Servlet1_forward</servlet-name>
+    <servlet-class>com.ibm.requestforward.Servlet1_forward</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet1_forward</servlet-name>
+    <url-pattern>/Servlet1_forward</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet21</display-name>
+    <servlet-name>Servlet21</servlet-name>
+    <servlet-class>com.ibm.requestforward.Servlet21</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet21</servlet-name>
+    <url-pattern>/Servlet21</url-pattern>
+  </servlet-mapping>
 </web-app>
