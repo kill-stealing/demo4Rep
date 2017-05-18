@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
-
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class ErrorServlet
  */
-public class MainFrame extends HttpServlet {
+public class ErrorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -23,11 +21,7 @@ public class MainFrame extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		out.println("不可以盗链");
 	}
 
 	/**

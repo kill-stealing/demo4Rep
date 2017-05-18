@@ -1,4 +1,4 @@
-package com.hsp.view;
+package com.ibm.demo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
-
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class Servlet1
  */
-public class MainFrame extends HttpServlet {
+public class Servlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,13 +19,13 @@ public class MainFrame extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html;chatset=utf-8");
+		response.setHeader("Refresh", "5;url=www.baidu.com");
 		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		out.println("hellow servlet1");
+//		response.setStatus(302);
+//		response.setHeader("Location", "http://localhost:8080/servletDemo/Servlet2");
+//		response.sendRedirect("Servlet2");
 	}
 
 	/**

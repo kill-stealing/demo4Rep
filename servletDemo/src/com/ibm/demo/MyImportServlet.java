@@ -1,4 +1,4 @@
-package com.hsp.view;
+package com.ibm.demo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,26 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
-
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class MyImportServlet
  */
-public class MainFrame extends HttpServlet {
+public class MyImportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stu
 		response.setContentType("text/html;charset=utf-8");
+		String referer=request.getHeader("Referer");
+		if(null==referer||!referer.startsWith("http://localhost:8080/servletDemo/")){
+			response.sendRedirect("ErrorServlet");
+			return ;
+		}
 		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		out.println("我的名字：aaa<br />");
+		out.println("我的工作：程序猿<br />");
+		out.println("我的性别:男<br />");
 	}
 
 	/**

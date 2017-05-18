@@ -1,4 +1,4 @@
-package com.hsp.view;
+package com.ibm.demo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
+import com.ibm.utils.MyTools;
 
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class GetInfoServlet1
  */
-public class MainFrame extends HttpServlet {
+public class GetInfoServlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,13 +21,18 @@ public class MainFrame extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+//		response.setContentType("text/html");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
+//		request.setCharacterEncoding("utf-8"); post 请求
 //		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		String userName=request.getParameter("userName");
+//		String userName=new String(request.getParameter("userName").getBytes("iso-8859-1"),"utf-8");
+		userName=MyTools.getNewString(userName);
+		System.out.println("userName "+userName);
+		String str="Wel?yy="+request.getParameter("userName")+"&pwd=aaa";
+		System.out.println(str);
+		response.sendRedirect(str);
 	}
 
 	/**

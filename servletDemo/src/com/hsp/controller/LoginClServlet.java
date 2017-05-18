@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hsp.entity.User;
+
 /**
  * Servlet implementation class LoginClServlet
  */
@@ -23,12 +25,14 @@ public class LoginClServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("username");
 		String password=request.getParameter("password");
-		
+		User.userNameString=userName;
 		System.out.println("username "+userName);
 		System.out.println("password "+password);
 		
-		if("aaa".equals(userName)&&"bbb".equals(password)){
-			response.sendRedirect("MainFrame");
+		if("bbb".equals(password)){
+			request.getSession().setAttribute("userName", userName);
+			request.getSession().setAttribute("pwd", password);
+			response.sendRedirect("MainFrame?userName="+userName);
 		}else{
 			response.sendRedirect("LoginServlet");
 		}

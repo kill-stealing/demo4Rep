@@ -1,19 +1,17 @@
-package com.hsp.view;
+package com.ibm.demo;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
+import com.ibm.utils.MyTools;
 
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class Wel
  */
-public class MainFrame extends HttpServlet {
+public class Wel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,13 +19,12 @@ public class MainFrame extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		String u=MyTools.getNewString(request.getParameter("yy"));
+		String pwd=request.getParameter("pwd");
+		System.out.println("pwd "+pwd);
+		System.out.println("aaaa");
+		System.out.println("welservlet u "+u);
+		
 	}
 
 	/**

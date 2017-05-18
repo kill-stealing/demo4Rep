@@ -1,21 +1,21 @@
-package com.hsp.view;
+package com.ibm.servlet3;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.entity.User;
+import com.ibm.utils.MyTools;
 
 /**
- * Servlet implementation class MainFrame
+ * Servlet implementation class GetInfoServlet3_1
  */
-public class MainFrame extends HttpServlet {
+public class GetInfoServlet3_1_lianxi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -23,11 +23,16 @@ public class MainFrame extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+		StringBuilder sb=new StringBuilder();
+		Enumeration<String> paramters=request.getParameterNames();
+		response.setCharacterEncoding("utf-8");
+		while(paramters.hasMoreElements()){
+			String pName=paramters.nextElement();
+			sb.append(pName+"="+MyTools.getNewString(request.getParameter(pName)));
+			sb.append("<br />");
+		}
+		out.println(sb);
+		
 	}
 
 	/**
