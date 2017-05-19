@@ -29,6 +29,9 @@ public class LoginServlet extends HttpServlet {
 		outPrintWriter.println("用户名:<input type='text' name='username' /><br />");
 		outPrintWriter.println("密码:<input type='password' name='password' /><br />");
 		outPrintWriter.println("<input type='submit' value='登录' />");
+		if(request.getAttribute(arg0)){
+			
+		}
 		outPrintWriter.println("</form>");
 	}
 

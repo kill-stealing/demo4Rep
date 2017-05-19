@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hsp.dao.Dao;
+import com.hsp.dao.DaoImpl;
 import com.hsp.entity.User;
 
 /**
@@ -25,15 +27,15 @@ public class LoginClServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("username");
 		String password=request.getParameter("password");
-		User.userNameString=userName;
-		System.out.println("username "+userName);
-		System.out.println("password "+password);
-		
-		if("bbb".equals(password)){
+		User user=new User(userName, password);
+		Dao dao=new DaoImpl();
+		int ifExit=dao.ifExit(user);
+		if(ifExit>0){
 			request.getSession().setAttribute("userName", userName);
 			request.getSession().setAttribute("pwd", password);
 			response.sendRedirect("MainFrame?userName="+userName);
 		}else{
+			request.setAttribute("error", "abc");
 			response.sendRedirect("LoginServlet");
 		}
 	}
