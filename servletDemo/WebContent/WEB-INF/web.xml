@@ -221,4 +221,14 @@
     <servlet-name>Servlet21</servlet-name>
     <url-pattern>/Servlet21</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageUsers</display-name>
+    <servlet-name>ManageUsers</servlet-name>
+    <servlet-class>com.hsp.view.ManageUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageUsers</servlet-name>
+    <url-pattern>/ManageUsers</url-pattern>
+  </servlet-mapping>
 </web-app>

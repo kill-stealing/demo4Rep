@@ -24,19 +24,23 @@ public class LoginClServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("username");
 		String password=request.getParameter("password");
+		System.out.println("userName "+userName);
+		System.out.println("password "+password);
 		User user=new User(userName, password);
 		Dao dao=new DaoImpl();
 		int ifExit=dao.ifExit(user);
 		if(ifExit>0){
-			request.getSession().setAttribute("userName", userName);
-			request.getSession().setAttribute("pwd", password);
-			response.sendRedirect("MainFrame?userName="+userName);
+//			request.getSession().setAttribute("userName", userName);
+//			request.getSession().setAttribute("pwd", password);
+//			response.sendRedirect("MainFrame?userName="+userName);
+			request.getRequestDispatcher("MainFrame").forward(request, response);
 		}else{
-			request.setAttribute("error", "abc");
-			response.sendRedirect("LoginServlet");
+			request.setAttribute("error", "用户id或者密码有误");
+			request.getRequestDispatcher("LoginServlet").forward(request, response);
 		}
 	}
 

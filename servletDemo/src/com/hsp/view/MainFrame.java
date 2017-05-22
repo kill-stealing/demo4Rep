@@ -23,11 +23,21 @@ public class MainFrame extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-//		String userName=request.getParameter("userName");
-		//out.println("<h1>主界面</h1>"+User.userNameString+userName);
-		String userName=(String)request.getSession().getAttribute("userName");
-		out.println("<h1>主界面</h1>"+userName);
-		out.println("<a href='LoginServlet' >返回重新登录</a>");
+//		String userName=(String)request.getSession().getAttribute("username");
+		String userName=request.getParameter("username");
+		/*out.println("<style type=\"text/css\">"+
+					"body{"+
+					"	background-color: #C9D1FF;"+
+					"}"+
+					"</style>");*/
+		out.println("<img src='images/1.png' />欢迎:<b>"+userName+"</b> 登录"); 
+		out.println("<a href='LoginServlet' >返回重新登录</a><hr >");
+		out.println("<h3>请选择你要进行的操作</h3>");
+		out.println("<a href='ManageUsers'>管理用户</a><br />");
+		out.println("<a href=''>添加用户</a><br />");
+		out.println("<a href=''>查找用户</a><br />");
+		out.println("<a href=''>退出系统</a><br />");
+		out.println("<hr ><img src='images/2.png' />"); 	
 	}
 
 	/**

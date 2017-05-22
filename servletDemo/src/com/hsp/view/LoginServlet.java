@@ -23,16 +23,20 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter outPrintWriter=response.getWriter();
-		outPrintWriter.println("<h1>用户登录1</h1>");
-		outPrintWriter.println("<form action='LoginClServlet' method='post' >");
-		outPrintWriter.println("用户名:<input type='text' name='username' /><br />");
-		outPrintWriter.println("密码:<input type='password' name='password' /><br />");
-		outPrintWriter.println("<input type='submit' value='登录' />");
-		if(request.getAttribute(arg0)){
-			
+		PrintWriter out=response.getWriter();
+		out.println("<img src='images/1.png' /><hr >"); 
+		out.println("<h1>用户登录1</h1>");
+		out.println("<form action='LoginClServlet' method='post' >");
+		out.println("用户名:<input type='text' name='username' /><br />");
+		out.println("密码:<input type='password' name='password' /><br />");
+		out.println("<input type='submit' value='登录' />");
+		
+		String error=(String) request.getAttribute("error");
+		if(null!=error){
+			out.println(error);
 		}
-		outPrintWriter.println("</form>");
+		out.println("</form>");
+		out.println("<hr ><img src='images/2.png' />"); 	
 	}
 
 	/**

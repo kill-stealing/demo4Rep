@@ -48,4 +48,9 @@ public class User {
 		this.pwd = pwd;
 	}
 	
+	@Override
+		public String toString() {
+			return "userId="+userId+"&"+"userName="+userName+"&"+"pwd="+pwd;
+		}
+	
 }
