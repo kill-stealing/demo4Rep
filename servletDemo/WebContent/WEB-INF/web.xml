@@ -231,4 +231,44 @@
     <servlet-name>ManageUsers</servlet-name>
     <url-pattern>/ManageUsers</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateCookie</display-name>
+    <servlet-name>CreateCookie</servlet-name>
+    <servlet-class>com.ibm.cookie.CreateCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateCookie</servlet-name>
+    <url-pattern>/CreateCookie</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReadCookie1</display-name>
+    <servlet-name>ReadCookie1</servlet-name>
+    <servlet-class>com.ibm.cookie.ReadCookie1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadCookie1</servlet-name>
+    <url-pattern>/ReadCookie1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateCookie2</display-name>
+    <servlet-name>CreateCookie2</servlet-name>
+    <servlet-class>com.ibm.cookie.CreateCookie2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateCookie2</servlet-name>
+    <url-pattern>/CreateCookie2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servelt1</display-name>
+    <servlet-name>Servelt1</servlet-name>
+    <servlet-class>com.ibm.cookie.Servelt1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servelt1</servlet-name>
+    <url-pattern>/Servelt1</url-pattern>
+  </servlet-mapping>
 </web-app>
