@@ -28,11 +28,11 @@ public class LoginClServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
-		String userName=request.getParameter("username");
-		String password=request.getParameter("password");
+		String userName=request.getParameter("userName");
+		String passWord=request.getParameter("passWord");
 		System.out.println("userName "+userName);
-		System.out.println("password "+password);
-		User user=new User(userName, password);
+		System.out.println("password "+passWord);
+		User user=new User(userName, passWord);
 		Dao dao=new DaoImpl();
 		int ifExit=dao.ifExit(user);
 		if(ifExit>0){

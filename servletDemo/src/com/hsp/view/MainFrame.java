@@ -2,6 +2,7 @@ package com.hsp.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,7 +28,19 @@ public class MainFrame extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 //		String userName=(String)request.getSession().getAttribute("username");
-		String userName=request.getParameter("username");
+		String userName=request.getParameter("userName");
+		String passWord=request.getParameter("passWord");
+		String ifSaveUser=request.getParameter("ifSaveUser");
+		if(null!=ifSaveUser&&"on".equals(ifSaveUser)){
+			Cookie uCookie=new Cookie("userName", URLEncoder.encode(userName,"utf-8"));
+			uCookie.setMaxAge(3600*24*7);
+			response.addCookie(uCookie);
+			
+			Cookie uCookie1=new Cookie("passWord", passWord);
+			uCookie1.setMaxAge(3600*24*7);
+			response.addCookie(uCookie1);
+		}else{
+		}
 		boolean ifHaveLastTime=false;
 		String messgae="";
 		Cookie[] cookies=request.getCookies();
@@ -38,9 +51,9 @@ public class MainFrame extends HttpServlet {
 					
 					SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String lastTime=sf.format(new Date());
-					Cookie c=new Cookie("lastTime1", lastTime);
-					c.setMaxAge(3600*24*7);
-					response.addCookie(c);
+					cookie.setValue(lastTime);
+					cookie.setMaxAge(3600*24*7);
+					response.addCookie(cookie);
 					
 					ifHaveLastTime=true;
 					break;
