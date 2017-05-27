@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hsp.entity.Product;
 import com.hsp.entity.User;
 import com.hsp.util.CloseUtil;
 import com.hsp.util.GetDataSource;
@@ -167,6 +168,92 @@ public class DaoImpl implements Dao{
 			// TODO: handle exception
 		}
 		return i;
+	}
+
+	@Override
+	public List<Product> getProd() {
+		List<Product> list=new ArrayList<Product>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Connection conn=null;
+		try {
+			conn=GetDataSource.getInstance().getConn();
+			String sql="select * from atest_prod";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				Product prod=new Product();
+				prod.setId(rs.getInt("id"));
+				prod.setProdName(rs.getString("prod_name"));
+				prod.setPrice(rs.getInt("price"));
+				list.add(prod);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			CloseUtil.close(rs, ps, conn);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Product> getProd(int[] id) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Connection conn=null;
+		List<Product> list=new ArrayList<Product>();
+		try {
+			conn=GetDataSource.getInstance().getConn();
+			StringBuilder sql=new StringBuilder("select * from atest_prod where id in ( ");
+			for (int i = 0; i < id.length; i++) {
+				if(i==0){
+					sql.append(id[i]);
+				}else{
+					sql.append(","+id[i]);
+				}
+			}
+			sql.append(" ) ");
+			ps=conn.prepareStatement(sql.toString());
+			rs=ps.executeQuery();
+			while(rs.next()){
+				Product prod=new Product();
+				prod.setId(rs.getInt("id"));
+				prod.setProdName(rs.getString("prod_name"));
+				prod.setPrice(rs.getInt("price"));
+				list.add(prod);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			CloseUtil.close(rs, ps, conn);
+		}
+		return list;
+	}
+
+	@Override
+	public Product getProd(int id) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		Connection conn=null;
+		Product prod=null;
+		try {
+			conn=GetDataSource.getInstance().getConn();
+			String sql="select * from atest_prod where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				prod=new Product();
+				prod.setId(rs.getInt("id"));
+				prod.setProdName(rs.getString("prod_name"));
+				prod.setPrice(rs.getInt("price"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			CloseUtil.close(rs, ps, conn);
+		}
+		return prod;
 	}
 
 }

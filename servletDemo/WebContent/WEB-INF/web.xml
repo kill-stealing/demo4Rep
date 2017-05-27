@@ -267,8 +267,20 @@
     <servlet-name>Servelt1</servlet-name>
     <servlet-class>com.ibm.cookie.Servelt1</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ManageProduct</display-name>
+  	<servlet-name>ManageProduct</servlet-name>
+  	<servlet-class>com.hsp.view.ManageProduct</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Servelt1</servlet-name>
     <url-pattern>/Servelt1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ManageProduct</servlet-name>
+  	<url-pattern>
+  	/ManageProduct</url-pattern>
   </servlet-mapping>
 </web-app>

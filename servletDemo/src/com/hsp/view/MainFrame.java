@@ -80,6 +80,7 @@ public class MainFrame extends HttpServlet {
 		out.println("<a href='ManageUsers'>管理用户</a><br />");
 		out.println("<a href=''>添加用户</a><br />");
 		out.println("<a href=''>查找用户</a><br />");
+		out.println("<a href='ManageProduct?type=all'>查看商品</a><br />");
 		out.println("<a href=''>退出系统</a><br />");
 		out.println("<hr ><img src='images/2.png' />"); 	
 	}

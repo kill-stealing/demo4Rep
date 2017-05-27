@@ -11,15 +11,25 @@ public class GetDataSource {
 	private static GetDataSource instance=new GetDataSource();
 	private List<Connection> list=new ArrayList<Connection>();
 	
-	private static final int MAX_SIZE=50;
-	private static final int MIN_SIZE=10;
+	private static final int MAX_SIZE=1;
+	private static final int MIN_SIZE=1;
 	
 	private Connection createConn(){
 		try {
-			Class.forName("com.mysql.jdbc.Driver") ;
+			/*Class.forName("com.mysql.jdbc.Driver") ;
 			String url="jdbc:mysql://localhost:3306/test1?characterEncoding=utf-8";
 			String userName="servlet0519";
-			String pwd="123456";
+			String pwd="123456";*/
+			
+			Class.forName("com.mysql.jdbc.Driver") ;
+			String url="jdbc:mysql://lexbz1218.lexington.ibm.com:3306/nase";
+			String userName="efriday";
+			String pwd="efriday123";
+			
+//			String url="jdbc:db2://9.51.101.218:50000/NAEFRIDB:currentSchema=EF;";
+//			Class.forName("com.ibm.db2.jcc.DB2Driver");
+//			String userName="db2inst1";
+//			String pwd="admin4dst";
 			Connection con=DriverManager.getConnection(url, userName, pwd);
 			return con;
 		} catch (ClassNotFoundException e) {
@@ -35,6 +45,7 @@ public class GetDataSource {
 	private GetDataSource() {
 		for (int i = 0; i < MAX_SIZE; i++) {
 			Connection con=createConn();
+			System.out.println("create "+i);
 			list.add(con);
 		}
 	}
