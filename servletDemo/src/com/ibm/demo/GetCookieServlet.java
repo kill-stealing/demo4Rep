@@ -2,19 +2,19 @@ package com.ibm.demo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.hsp.util.StringUtil;
 
 /**
- * Servlet implementation class CreateSessionServlet
+ * Servlet implementation class GetCookieServlet
  */
-public class CreateSessionServlet extends HttpServlet {
+public class GetCookieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,19 +24,13 @@ public class CreateSessionServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		HttpSession session=request.getSession();
-		session.setAttribute("uname", "宋江");
-		String sessionId=session.getId();
-		Cookie cookie=new Cookie("JSESSIONID", sessionId);
-		cookie.setMaxAge(3600*24*7);
-		response.addCookie(cookie);
-		out.println("session 创建成功");
-//		session.setMaxInactiveInterval(20);
 		
-//		System.out.println(" CreateSessionServlet session.getId() "+session.getId());
-//		session.invalidate();
-		//
-//		session.setMaxInactiveInterval(arg0);
+		Cookie[] cookies=request.getCookies();
+		if(cookies!=null){
+			for (Cookie cookie : cookies) {
+				out.println("NAME "+cookie.getName()+" value ="+StringUtil.urlDecode(cookie.getValue()));
+			}
+		}
 	}
 
 	/**

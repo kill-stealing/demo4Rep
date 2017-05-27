@@ -45,13 +45,15 @@ public class LoginServlet extends HttpServlet {
 		if(!"".equals(userName)&&!"".equals(passWord)){
 			out.println("用户名:<input type='text' name='userName' value='"+URLDecoder.decode(userName,"utf-8")+"'/><br />");
 			out.println("密码:<input type='password' name='passWord' value='"+passWord+"'/><br />");
-			out.println("<input type='checkbox' name='ifSaveUser' checked/>是否保存用户名密码");
-			out.println("<input type='checkbox' name='ifNoSaveUser'/>是否不保存用户名密码");
+			out.println("<input type='checkbox' name='ifSaveUser' checked/>是否保存用户名密码<br />");
+			out.println("<input type='checkbox' name='ifNoSaveUser'/>是否不保存用户名密码<br />");
+			out.println("验证码:<input type='text' name='checkCode' /><img src='CreateCheckCodeServlet' /><br />");
 		}else{
 			out.println("用户名:<input type='text' name='userName' /><br />");
 			out.println("密码:<input type='password' name='passWord' /><br />");
-			out.println("<input type='checkbox' name='ifSaveUser'/>是否保存用户名密码");
-			out.println("<input type='checkbox' name='ifNoSaveUser'/>是否不保存用户名密码");
+			out.println("<input type='checkbox' name='ifSaveUser'/>是否保存用户名密码<br />");
+			out.println("<input type='checkbox' name='ifNoSaveUser'/>是否不保存用户名密码<br />");
+			out.println("验证码:<input type='text' name='checkCode' /><img src='CreateCheckCodeServlet' /><br />");
 		}
 		out.println("<input type='submit' value='登录' />");
 		

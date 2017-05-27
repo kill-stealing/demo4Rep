@@ -31,22 +31,28 @@ public class LoginClServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String userName=request.getParameter("userName");
 		String passWord=request.getParameter("passWord");
-		System.out.println("userName "+userName);
-		System.out.println("password "+passWord);
-		User user=new User(userName, passWord);
-		Dao dao=new DaoImpl();
-		int ifExit=dao.ifExit(user);
-		if(ifExit>0){
-//			request.getSession().setAttribute("userName", userName);
-//			request.getSession().setAttribute("pwd", password);
-//			response.sendRedirect("MainFrame?userName="+userName);
-			HttpSession session=request.getSession();
-			session.setAttribute("userName", userName);
-			request.getRequestDispatcher("MainFrame").forward(request, response);
+		String checkCodeInput=request.getParameter("checkCode");
+		String checkcode=(String)request.getSession().getAttribute("checkCode");
+		if(checkCodeInput!=null&&!"".equals(checkCodeInput)&&checkCodeInput.equals(checkcode)){
+			System.out.println("userName "+userName);
+			System.out.println("password "+passWord);
+			User user=new User(userName, passWord);
+			Dao dao=new DaoImpl();
+			int ifExit=dao.ifExit(user);
+			if(ifExit>0){
+				HttpSession session=request.getSession();
+				session.setAttribute("userName", userName);
+				request.getRequestDispatcher("MainFrame").forward(request, response);
+			}else{
+				request.setAttribute("error", "用户id或者密码有误");
+				request.getRequestDispatcher("LoginServlet").forward(request, response);
+			}
 		}else{
-			request.setAttribute("error", "用户id或者密码有误");
+			request.setAttribute("error", "验证码错误 ，请重新登录");
 			request.getRequestDispatcher("LoginServlet").forward(request, response);
+			
 		}
+		
 	}
 
 	/**
