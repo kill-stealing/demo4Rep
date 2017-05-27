@@ -16,20 +16,20 @@ public class GetDataSource {
 	
 	private Connection createConn(){
 		try {
-			/*Class.forName("com.mysql.jdbc.Driver") ;
+			Class.forName("com.mysql.jdbc.Driver") ;
 			String url="jdbc:mysql://localhost:3306/test1?characterEncoding=utf-8";
 			String userName="servlet0519";
-			String pwd="123456";*/
+			String pwd="123456";
 			
-			Class.forName("com.mysql.jdbc.Driver") ;
+			/*Class.forName("com.mysql.jdbc.Driver") ;
 			String url="jdbc:mysql://lexbz1218.lexington.ibm.com:3306/nase";
 			String userName="efriday";
-			String pwd="efriday123";
+			String pwd="efriday123";*/
 			
-//			String url="jdbc:db2://9.51.101.218:50000/NAEFRIDB:currentSchema=EF;";
-//			Class.forName("com.ibm.db2.jcc.DB2Driver");
-//			String userName="db2inst1";
-//			String pwd="admin4dst";
+			/*String url="jdbc:db2://9.51.101.218:50000/NAEFRIDB:currentSchema=EF;";
+			Class.forName("com.ibm.db2.jcc.DB2Driver");
+			String userName="db2inst1";
+			String pwd="admin4dst";*/
 			Connection con=DriverManager.getConnection(url, userName, pwd);
 			return con;
 		} catch (ClassNotFoundException e) {

@@ -27,10 +27,18 @@ public class MainFrame extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-//		String userName=(String)request.getSession().getAttribute("username");
+		String userNameSe=(String)request.getSession().getAttribute("userName");
+		
+		
+		if(userNameSe==null||userNameSe.length()<=0){
+			response.sendRedirect("SessionErrorServlet");
+			return ;
+		}
+		
 		String userName=request.getParameter("userName");
 		String passWord=request.getParameter("passWord");
 		String ifSaveUser=request.getParameter("ifSaveUser");
+		String ifNoSaveUser=request.getParameter("ifNoSaveUser");
 		if(null!=ifSaveUser&&"on".equals(ifSaveUser)){
 			Cookie uCookie=new Cookie("userName", URLEncoder.encode(userName,"utf-8"));
 			uCookie.setMaxAge(3600*24*7);
@@ -39,7 +47,19 @@ public class MainFrame extends HttpServlet {
 			Cookie uCookie1=new Cookie("passWord", passWord);
 			uCookie1.setMaxAge(3600*24*7);
 			response.addCookie(uCookie1);
-		}else{
+		}else if(null!=ifNoSaveUser&&"on".equals(ifNoSaveUser)){
+			Cookie[] cookies=request.getCookies();
+			if(null!=cookies){
+				for (Cookie cookie : cookies) {
+					if(cookie.getName().equals("userName")){
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}else if(cookie.getName().equals("passWord")){
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
+				}
+			}
 		}
 		boolean ifHaveLastTime=false;
 		String messgae="";
@@ -69,12 +89,8 @@ public class MainFrame extends HttpServlet {
 			response.addCookie(c);
 			messgae="您是第一次登录";
 		}
-		/*out.println("<style type=\"text/css\">"+
-					"body{"+
-					"	background-color: #C9D1FF;"+
-					"}"+
-					"</style>");*/
-		out.println("<img src='images/1.png' />欢迎:<b>"+userName+"</b> 登录,"+messgae); 
+		
+		out.println("<img src='images/1.png' />欢迎:<b>"+request.getSession().getAttribute("userName")+"</b> 登录,"+messgae); 
 		out.println("<a href='LoginServlet' >返回重新登录</a><hr >");
 		out.println("<h3>请选择你要进行的操作</h3>");
 		out.println("<a href='ManageUsers'>管理用户</a><br />");

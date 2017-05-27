@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.hsp.dao.Dao;
 import com.hsp.dao.DaoImpl;
@@ -39,6 +40,8 @@ public class LoginClServlet extends HttpServlet {
 //			request.getSession().setAttribute("userName", userName);
 //			request.getSession().setAttribute("pwd", password);
 //			response.sendRedirect("MainFrame?userName="+userName);
+			HttpSession session=request.getSession();
+			session.setAttribute("userName", userName);
 			request.getRequestDispatcher("MainFrame").forward(request, response);
 		}else{
 			request.setAttribute("error", "用户id或者密码有误");

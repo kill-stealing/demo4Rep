@@ -48,7 +48,7 @@ public class ManageUsers extends HttpServlet {
 			rowCount=list1.size();
 			pageCount=(rowCount-1)/pageSize+1;
 			
-			out.println("<img src='images/1.png' />欢迎:<b>XX</b> 登录"); 
+			out.println("<img src='images/1.png' />欢迎:<b>"+request.getSession().getAttribute("userName")+"</b> 登录"); 
 			out.println("<a href='MainFrame' >返回主界面</a>");
 			out.println("<a href='LoginServlet' >安全退出</a><hr >");
 			out.println("<table border='1' cellpadding='0' cellspacing='0' >");
