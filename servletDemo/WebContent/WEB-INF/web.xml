@@ -423,4 +423,14 @@
     <servlet-name>ShowMyCarServlet</servlet-name>
     <url-pattern>/ShowMyCarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Servlet01</display-name>
+    <servlet-name>Servlet01</servlet-name>
+    <servlet-class>com.ibm.servletcontext.Servlet01</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet01</servlet-name>
+    <url-pattern>/Servlet01</url-pattern>
+  </servlet-mapping>
 </web-app>

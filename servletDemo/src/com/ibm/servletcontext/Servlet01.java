@@ -1,22 +1,18 @@
-package com.ibm.shoppingcar;
+package com.ibm.servletcontext;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hsp.dao.Dao;
-import com.hsp.dao.DaoImpl;
-import com.hsp.entity.Product;
-
 /**
- * Servlet implementation class ShowBookServlet
+ * Servlet implementation class Servlet01
  */
-public class ShowBookServlet extends HttpServlet {
+public class Servlet01 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,19 +21,10 @@ public class ShowBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		out.println("<h1>欢迎购买</h1><br />");
-		out.println("<table border='1' cellpadding='0' cellspacing='0' >");
-		out.println("<tr><td>id</td><td>商品名称</td><td>价格</td></tr>");
-		Dao dao=new DaoImpl();
-		List<Product> list=dao.getProd();
-		request.getSession();
-		for(Product prod:list){
-			String url=response.encodeURL("BuyBookServlet?id="+prod.getId());
-			out.println("<tr><td>"+prod.getId()+"</td><td>" +
-					"<a href='"+url+"'>"
-			+prod.getProdName()+"</a></td><td>"+prod.getPrice()+"</td></tr>");
-		}
-		out.println("</table><br />");
+		
+		//获取ServletContext对象引用
+		ServletContext servletContext=this.getServletContext();
+		
 	}
 
 	/**
