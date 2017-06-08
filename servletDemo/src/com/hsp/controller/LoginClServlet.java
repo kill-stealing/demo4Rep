@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.hsp.dao.Dao;
 import com.hsp.dao.DaoImpl;
@@ -20,6 +23,8 @@ import com.hsp.entity.User;
  */
 public class LoginClServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,9 +45,18 @@ public class LoginClServlet extends HttpServlet {
 			Dao dao=new DaoImpl();
 			int ifExit=dao.ifExit(user);
 			if(ifExit>0){
+				ServletContext servletContext=this.getServletContext();
+				Object object=servletContext.getAttribute("callCounts");
+				int callCounts=0;
+				if(object!=null){
+					callCounts=(int)object;
+				}
+				callCounts++;
+				servletContext.setAttribute("callCounts", callCounts);
 				HttpSession session=request.getSession();
 				session.setAttribute("userName", userName);
 				request.getRequestDispatcher("MainFrame").forward(request, response);
+//				response.sendRedirect("MainFrame");
 			}else{
 				request.setAttribute("error", "用户id或者密码有误");
 				request.getRequestDispatcher("LoginServlet").forward(request, response);

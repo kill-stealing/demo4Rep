@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +30,8 @@ public class MainFrame extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String userNameSe=(String)request.getSession().getAttribute("userName");
 		
+		ServletContext servletContext=this.getServletContext();
+		int callCounts=(int)servletContext.getAttribute("callCounts");
 		
 		if(userNameSe==null||userNameSe.length()<=0){
 			response.sendRedirect("SessionErrorServlet");
@@ -92,6 +95,7 @@ public class MainFrame extends HttpServlet {
 		
 		out.println("<img src='images/1.png' />欢迎:<b>"+request.getSession().getAttribute("userName")+"</b> 登录,"+messgae); 
 		out.println("<a href='LoginServlet' >返回重新登录</a><hr >");
+		out.println("网站访问次数"+callCounts+"<br />");
 		out.println("<h3>请选择你要进行的操作</h3>");
 		out.println("<a href='ManageUsers'>管理用户</a><br />");
 		out.println("<a href=''>添加用户</a><br />");
