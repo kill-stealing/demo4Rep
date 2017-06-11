@@ -11,7 +11,7 @@ public class GetDataSource {
 	private static GetDataSource instance=new GetDataSource();
 	private List<Connection> list=new ArrayList<Connection>();
 	
-	private static final int MAX_SIZE=1;
+	private static final int MAX_SIZE=10;
 	private static final int MIN_SIZE=1;
 	
 	private Connection createConn(){
@@ -51,6 +51,9 @@ public class GetDataSource {
 	}
 	
 	public static GetDataSource getInstance(){
+		if(instance==null){
+			instance=new GetDataSource();
+		}
 		return instance;
 	}
 	
