@@ -80,6 +80,7 @@ public class TestExcel {
 	
 	public void importData(String path,String path2,String path3){
 		this.readExcel1(path);
+		
 		this.readExcel2(path2);
 		this.readExcelCheChangTongJi(path3);
 	}
