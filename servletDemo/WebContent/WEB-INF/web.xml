@@ -469,8 +469,32 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>com.ibm.counter.Login</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>LogTestServlet</display-name>
+  	<servlet-name>LogTestServlet</servlet-name>
+  	<servlet-class>com.newdemo.LogTestServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>FileAccessServlet</display-name>
+  	<servlet-name>FileAccessServlet</servlet-name>
+  	<servlet-class>com.newdemo.FileAccessServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogTestServlet</servlet-name>
+  	<url-pattern>
+  	/LogTestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FileAccessServlet</servlet-name>
+  	<url-pattern>
+  	/FileAccessServlet</url-pattern>
   </servlet-mapping>
 </web-app>
