@@ -470,31 +470,111 @@
     <servlet-class>com.ibm.counter.Login</servlet-class>
   </servlet>
   <servlet>
-  	<description>
+    <description>
   	</description>
-  	<display-name>LogTestServlet</display-name>
-  	<servlet-name>LogTestServlet</servlet-name>
-  	<servlet-class>com.newdemo.LogTestServlet</servlet-class>
+    <display-name>LogTestServlet</display-name>
+    <servlet-name>LogTestServlet</servlet-name>
+    <servlet-class>com.newdemo.LogTestServlet</servlet-class>
   </servlet>
   <servlet>
-  	<description>
+    <description>
   	</description>
-  	<display-name>FileAccessServlet</display-name>
-  	<servlet-name>FileAccessServlet</servlet-name>
-  	<servlet-class>com.newdemo.FileAccessServlet</servlet-class>
+    <display-name>FileAccessServlet</display-name>
+    <servlet-name>FileAccessServlet</servlet-name>
+    <servlet-class>com.newdemo.FileAccessServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>LogTestServlet</servlet-name>
-  	<url-pattern>
+    <servlet-name>LogTestServlet</servlet-name>
+    <url-pattern>
   	/LogTestServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>FileAccessServlet</servlet-name>
-  	<url-pattern>
+    <servlet-name>FileAccessServlet</servlet-name>
+    <url-pattern>
   	/FileAccessServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChineseServlet</display-name>
+    <servlet-name>ChineseServlet</servlet-name>
+    <servlet-class>com.ibm.demo.ChineseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChineseServlet</servlet-name>
+    <url-pattern>/ChineseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RefreshSevlet</display-name>
+    <servlet-name>RefreshSevlet</servlet-name>
+    <servlet-class>com.ibm.demo.RefreshSevlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RefreshSevlet</servlet-name>
+    <url-pattern>/RefreshSevlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CacheTestServlet1</display-name>
+    <servlet-name>CacheTestServlet1</servlet-name>
+    <servlet-class>com.ibm.demo.CacheTestServlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CacheTestServlet1</servlet-name>
+    <url-pattern>/CacheTestServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BufferServlet</display-name>
+    <servlet-name>BufferServlet</servlet-name>
+    <servlet-class>com.ibm.demo.BufferServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BufferServlet</servlet-name>
+    <url-pattern>/BufferServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Attachment</display-name>
+    <servlet-name>Attachment</servlet-name>
+    <servlet-class>com.ibm.demo.Attachment</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Attachment</servlet-name>
+    <url-pattern>/Attachment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestCountServlet</display-name>
+    <servlet-name>TestCountServlet</servlet-name>
+    <servlet-class>com.ibm.demo.TestCountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestCountServlet</servlet-name>
+    <url-pattern>/TestCountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IncludingServlet</display-name>
+    <servlet-name>IncludingServlet</servlet-name>
+    <servlet-class>com.ibm.demo.IncludingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncludingServlet</servlet-name>
+    <url-pattern>/IncludingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IncludedServlet</display-name>
+    <servlet-name>IncludedServlet</servlet-name>
+    <servlet-class>com.ibm.demo.IncludedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncludedServlet</servlet-name>
+    <url-pattern>/IncludedServlet</url-pattern>
   </servlet-mapping>
 </web-app>
