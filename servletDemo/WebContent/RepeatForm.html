@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+var isCommitted=false;
+function checkPost1(){
+	if(!isCommitted){
+		isCommitted=true;
+		return true;
+	}else{
+		alert("不能重复提交表单");
+		return false;
+	}
+}
+
+function checkPost(){
+	var btnSubmit=document.getElementById("submit");
+	btnSubmit.disabled="disabled";
+	return true;
+}
+</script>
+<form action="RepeatFormServlet" method="POST" onsubmit="return checkPost()">
+留言内容：<textarea rows="5" cols="5" name="note"></textarea> <br>
+<input type="submit" value="提交" id="submit">
+</form>
+</body>
+</html>
