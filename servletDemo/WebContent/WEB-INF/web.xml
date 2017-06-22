@@ -577,4 +577,34 @@
     <servlet-name>IncludedServlet</servlet-name>
     <url-pattern>/IncludedServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ForwardingServlet</display-name>
+    <servlet-name>ForwardingServlet</servlet-name>
+    <servlet-class>com.ibm.demo.ForwardingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForwardingServlet</servlet-name>
+    <url-pattern>/ForwardingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ForwardedServlet</display-name>
+    <servlet-name>ForwardedServlet</servlet-name>
+    <servlet-class>com.ibm.demo.ForwardedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForwardedServlet</servlet-name>
+    <url-pattern>/ForwardedServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RedirectServlet</display-name>
+    <servlet-name>RedirectServlet</servlet-name>
+    <servlet-class>com.ibm.demo.RedirectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedirectServlet</servlet-name>
+    <url-pattern>/RedirectServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
