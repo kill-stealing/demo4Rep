@@ -21,7 +21,7 @@ public class LogTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		log("LogTestServlet is running");
 		ServletContext sc=this.getServletContext();
-		sc.getResourcePaths("");
+		sc.getResourcePaths("/");
 		try {
 			int x=3/0;
 		} catch (Exception e) {
