@@ -109,6 +109,25 @@ public class UploadServlet extends HttpServlet {
 		out.println("用户:"+request.getAttribute("author")+"<br>");
 		out.println("来自："+request.getAttribute("company")+"<br>");
 		
+		/*
+		 * 将上传的文件名组合成file1.file2 这种形式显示出来，如果没有上传任何文件，则显示 无，如果只上传了第二个文件，则显示为file2
+		 * */
+		
+		StringBuffer fileList=new StringBuffer();
+		String file1=(String)request.getAttribute("file1");
+		makeUpList(fileList,file1);
+		String file2=(String)request.getAttribute("file2");
+		makeUpList(fileList,file2);
+		out.println("成功上传的文件："+(fileList.length()==0?"无":fileList.toString()));
+	}
+	
+	private void makeUpList(StringBuffer result,String fragment){
+		if(fragment!=null){
+			if(result.length()!=0){
+				result.append(",");
+			}
+			result.append(fragment);
+		}
 	}
 
 	/**
@@ -116,6 +135,7 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.doGet(request, response);
 	}
 
 }
