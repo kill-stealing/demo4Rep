@@ -15,6 +15,32 @@
   <listener>
       <listener-class>com.listener.MyAttributeListener</listener-class>
   </listener>
+ 
+  <security-constraint>
+       <!-- 被保护的资源 -->
+      <web-resource-collection>
+          <!-- 此元素由一个给出任意标识名称的web-resource-name元素 -->
+          <web-resource-name>webapp</web-resource-name>
+          <url-pattern>*.jsp</url-pattern>
+          <url-pattern>*.html</url-pattern>          
+          <http-method>GET</http-method>
+          <http-method>POST</http-method>
+      </web-resource-collection>
+      <!-- 有权限的角色 -->
+      <auth-constraint>
+          <role-name>it315</role-name>
+      </auth-constraint>
+  </security-constraint>
+  <!-- 登录方式 -->
+  <login-config>
+      <auth-method>FORM</auth-method>
+      <realm-name>servlet form realm</realm-name>
+      <form-login-config>
+          <form-login-page>/security/login.html</form-login-page>
+          <form-error-page>/security/error.html</form-error-page>
+      </form-login-config>
+  </login-config>
+  
   <servlet>
     <servlet-name>myFirstServlet</servlet-name>
     <servlet-class>com.ibm.demo.MyFirstServlet</servlet-class>
