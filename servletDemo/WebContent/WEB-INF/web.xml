@@ -12,6 +12,9 @@
   <listener>
       <listener-class>com.listener.MyListener</listener-class>
   </listener>
+  <listener>
+      <listener-class>com.listener.MyAttributeListener</listener-class>
+  </listener>
   <servlet>
     <servlet-name>myFirstServlet</servlet-name>
     <servlet-class>com.ibm.demo.MyFirstServlet</servlet-class>
