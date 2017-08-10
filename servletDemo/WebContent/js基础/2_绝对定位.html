@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body{
+				/*margin:0;*/
+				position: relative;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+			}
+			.div1{
+				background-color: red;
+			}
+			.div2{
+				position: absolute;
+				left:200px;
+				top:400px;
+				background-color: blue;
+			}
+			.div3{
+				position: absolute;
+				top: 400px;
+				background-color: green;
+			}
+		</style>
+		<!--
+			绝对定位的特征
+			a、使元素完全脱离文档流；
+			b、使内嵌支持宽高；
+			c、块属性标签内容撑开宽度；
+			d、如果有定位父级相对于定位父级发生偏移，没有定位父级相对于document发生偏移；
+			e、相对定位一般都是配合绝对定位元素使用；
+			f、提升层级
+
+		-->
+	</head>
+	<body>
+		<div class="div1">div1</div>
+		<div class="div2">div2</div>
+		<div class="div3">div3</div>
+	</body>
+</html>

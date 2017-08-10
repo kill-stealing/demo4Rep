@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/*
+&#62; >
+&#60; <
+*/
+body{background:#ccc;}
+#main{width:700px;height:700px;margin:0 auto;position:relative;border:1px solid #000;}
+a{opacity:0.5;}
+a:hover{opacity:0.9;}
+a:hover,a{text-decoration:none;display:block;width:50px;height:50px;position:absolute;border-radius:25px;
+background:#E7AD73;font-size:50px;line-height:45px;color:#fff;text-align:center;top:45%;}
+#next{right:0;}
+#pre{left:0;}
+#imgDiv{height:500px;width:600px;margin:0 50px;position:relative;border:3px solid #fff;}
+#imgDiv img{height:500px;width:600px;position:absolute;}
+#imgDiv img,#imgDiv a{vertical-align:middle;}
+ul,li{margin:0;padding:0;}
+li{list-style:none;display:inline-block;width:20px;height:20px;border-radius:10px;margin:10px;
+background:#bbb;position:relative;cursor:pointer;}
+#footerDiv{margin:0 auto;width:160px;}
+.thumbnailsImg{
+	position:absolute;
+	width:100px;
+	height:80px;
+	left:-45px;
+	top:-95px;
+	border:3px solid #fff;
+}
+.pointerImg{
+	position:absolute;
+	left:5px;
+	top:-10px;
+}
+span{position:absolute;width:100%;height:30px;line-height:30px;text-align:center;background:#ccc;top:0;left:0;z-index:1;color:#fff;}
+.thumbailDiv{display:none;}
+</style>
+</head>
+<script type="text/javascript">
+window.onload=function(){
+	var imgArr=['img/d1.jpg','img/d2.jpg','img/d3.jpg','img/d4.jpg'];
+	var oNext=document.getElementById("next");
+	var oPre=document.getElementById("pre");
+	var oMainImg=document.getElementById("mainImg");
+	var oSpan=document.getElementById("span1");
+	var oUl=document.getElementById("ul1");
+	var liList=document.getElementsByTagName("li");
+	
+	
+	var start=0;
+	var imgArrLength=imgArr.length;
+	
+	function init(){
+		oMainImg.src=imgArr[start];
+		oSpan.innerHTML=start+1+"/"+imgArrLength;
+		var ulInner='';
+		for(var i=0;i<imgArrLength;i++){
+			ulInner+='<li><div class="thumbailDiv"><img class="thumbnailsImg" alt="" src="'+imgArr[i]+
+					 '"><img class="pointerImg" alt="" src="img/ico2.gif"></div></li>';
+		}
+		oUl.innerHTML=ulInner;
+		for(var i=0;i<imgArrLength;i++){
+			liList[i].style.background="#bbb";
+		}
+		liList[start].style.background="yellow";
+		for(var i=0;i<imgArrLength;i++){
+			liList[i].index=i;
+			liList[i].onmouseover=function(){
+				this.getElementsByTagName("div")[0].style.display="block";
+			}
+			liList[i].onmouseout=function(){
+				this.getElementsByTagName("div")[0].style.display="none";
+			}
+			liList[i].onclick=function(){
+				start=this.index;
+				oMainImg.src=imgArr[this.index];
+				oSpan.innerHTML=this.index+1+"/"+imgArrLength;
+				for(var i=0;i<imgArrLength;i++){
+					liList[i].style.background="#bbb";
+				}
+				this.style.background="yellow";
+			}
+		}
+	}
+	init();
+	
+	oNext.onclick=function(){
+		start++;
+		if(start==imgArrLength){
+			start=0;
+		}
+		oMainImg.src=imgArr[start];
+		oSpan.innerHTML=start+1+"/"+imgArrLength;
+		
+		for(var i=0;i<imgArrLength;i++){
+			liList[i].style.background="#bbb";
+		}
+		liList[start].style.background="yellow";
+	}
+	
+	oPre.onclick=function(){
+		start--;
+		if(start==-1){
+			start=3;
+		}
+		
+		oMainImg.src=imgArr[start];
+		oSpan.innerHTML=start+1+"/"+imgArrLength;
+		
+		for(var i=0;i<imgArrLength;i++){
+			liList[i].style.background="#bbb";
+		}
+		liList[start].style.background="yellow";
+	}
+}
+</script>
+<body>
+<div id="main">
+	<div id="imgDiv">
+		<span id="span1">1/4</span>
+		<img id="mainImg" alt="" src="img/d1.jpg">
+		<a href="#" id="next">&#62;</a>
+		<a href="#" id="pre">&#60;</a>
+	</div>
+	<div id="footerDiv">
+		<ul id="ul1">
+			<li><div class="thumbailDiv"><img class="thumbnailsImg" alt="" src=""></div></li>
+			<li><div class="thumbailDiv"><img class="thumbnailsImg" alt="" src=""></div></li>
+			<li><div class="thumbailDiv"><img class="thumbnailsImg" alt="" src=""></div></li>
+			<li><div class="thumbailDiv"><img class="thumbnailsImg" alt="" src=""></div></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

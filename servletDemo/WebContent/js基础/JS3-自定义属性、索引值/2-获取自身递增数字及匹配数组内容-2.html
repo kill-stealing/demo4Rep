@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var btn=document.getElementsByTagName("input");
+		var dataArr=['A','B','C','D'];
+		var btnLength=btn.length;
+		for(var i=0;i<btnLength;i++){
+			btn[i].num=0;
+			btn[i].onclick=function(){
+				this.value=dataArr[this.num];
+				if(this.num<3){
+					this.num++;
+				}else{
+					this.num=0;
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<input type="button" value="0" />
+<input type="button" value="0" />
+<input type="button" value="0" />
+</body>
+</html>

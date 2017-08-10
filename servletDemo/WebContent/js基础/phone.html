@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	#main{
+		width:240px;
+		height:430px;
+		background:url(img/images/phone.png) no-repeat;
+		margin:30px auto;
+		border:1px solid #ccc;
+		position:relative;
+		padding:80px 28px;
+	}
+	#input1{
+		position:absolute;
+		bottom:100px;
+		left:27px;
+		border-top:1px solid #ccc;
+		width:234px;
+		height:40px;
+		display:inline-block;
+	}
+	#imgDiv{
+		border-radius:5px;
+		border:1px solid #ccc;
+		padding:2px;
+	}
+	#inputContent,#send,#imgDiv{
+		display:inline-block;
+		vertical-align:middle;
+		margin:5px 3px;
+	}
+	#inputContent{
+		width:100px;
+		height:30px;
+		line-height:20px;
+		font-size:20px;
+		border-radius:5px;
+	}
+	
+	#send{
+		background:#f1f1f1;
+		border:none;
+		height:30px;
+		line-height:30px;
+		font-size:26px;
+	}
+	input,button,select,textarea{outline:none}
+	textarea{
+		resize:none;
+		overflow:hidden;
+	}
+	
+	#content{
+		position:relative;
+		height:354px;
+		overflow:auto;
+		overflow-x:hidden;
+	}
+	.item{
+		margin:5px 0 5px 100px;
+	}
+	.itemCon{
+		width:90px;
+		word-break: break-all;
+		display:inline-block;
+	}
+	
+	.item .itemCon{
+		background:green;
+	}
+	
+	.item1 .itemCon{
+		background:#DED6E7;
+	}
+	
+	.itemImg,.itemCon{
+		vertical-align:top;
+	}
+	.item1{
+		margin:5px 0;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oImg1=document.getElementById("img1");
+		var oSend=document.getElementById("send");
+		var oContent=document.getElementById("content");
+		var oInput=document.getElementById("inputContent");
+		
+		var picArray=['img/images/pic1.png','img/images/pic2.png'];
+		var isFirst=true;
+		
+		oImg1.onclick=function(){
+			if(!isFirst){
+				oImg1.src=picArray[0];
+				isFirst=true;
+			}else{
+				oImg1.src=picArray[1];
+				isFirst=false;
+			}
+		}
+		
+		oSend.onclick=function(){
+			var message=oInput.value;
+			var innerDiv=oContent.innerHTML;
+			console.log(isFirst);
+			if(isFirst){
+				innerDiv='<div class="item">'+
+					'<span class="itemCon">说：'+message+'</span>'+
+					'<img alt="" src="img/images/pic1.png" class="itemImg"/>'+
+					'</div>'+innerDiv;
+			}else{
+				innerDiv='<div class="item1">'+
+				'<img alt="" src="img/images/pic2.png" class="itemImg"/>'+
+				'<span class="itemCon">说：'+message+'</span>'+
+				'</div>'+innerDiv;
+			}
+			oContent.innerHTML=innerDiv;
+		}
+	}
+</script>
+</head>
+<body>
+<div id="main">
+	<div id="content">
+		
+	</div>
+	<div id="input1">
+		<div id="imgDiv">
+			<img id="img1" alt="" src="img/images/pic1.png">
+		</div>
+		<textarea id="inputContent" rows="10" cols="30"></textarea>
+		<input id="send" type="button" value="发送" />
+	</div>
+</div>
+</body>
+</html>

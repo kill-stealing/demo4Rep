@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	ul ,li {margin:0;padding:0;list-style:none;}
+	#link{
+		text-decoration:none;color:#000;display:block;
+		width:100px;border:1px solid #333;
+	}
+	.ul1 li{
+		width:100px;background:yellow;border:1px solid #333;
+	}
+	.ul1{
+		display:none;
+	}
+</style>
+<script>
+var li=document.getElementById('lis');
+var ul=document.getElementById("ul1");
+var a=document.getElementById("link");
+
+	document.getElementById('lis').onmouseover=show;
+	document.getElementById("lis").onmouseout=hide;
+	
+	function show(){
+		document.getElementById("ul1").style.display="block";
+		document.getElementById("link").style.background="#f1f1f1";
+	}
+
+	function show(){
+		document.getElementById("ul1").style.display=none;
+		document.getElementById("link").style.background="#fff";
+	}
+</script>
+</head>
+<body>
+<ul >
+<li class="lis" id="lis">
+	<a id="link" href="#">微博</a>
+	<ul class="ul1" id="ul1">
+		<li>私信</li>
+		<li>评论</li>
+		<li>@我</li>
+	</ul>
+</li>
+</ul>
+</body>
+</html>

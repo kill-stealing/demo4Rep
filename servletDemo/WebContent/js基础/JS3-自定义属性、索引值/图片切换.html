@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	body{background:#ccc;}
+	#main{width:400px;height:500px;margin:40px auto;position:relative;}
+	#main img{width:400px;height:500px;}
+	#main ul{position:absolute;top:0;right:-80px;}
+	ul,p{margin:0;padding:0;}
+	li{list-style:none;width:60px;height:60px;background:#bbb;margin-bottom:5px;}
+	span{top:0;}
+	p{bottom:0;}
+	span,p{text-align:center;position:absolute;width:400px;height:30px;line-height:30px;color:#fff;left:0;}
+	.active{background:yellow;}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oMain=document.getElementById("main");
+		var liList=document.getElementsByTagName("li");
+		var oImg=document.getElementsByTagName("img")[0];
+		var oSpan=document.getElementsByTagName("span")[0];
+		var oP=document.getElementsByTagName("p")[0];
+		var imgArr=['img/1.png','img/2.png','img/3.png','img/4.png'];
+		var pArr=['第一张图片','第二张图片','第三张图片','第四张图片'];
+		var arrLength=imgArr.length;
+		var oldLi=liList[0];
+		for(var i=0;i<arrLength;i++){
+			liList[i].num=i;
+			liList[i].onclick=function(){
+				oImg.src=imgArr[this.num];
+				oSpan.innerHTML=this.num+1+"/"+arrLength;
+				oP.innerHTML=pArr[this.num];
+				for(var i=0;i<arrLength;i++){
+					liList[i].className="";
+				}
+				this.className="active";
+			}
+		}
+	}
+</script>
+<body>
+<div id="main">
+	<img alt="" src="img/1.png">
+	<ul>
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<span>1/4</span>
+	<p>图片正在加载中。。。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style type="text/css">
+.box {
+	border: 1px solid red;
+}
+
+.clearfix{
+				*zoom:1;
+			}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.item {
+	height: 200px;
+	width: 200px;
+	float: left;
+	background-color: black;
+}
+</style>
+<body>
+	<div class="box clearfix">
+		<div class="item"></div>
+	</div>
+</body>
+</html>

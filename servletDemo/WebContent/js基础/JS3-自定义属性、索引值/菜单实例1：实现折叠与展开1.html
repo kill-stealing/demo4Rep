@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#main{width:300px;height:900px;margin:50px auto;}
+	ul,li{margin:0;padding:0;border:1px solid #ccc;}
+	ul{width:300px;display:none;}
+	li{list-style:none;height:30px;line-height:30px;cursor:pointer;}
+	.title{background:yellow;display:inline-block;width:100%;border:1px solid #ccc;cursor:pointer;}
+</style>
+<script>
+	window.onload=function(){
+		var oMain=document.getElementById("main");
+		var titleArr=['我的好友','我的同学','黑名单'];
+		var nameArr=[['张三','张三','张三','张三'],['李四','李四','李四','李四','李四'],['赵六','赵六']];
+		var titleLength=titleArr.length;
+		console.log(titleLength);
+		for(var i=0;i<titleLength;i++){
+			var html1='<span class="title" ><img alt="" src="img/ico1.gif">'+titleArr[i]+'</span><ul>';
+			var nameLength=nameArr[i].length;
+			for(var j=0;j<nameLength;j++){
+				html1+='<li>'+nameArr[i][j]+'</li>';
+			}
+			html1+='</ul>';
+			oMain.innerHTML+=html1;
+		}
+		
+		var spanList=document.getElementsByTagName("span");
+		var ulList=document.getElementsByTagName("ul");
+		var liList=document.getElementsByTagName("li");
+		var ifExpand=false;
+		for(var i=0;i<titleLength;i++){
+			spanList[i].index=i;
+			spanList[i].ifExpand=false;
+			spanList[i].onclick=function(){
+			 	for(var i=0;i<titleLength;i++){
+					if(spanList[i].index!=this.index){
+						spanList[i].getElementsByTagName("img")[0].src="img/ico1.gif";
+						ulList[i].style.display="none";
+						spanList[i].ifExpand=false;
+					}
+				} 
+				
+				if(this.ifExpand){
+					this.getElementsByTagName("img")[0].src="img/ico1.gif";
+					ulList[this.index].style.display="none";
+					this.ifExpand=false;
+				}else{
+					this.getElementsByTagName("img")[0].src="img/ico2.gif";
+					ulList[this.index].style.display="block";
+					this.ifExpand=true;
+				}
+				
+			}
+		} 
+		var liLength=liList.length;
+		for(var i=0;i<liLength;i++){
+			liList[i].ifHaveClass=false;
+			liList[i].onclick=function(){
+				for(var i=0;i<liLength;i++){
+					liList[i].style.background="";
+				}
+				
+				if(this.ifHaveClass){
+					this.style.background="";
+					this.ifHaveClass=false;
+				}else{
+					this.style.background="yellow";
+					this.ifHaveClass=true;
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<div id="main">
+</div>
+</body>
+</html>
