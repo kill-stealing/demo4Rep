@@ -4,11 +4,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>无标题文档</title>
 </head>
-
+<script>
+	window.onload=function(){
+		var oText=document.getElementById("text1");
+		var oBtn=document.getElementById("btn1");
+		btn1.onclick=function(){
+		var value1=oText.value;
+			if(value1==null||value1==""){
+				alert('请输入qq号码');
+				return false;
+			}
+			if(isNaN(value1)){
+				alert("请输入数字");
+				return false;
+			}
+			if(value1.charAt(0)==0){
+				alert("第一位不能是0");
+				return false;
+			}
+			if(parseInt(value1)!=parseFloat(value1)){
+				alert("请输入整数");
+				return false;
+			}
+			if(value1.length<5||value1.length>10){
+				alert("qq号是5到10位数字");
+				return false;
+			}
+		}
+	}
+</script>
 <body>
 
-请输入QQ号码：<input type="text" />
-<input type="button" value="判断" />
+请输入QQ号码：<input type="text" id="text1"/>
+<input type="button" value="判断" id="btn1"/>
 
 
 <br />
