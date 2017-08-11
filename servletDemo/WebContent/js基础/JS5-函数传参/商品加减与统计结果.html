@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	window.onload=function(){
+		var ul=document.getElementsByTagName("ul")[0];
+		var liList=ul.getElementsByTagName("li");
+		var liLength=liList.length;
+		var oSpan1=document.getElementById("span1");
+		var oSpan2=document.getElementById("span2");
+		var totalNum=parseInt(oSpan1.innerHTML);
+		var totalMoney=parseFloat(oSpan2.innerHTML);
+		for(var i=0;i<liLength;i++){
+			fn(liList[i]);
+		}
+		function fn(obj){
+			var input1=obj.getElementsByTagName("input")[0];
+			var input2=obj.getElementsByTagName("input")[1];
+			var strong=obj.getElementsByTagName("strong")[0];
+			var em=obj.getElementsByTagName("em")[0];
+			var span=obj.getElementsByTagName("span")[0];
+			
+			var singlePrice=parseFloat(em.innerHTML);
+			
+			input1.onclick=function(){
+				var num=parseInt(strong.innerHTML);
+				if(num>0){
+					num--;
+				}
+				strong.innerHTML=num;
+				span.innerHTML=num*singlePrice+"元";
+				getTotalNum();
+				getTotalMoney();
+			}
+			input2.onclick=function(){
+				var num=parseInt(strong.innerHTML);
+				num++;
+				strong.innerHTML=num;
+				span.innerHTML=num*singlePrice+"元";
+				
+				getTotalNum();
+				getTotalMoney();
+			}
+		}
+		
+		getCostlyOne();
+		
+		function getTotalNum(){
+			var totalNum1=0;
+			for(var i=0;i<liLength;i++){
+				var num1=parseInt(liList[i].getElementsByTagName("strong")[0].innerHTML);
+				totalNum1+=num1;
+			}
+			oSpan1.innerHTML=totalNum1;
+		}
+		
+		function getTotalMoney(){
+			var totalMoney=0;
+			for(var i=0;i<liLength;i++){
+				var totalMoneySingle=parseFloat(liList[i].getElementsByTagName("span")[0].innerHTML);
+				totalMoney+=totalMoneySingle;
+			}
+			oSpan2.innerHTML=totalMoney;
+		}
+		
+		function getCostlyOne(){
+			for(var i=0;i<liLength-1;i++){
+				var price=parseFloat(liList[i].getElementsByTagName("em")[0].innerHTML);
+				var temp=parseFloat(liList[i+1].getElementsByTagName("em")[0].innerHTML);
+				if(price>temp){
+					liList[i].getElementsByTagName("em")[0].innerHTML=temp;
+					liList[i+1].getElementsByTagName("em")[0].innerHTML=price;
+				}
+			}
+			alert(liList[liLength-1].getElementsByTagName("em")[0].innerHTML);
+		}
+	}
+</script>
+<body>
+<ul>
+	<li>
+		<input type="button" value="-" />
+		<strong>0</strong>
+		<input type="button" value="+" />
+		单价：<em>12.5元</em>
+		小计：<span>0元</span>
+	</li>
+	<li>
+		<input type="button" value="-" />
+		<strong>0</strong>
+		<input type="button" value="+" />
+		单价：<em>13.5元</em>
+		小计：<span>0元</span>
+	</li>
+	<li>
+		<input type="button" value="-" />
+		<strong>0</strong>
+		<input type="button" value="+" />
+		单价：<em>6.5元</em>
+		小计：<span>0元</span>
+	</li>
+	<li>
+		<input type="button" value="-" />
+		<strong>0</strong>
+		<input type="button" value="+" />
+		单价：<em>1321元</em>
+		小计：<span>0元</span>
+	</li>
+	<li>
+		<input type="button" value="-" />
+		<strong>0</strong>
+		<input type="button" value="+" />
+		单价：<em>2元</em>
+		小计：<span>0元</span>
+	</li>
+</ul>商品合计共：
+<span id="span1">0</span>件，共花费了：<span id="span2">0</span>元
+其中最贵的商品单价是：<span id="span3">0</span>元
+
+</body>
+</html>
