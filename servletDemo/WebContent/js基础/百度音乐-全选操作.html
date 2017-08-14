@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+#main{width:500px;height:500px;border:1px solid #ccc;margin:20px auto;}
+ul,li{margin:0;padding:0;list-style:none;}
+li,.div2{width:490px;height:30px;line-height:30px;font-size:20px;padding:5px;cursor:pointer;}
+.input1,.span1,.span2{vertical-align:middle;}
+.span1{margin-left:20px;width:200px;}
+.span2{width:200px;}
+span{display:inline-block;}
+.div2{padding:5px;}
+.div2 span{margin-left:20px;}
+input{cursor:pointer;}
+</style>
+<script>
+	window.onload=function(){
+		//CCE8CF
+		
+		var bgColor=['#CCE8CF','#fff'];
+		
+		var liList=document.getElementsByTagName("li");
+		var inputALl=document.getElementById("inputALl");
+		var liLength=liList.length;
+		var colorLength=bgColor.length;
+		for(var i=0;i<liLength;i++){
+			liList[i].style.background=bgColor[i%colorLength];
+			liList[i].bgColor=bgColor[i%colorLength];
+			liList[i].onmouseover=function(){
+				this.style.background="gray";
+			}
+			
+			liList[i].onmouseout=function(){
+				if(this.getElementsByTagName("input")[0].checked){
+					
+				}else{
+					this.style.background=this.bgColor;
+				}
+			}
+			
+			var oInput=liList[i].getElementsByTagName("input")[0];
+			oInput.index=i;
+			oInput.onclick=function(){
+				var ifAllSelect=true;
+				for(var i=0;i<liLength;i++){
+					if(!liList[i].getElementsByTagName("input")[0].checked){
+						ifAllSelect=false;
+					}
+				}
+				if(this.checked){
+					liList[this.index].style.background="gray";
+				}else{
+					liList[this.index].style.background=liList[this.index].bgColor;
+				}
+				if(ifAllSelect){
+					inputALl.checked=true;
+				}else{
+					inputALl.checked=false;
+				}
+			}
+		}
+		
+		inputALl.onclick=function(){
+			if(this.checked){
+				for(var i=0;i<liLength;i++){
+					liList[i].style.background="gray";
+					liList[i].getElementsByTagName("input")[0].checked=true;
+				}
+			}else{
+				for(var i=0;i<liLength;i++){
+					liList[i].style.background=liList[i].bgColor;
+					liList[i].getElementsByTagName("input")[0].checked=false;
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<div id="main">
+	<ul>
+		<li><input class="input1" type="checkbox" /><span class="span1">私奔</span>
+		<span class="span2">梁博</span></li>
+		<li><input class="input1" type="checkbox" /><span class="span1">北京北京</span>
+		<span class="span2">梁博、黄勇</span></li>
+		<li><input class="input1" type="checkbox" /><span class="span1">我爱你中国</span>
+		<span class="span2">梁博</span></li>
+		<li><input class="input1" type="checkbox" /><span class="span1">花火</span>
+		<span class="span2">梁博</span></li>
+		<li><input class="input1" type="checkbox" /><span class="span1">回来</span>
+		<span class="span2">梁博</span></li>
+		<li><input class="input1" type="checkbox" /><span class="span1">爱要有你才完美</span>
+		<span class="span2">梁博</span></li>
+	</ul>
+	<div class="div2"><input type="checkbox" id="inputALl"/><span>全选</span></div>
+</div>
+</body>
+</html>
