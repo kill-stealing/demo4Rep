@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+a{text-decoration:none;border-radius:5px;}
+#mainDiv{width:500px;height:200px;border:1px solid #ccc;margin:50px auto;}
+#titleDiv{width:500px;height:40px;position:relative;background:#4273A5;border-radius:5px;}
+ul,li{margin:0;padding:0;list-style:none;display:inline-block;}
+#mainUl{height:40px;line-height:40px;font-size:20px;position:relative;}
+.mainA{color:#fff;padding:5px;}
+.mainA:hover{color:#fff;background:#ccc;}
+#mainUl .detailUl{position:absolute;top:50px;font-size:13px;border:1px solid #4273A5;
+border-radius:5px;height:20px;line-height:20px;display:none;width:300px;}
+#mainUl .detailUl a{color:#4273A5;padding:1px;}
+#mainUl .detailUl a:hover{color:#4273A5;text-decoration:underline;}
+</style>
+<script>
+window.onload=function(){
+	var mainUlO=document.getElementById("mainUl");
+	var aList=mainUlO.getElementsByTagName("a");
+	var mainTitleList=[];
+	var titleList=[];
+	for(var i=0;i<aList.length;i++){
+		if(aList[i].className=='mainA'){
+			mainTitleList.push(aList[i]);
+		}
+	}
+	var timer=null;
+	var num=0;
+	for(var i=0;i<mainTitleList.length;i++){
+		mainTitleList[i].index=i;
+		mainTitleList[i].onmouseover=function(){
+			num=this.index+1;
+			var ul=document.getElementById("ul"+num);
+			ul.style.display="block";
+		}
+		mainTitleList[i].onmouseout=function(){
+			num=this.index+1;
+			timer=setTimeout(function(){
+				hide(num);
+			},200);
+		}
+	}
+	
+	var itemUlList=mainUlO.getElementsByTagName("ul"); 
+	for(var i=0;i<itemUlList.length;i++){
+		itemUlList[i].index=i;
+		itemUlList[i].onmouseover=function(){
+			clearTimeout(timer);
+			this.style.display="block";
+		}
+		itemUlList[i].onmouseout=function(){
+			this.style.display="none";
+		}
+	}
+	
+	function show(num){
+		clearTimeout(timer);
+		var ul=document.getElementById("ul"+num);
+		ul.style.display="block";
+	}
+	
+	
+	function hide(num){
+		var ul=document.getElementById("ul"+num);
+		ul.style.display="none";
+	}
+}
+</script>
+</head>
+<body>
+<div id="mainDiv">
+	<div id="titleDiv">
+		<ul id="mainUl">
+			<li><a href="#" class="mainA">首页</a>
+			   <ul class="detailUl" id="ul1">
+				   <li><a href="#">最近更新</a></li>
+				   <li><a href="#">活动</a></li>
+				   <li><a href="#">报名试听</a></li>
+				   <li><a href="#">学院反馈</a></li>
+			   </ul>
+			</li>
+			<li><a href="#" class="mainA">关于我们</a>
+				<ul class="detailUl" id="ul2">
+				   <li><a href="#">妙味课堂</a></li>
+				   <li><a href="#">培训方式</a></li>
+				   <li><a href="#">培训理念</a></li>
+				   <li><a href="#">联系我们</a></li>
+			   </ul>
+			</li>
+			<li><a href="#" class="mainA">作品</a>
+				<ul class="detailUl" id="ul3">
+				   <li><a href="#">班固</a></li>
+				   <li><a href="#">MATRIX</a></li>
+				   <li><a href="#">留学E网</a></li>
+				   <li><a href="#">ECMall</a></li>
+			   </ul>
+			</li>
+			<li><a href="#" class="mainA">博客</a>
+				<ul class="detailUl" id="ul4">
+				   <li><a href="#">JS教程</a></li>
+				   <li><a href="#">弹出层效果</a></li>
+				   <li><a href="#">3D球面签云</a></li>
+				   <li><a href="#">window计算器</a></li>
+			   </ul>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#qq{width:200px;height:600px;background:#F9C;}
+#title{width:200px;height:300px;position:absolute;left:220px;background:#FC6;top:10px;display:none;}
+</style>
+<script>
+window.onload=function(){
+	var qq=document.getElementById("qq");
+	var title=document.getElementById("title");
+	
+	qq.onmouseover=show;
+	qq.onmouseout=hide;
+	var timer=null;
+	
+	function show(){
+		clearTimeout(timer);
+		title.style.display="block";
+	}
+	
+	function hide(){
+		timer=setTimeout(function(){
+			title.style.display="none";
+		},300);
+	}
+	
+	title.onmouseover=show;
+	title.onmouseout=hide;
+}
+</script>
+</head>
+<body>
+<div id="qq"></div>
+<div id="title"></div>
+</body>
+</html>

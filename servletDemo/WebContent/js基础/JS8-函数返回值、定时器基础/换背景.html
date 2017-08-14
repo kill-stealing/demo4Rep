@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var start=document.getElementById("start");
+		var end=document.getElementById("end");
+		var imgArr=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+		var timer=null;
+		var num=0;
+		function startChange(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				document.body.style.background='url('+imgArr[num]+') no-repeat';
+				num++;
+				if(num==4){
+					num=0;
+				}
+			},1000);
+		}
+		
+		function endChange(){
+			clearInterval(timer);
+		}
+		
+		start.onclick=startChange;
+		end.onclick=endChange;
+	}
+</script>
+</head>
+<body>
+<input type="button" value="开始切换" id="start"/>
+<input type="button"  value="停止" id="end"/>
+</body>
+</html>

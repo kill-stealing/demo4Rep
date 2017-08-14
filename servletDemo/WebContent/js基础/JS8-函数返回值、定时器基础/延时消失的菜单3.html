@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+a{text-decoration:none;}
+#mainDiv{width:500px;height:100px;border:1px solid #ccc;}
+#mainUl{width:500px;height:50px;position:relative;background:#4273A5;border-radius:5px;}
+#mainUl li{display:inline-block;height:40px;line-height:40px;font-size:20px;border-left:1px solid #fff;padding:5px;}
+#mainUl li:first-child{border:none;}
+#mainUl li a{color:#fff;padding:5px 20px;border-radius:5px;}
+#mainUl li a:hover{background:#ccc;border-radius:5px;}
+#mainUl li div{position:absolute;top:60px;border:1px solid #4273A5;
+border-radius:5px;height:20px;line-height:20px;font-size:15px;display:none;}
+#mainUl li div a{color:#4273A5;padding:0;}
+#mainUl li div a:hover{text-decoration:underline;padding:0;background:#fff;}
+</style>
+</head>
+<script>
+window.onload=function(){
+	var mainUl=document.getElementById("mainUl");
+	var liList=mainUl.getElementsByTagName("li");
+	var timer=null,
+}
+</script>
+<body>
+<div id="mainDiv">
+	<ul id="mainUl">
+		<li><a href="#" class="mainA">首页</a>
+		   <div class="detailUl" id="ul1">
+			   <a href="#">最近更新</a>
+			   <a href="#">活动</a>
+			   <a href="#">报名试听</a>
+			   <a href="#">学院反馈</a>
+		   </div>
+		</li>
+		<li><a href="#" class="mainA">关于我们</a>
+			<div class="detailUl" id="ul2">
+			   <a href="#">妙味课堂</a>
+			   <a href="#">培训方式</a>
+			   <a href="#">培训理念</a>
+			   <a href="#">联系我们</a>
+		   </div>
+		</li>
+		<li><a href="#" class="mainA">作品</a>
+			<div class="detailUl" id="ul3">
+			   <a href="#">班固</a>
+			   <a href="#">MATRIX</a>
+			   <a href="#">留学E网</a>
+			   <a href="#">ECMall</a>
+		   </div>
+		</li>
+		<li><a href="#" class="mainA">博客</a>
+			<div class="detailUl" id="ul4">
+			   <a href="#">JS教程</a>
+			   <a href="#">弹出层效果</a>
+			   <a href="#">3D球面签云</a>
+			   <a href="#">window计算器</a>
+		   </div>
+		</li>
+	</ul>
+</div>
+</body>
+</html>
