@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload=function(){
+		var liList=document.getElementsByTagName("li");
+		var colorArr=['red','yellow','blue'];
+		var length=liList.length;
+		for(var i=0;i<length;i++){
+			var a=i%3;
+			liList[i].style.background=colorArr[a];
+			
+			liList[i].onmouseover=function(){
+				this.bgcolor=this.style.background;
+				this.style.background='gray';
+			}
+			
+			liList[i].onmouseout=function(){
+				this.style.background=this.bgcolor;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</body>
+</html>

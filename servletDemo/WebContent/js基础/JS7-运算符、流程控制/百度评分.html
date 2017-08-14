@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#main{border:1px solid #ccc;width:600px;padding:10px;}
+span span{color:red;}
+ul div{width:20px;height:20px;background:url(img/star.png) right 0 no-repeat;cursor:pointer;}
+ul,li{margin:0;padding:0;list-style:none;display:inline-block;}
+#main span,ul li,#promptDiv{vertical-align:middle;}
+#promptDiv{border:1px solid #ccc; height:30px;background:#FFFFE7;
+display:inline-block;float;left;font-size:10px;line-height:30px;color:#ccc;margin-left:50px;}
+#promptDiv span,#promptDiv img{vertical-align:middle;}
+</style>
+<script>
+	window.onload=function(){
+		var li=document.getElementsByTagName("li");
+		var textArr=['默认','差','一般','好'];
+		var imgArr=['url(img/star.png) right 0 no-repeat','url(img/star.png) -40px 0 no-repeat','(img/star.png) -20px 0 no-repeat'
+		            ,'url(img/star.png) left 0 no-repeat'];
+		var liLength=li.length;
+		for(var i=0;i<liLength;i++){
+			li[i].getElementsByTagName("div")[0].index=i;
+			li[i].getElementsByTagName("div")[0].onmouseover=function(){
+				if(this.index>3){
+					for(var i=0;i<=this.index;i++){
+						li[i].getElementsByTagName("div")[0].style.background='url(img/star.png) left 0 no-repeat';
+					}
+				}else if(this.index>1&&this.index<4){
+					for(var i=0;i<=this.index;i++){
+						li[i].getElementsByTagName("div")[0].style.background='url(img/star.png) -20px 0 no-repeat';
+					}
+				}else{
+					for(var i=0;i<=this.index;i++){
+						li[i].getElementsByTagName("div")[0].style.background='url(img/star.png) -40px 0 no-repeat';
+					}
+				}
+			}
+			li[i].getElementsByTagName("div")[0].onmouseout=function(){
+				for(var i=0;i<=this.index;i++){
+					li[i].getElementsByTagName("div")[0].style.background='url(img/star.png) right 0 no-repeat';
+				}
+			}
+			
+			li[i].getElementsByTagName("div")[0].onclick=function(){
+				
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="main">
+		<span><span>*</span>总体评价:</span>
+		<ul>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+			<li><div></div></li>
+		</ul>
+		<span id="text"></span>
+		<div id="promptDiv"><span>小提示:点击星星就能打分</span><img alt="" src="img/star.png"></div>
+	</div>
+</body>
+</html>
