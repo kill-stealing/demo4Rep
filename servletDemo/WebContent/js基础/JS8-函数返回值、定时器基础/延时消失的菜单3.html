@@ -6,23 +6,52 @@
 <style>
 *{margin:0;padding:0;}
 a{text-decoration:none;}
-#mainDiv{width:500px;height:100px;border:1px solid #ccc;}
-#mainUl{width:500px;height:50px;position:relative;background:#4273A5;border-radius:5px;}
+#mainDiv{width:700px;height:100px;border:1px solid #ccc;}
+#mainUl{width:700px;height:50px;position:relative;background:#4273A5;border-radius:5px;}
 #mainUl li{display:inline-block;height:40px;line-height:40px;font-size:20px;border-left:1px solid #fff;padding:5px;}
 #mainUl li:first-child{border:none;}
 #mainUl li a{color:#fff;padding:5px 20px;border-radius:5px;}
 #mainUl li a:hover{background:#ccc;border-radius:5px;}
 #mainUl li div{position:absolute;top:60px;border:1px solid #4273A5;
 border-radius:5px;height:20px;line-height:20px;font-size:15px;display:none;}
-#mainUl li div a{color:#4273A5;padding:0;}
-#mainUl li div a:hover{text-decoration:underline;padding:0;background:#fff;}
+#mainUl li div a{color:#4273A5;padding:0px;}
+#mainUl li div a:hover{text-decoration:underline;padding:0px;background:#fff;}
 </style>
 </head>
 <script>
 window.onload=function(){
 	var mainUl=document.getElementById("mainUl");
 	var liList=mainUl.getElementsByTagName("li");
-	var timer=null,
+	var timer=null,num;
+	for(var i=0;i<liList.length;i++){
+		var oDiv=liList[i].getElementsByTagName("div")[0];
+		var oA=liList[i].getElementsByTagName("a")[0];
+		oA.index=i;
+		oA.onmouseover=function(){
+			for(var i=0;i<liList.length;i++){
+				liList[i].getElementsByTagName("a")[0].style.background="";
+				liList[i].getElementsByTagName("div")[0].style.display="none";
+			}
+			this.style.background="#ccc";
+			liList[this.index].getElementsByTagName("div")[0].style.display="block";
+		}
+		oA.onmouseout=function(){
+			num=this.index;
+			timer=setTimeout(function(){
+				liList[num].getElementsByTagName("div")[0].style.display="none";
+			},200); 
+		}
+		
+		
+		oDiv.onmouseover=function(){
+			clearTimeout(timer);
+			this.style.display="block";
+		}
+		
+		oDiv.onmouseout=function(){
+			this.style.display="none";
+		} 
+	}
 }
 </script>
 <body>
