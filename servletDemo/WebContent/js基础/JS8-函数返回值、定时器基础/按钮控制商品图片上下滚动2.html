@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+ul{list-style:none;}
+#content{width:240px;height:500px;margin:40px auto;border:1px solid #ccc;position:relative;}
+h2{height:40px;width:240px;line-height:40px;font-size:20px;color:#fff;
+background:#0033FF;font-weight:bold;text-align:center;}
+#main{position:absolute;top:40px;width:240px;height:460px;overflow:hidden;background:#f1f1f1;}
+#main p{position:absolute;width:240px;height:40px;line-height:40px;font-size:20px;color:#000;background:#ccc;
+text-align:center;font-weight:bold;cursor:pointer;z-index:1000;}
+#up{top:0;}
+#down{bottom:0;}
+#main ul{top:40px;width:240px;min-height:380px;position:absolute;}
+#main ul li{height:80px;line-height:80px;color:#000;text-align:center;border-bottom:1px solid #ccc;}
+#main ul li:hover{background:#d5d5d5;}
+#main ul li:nth-child(event){background:#ccc;}
+#main ul li:nth-child(odd){background:#fff;} 
+</style>
+<script>
+window.onload=function(){
+	var up=$("up");
+	var down=$("down");
+	var main=$('main');
+	var oUl=main.getElementsByTagName("ul")[0];
+	var arr = ['星球大战外传','魔弦传说','情圣','大卫贝肯之倒','青海湖畔','我们的青春不怕疼','一万公里的约定','单身日记：好孕来袭','有家','至暴之年','向阳花开'];
+	var arrSize=arr.length;
+	for(var i=0;i<arrSize;i++){
+		var oLi=document.createElement('li');
+		oLi.innerHTML=arr[i];
+		oUl.appendChild(oLi);
+	}
+    var timer=null;
+   
+    var top=parseInt(getStyle(oUl,'top'));
+    var maxTop=top;
+    // 460 
+    var stepSize=10;//步长
+    var speed=30;//速度
+    
+    var minTop=-(parseInt(getStyle(oUl,'height'))-parseInt(getStyle(main,'height'))+parseInt(getStyle(down,'height')));
+    
+    
+	up.onmousedown=function(){
+    	clearInterval(timer);
+		timer=setInterval(function(){
+			top=top-stepSize;
+			if(top<=minTop){
+				top=minTop;
+			}
+			oUl.style.top=top+"px";
+		},speed);  
+	}
+	up.onmouseup=function(){
+    	clearInterval(timer);
+	}
+	
+	down.onmousedown=function(){
+    	clearInterval(timer);
+		timer=setInterval(function(){
+			top=top+stepSize;
+			if(top>=maxTop){
+				top=maxTop;
+			}
+			oUl.style.top=top+"px";
+		},speed);  
+	}
+	down.onmouseup=function(){
+    	clearInterval(timer);
+	}
+	
+	function $(id){return document.getElementById(id);}
+	function getStyle(obj,attr){ 
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,0)[attr];
+	}
+}
+</script>
+</head>
+<body>
+<div id="content">
+	<h2>电影排行榜</h2>
+	<div id="main">
+		<p id="up">向上</p>
+		<ul></ul>
+		<p id="down">向下</p>
+	</div>
+</div>
+</body>
+</html>

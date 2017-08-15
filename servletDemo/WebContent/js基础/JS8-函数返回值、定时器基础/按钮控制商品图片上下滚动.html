@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+ul{list-style:none;}
+#main{width:200px;height:590px;margin:50px auto;border:1px solid #ccc;border-radius:5px;position:relative;}
+#title{width:200px;height:30px;line-height:30px;color:#fff;background:#425A7B;border-top-left-radius:5px;
+border-top-right-radius:5px;text-indent:1em;}
+#top,#bottom{width:200px;height:30px;background:#ccc;text-align:center;cursor:pointer;position:absolute;z-index:1000;}
+#top img,#bottom img{width:20px;height:20px;vertical-align:middle;}
+#bottom{bottom:0;}
+#content{width:180px;min-height:500px;margin:0 10px;overflow:hidden;position:absolute;top:60px;}
+#content ul{position:absolute;}
+#content ul li{position:relative;height:100px;}
+#content .item{height:100px;border-bottom:1px solid #ccc;}
+.item .title,.item .title{width:100%;display:inline-block;}
+.item .title{font-weight:bold;font-size:20px;padding-bottom:10px;}
+#content .item img{width:50px;height:50px;position:absolute;right:0;bottom:5px;}
+</style>
+<script>
+window.onload=function(){
+	var topBtn=document.getElementById("top");
+	var botBtn=document.getElementById("bottom");
+	var content=document.getElementById("content");
+	var timer=null;
+	var oUl=content.getElementsByTagName("ul");
+	topBtn.onmousedown=function(){
+		setInterval(function(){
+			
+		},1000);
+	}
+	botBtn.onmousedown=function(){
+	
+	}
+	
+	function $(id){return document.getElementById(id);}
+	function getStyle(obj,attr){ 
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,0)[attr];
+	}
+}
+</script>
+</head>
+<body>
+<div id="main">
+	<div id="title">妙味课堂</div>
+	<div id="top"><img alt="" src="img/top.png"></div>
+	<div id="bottom"><img alt="" src="img/bottom.png"></div>
+	<div id="content">
+		<ul>
+			<li>
+				<div class="item">
+					<span class="title">MAC 翻新产品</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/1.jpg">
+				</div>
+			</li>
+			<li>
+				<div class="item">
+					<span class="title">翻新笔记本</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/2.jpg">
+				</div>
+			</li>
+			<li>
+				<div class="item">
+					<span class="title">翻新台式机</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/3.jpg">
+				</div>
+			</li>
+			<li>
+				<div class="item">
+					<span class="title">MAC 翻新产品</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/1.jpg">
+				</div>
+			</li>
+			<li>
+				<div class="item">
+					<span class="title">翻新笔记本</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/2.jpg">
+				</div>
+			</li>
+			<li>
+				<div class="item">
+					<span class="title">翻新台式机</span>
+					<span class="summary">iPad 翻新产品</span>
+					<img alt="" src="img/3.jpg">
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+</body>
+</html>
