@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+*{padding:0;margin:0;}
+ul li{list-style:none;}
+#main{width:400px;height:400px;margin:50px auto;border:1px solid #ccc;}
+#title a{text-decoration:none;height:30px;line-height:30px;background:#94FFC6;display:inline-block;
+text-align:center;padding:5px 20px;color:#000;}
+#title a.active{background:#005A63;}
+#content{height:92px;width:250px;}
+img{width:200px;height:92px;float:left;}
+ul li{float:left;display:inline-block;width:50px;height:30px;line-height:30px;background:#F7F7F7;
+text-align:center;border-bottom:1px solid #fff;}
+ul li.active{background:#639CC6;}
+</style>
+<script>
+window.onload=function(){
+	var input =document.getElementsByTagName("input")[0];
+	input.onclick=function(){
+		clearInterval(timer);
+	}
+	var oTitle=document.getElementById("title");
+	var content=document.getElementById("content");
+	var oImg=content.getElementsByTagName("img")[0];
+	var imgArr=['img/1.jpg','img/2.jpg','img/3.jpg'];
+	var titleArr=[{title:"动漫",subtitle:['图片1','图片2','图片3'],img:['img/1.jpg','img/2.jpg','img/3.jpg']},
+	              {title:"动漫2",subtitle:['图片4','图片5','图片6'],img:['img/1.png','img/2.png','img/3.png']}];
+	var timer=null;
+	var aList=oTitle.getElementsByTagName("a");
+	var liList=content.getElementsByTagName("li");
+	var numOfTitle=0;
+	var numOfLi=0;
+	
+	liList[numOfLi].className="active";
+	aList[numOfTitle].className="active";
+	oImg.src=titleArr[numOfTitle].img[numOfLi];
+	
+	for(var i=0;i<aList.length;i++){
+		aList[i].index=i;
+		aList[i].onmouseover=function(){
+			clearInterval(timer);
+			numOfTitle=this.index;
+			for(var i=0;i<aList.length;i++){
+				aList[i].className="";
+			}
+			this.className="active";
+			addEvens();
+			oImg.src=titleArr[numOfTitle].img[numOfLi];
+		}
+		
+		aList[i].onmouseout=function(){
+			clearInterval(timer);
+			autoPlay();
+		}
+	}
+	
+	oImg.onmouseover=function(){
+		clearInterval(timer);
+	}
+	
+	oImg.onmouseout=function(){
+		autoPlay();
+	}
+	
+	addEvens();
+	
+	function autoPlay(){
+		timer=setInterval(function(){
+			liList[numOfLi].className="";
+			numOfLi++;
+			numOfLi%=liList.length;
+			liList[numOfLi].className="active";
+			oImg.src=titleArr[numOfTitle].img[numOfLi];
+			
+			if(numOfLi==0){
+				aList[numOfTitle].className="";
+				numOfTitle++;
+				numOfTitle%=aList.length;
+				aList[numOfTitle].className="active";
+				addEvens();
+				oImg.src=titleArr[numOfTitle].img[numOfLi];
+			} 
+		},1000);
+	}
+	autoPlay();
+	
+	function addEvens(){
+		for(var i=0;i<liList.length;i++){
+			liList[i].innerHTML=titleArr[numOfTitle].subtitle[i];
+			
+			liList[i].titleIndex=numOfTitle;
+			liList[i].subTitleIndex=i;
+			
+			liList[i].onmouseover=function(){
+				clearInterval(timer);
+				for(var i=0;i<liList.length;i++){
+					liList[i].className='';
+				}
+				this.className="active";
+				numOfTitle=this.titleIndex;
+				numOfLi=this.subTitleIndex;
+				oImg.src=titleArr[numOfTitle].img[numOfLi];
+			}
+			
+			liList[i].onmouseout=function(){
+				clearInterval(timer);
+				autoPlay();
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="click" />
+<div id="main">
+	<div id="title"><a href="#" >菜单一</a><a href="#" >菜单二</a></div>
+	<div id="content">
+		<img alt="">
+		<ul><li></li><li></li><li></li></ul>
+	</div>
+</div>
+</body>
+</html>
