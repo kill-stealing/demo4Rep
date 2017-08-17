@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<script>
+window.onload=function(){
+
+	var len=13;
+	var oUl=$("ul1");
+	var liArr=oUl.getElementsByTagName("li");
+	var box=$("box");
+	var blue=$("blue");
+	var num=0;
+	var numMoveUp=0;
+	var numChangeOpacity=0;
+	var moveUpTimer=null;
+	var changeOpacityTimer=null;
+	var widthBox=parseInt(getStyle(box, "width"))-2;
+	
+	for(var i=0;i<len;i++){
+		oUl.innerHTML+="<li style='left:"+i*30+"px'>+1</li>";
+	}
+	
+	box.onclick=function(){
+		changeWidth();
+		//changeOpacity();
+		moveUp();
+		
+	}
+	
+	function changeOpacity(){
+		clearInterval(changeOpacityTimer);
+		changeOpacityTimer=setInterval(function(){
+			doChangeOpacity(liArr[numChangeOpacity],100,0.05,0);
+			numChangeOpacity++;
+			if(numChangeOpacity==len){
+				numChangeOpacity=0;
+				clearInterval(changeOpacityTimer);
+			}
+		},200);
+	}
+	
+	function moveUp(){
+		clearInterval(moveUpTimer);
+		moveUpTimer=setInterval(function(){
+			doMove(liArr[numMoveUp],'top',5,-400,function(){});
+			doChangeOpacity(liArr[numMoveUp],100,0.05,0);
+			numMoveUp++;
+			if(numMoveUp==len){
+				numMoveUp=0;
+				clearInterval(moveUpTimer);
+			}
+		},200);
+	}
+	
+	function changeWidth(){
+		clearInterval(blue.timer);
+		var length=10;
+		blue.timer=setInterval(function(){
+			var temp=num*length;
+			if(temp>=widthBox){
+				temp=widthBox;
+			}
+			num++;
+			blue.style.width=temp+"px";
+			if(temp==widthBox){
+				clearInterval(blue.timer);
+				num=0;
+				//doChangeOpacity(obj,perTime,speed,target)
+				doChangeOpacity(blue,100,0.05,0);
+			}
+		}, 100);
+	}
+}
+</script>
+</head>
+<style>
+#box{width:400px;height:50px;margin:500px auto;border:1px solid #000;position:relative;}
+#blue{background:#10F7EF;height:48px;position:absolute;top:0px;opacity:1;}
+#ul1{height:48px;line-height:48px;font-size:20px;position:relative;z-index:1;}
+#ul1 li{display:inline-block;position:absolute;top:0px;}
+</style>
+<body>
+	<div id="box">
+		<ul id="ul1"></ul>
+		<div id="blue"></div>
+	</div>
+</body>
+</html>

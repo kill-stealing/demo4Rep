@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<style>
+#main{width:500px;height:30px;margin:50px auto;background:red;opacity:1;}
+</style>
+<script>
+window.onload=function(){
+	var oMain=$("main");
+	var btn=$("btn");
+	/* var opacity=getStyle(oMain, "opacity");
+	var num=0;
+	var speed=0.05;
+	 btn.onclick=function(){
+		clearInterval(this.timer);
+		this.timer=setInterval(function(){
+			oMain.style.opacity+=speed;
+			if(oMain.style.opacity==(opacity-1)||oMain.style.opacity==(1-opacity)){
+				clearInterval(this.timer);
+				num=0;
+			}
+		},1000); 
+	}  */
+	
+	btn.onclick=function(){
+		doChangeOpacity(oMain,100,0.05,0);
+	}; 
+	
+	//perTime 
+	function doChangeOpacity(obj,perTime,speed,target){
+		clearInterval(obj.timer);
+		var num=0;
+		var opacity=getStyle(oMain, "opacity");
+		obj.timer=setInterval(function(){
+			if(opacity>target){
+				obj.style.opacity=opacity-num*speed;
+			}else{
+				obj.style.opacity=opacity+num*speed;
+			}
+			num++;
+			if(obj.style.opacity==target){
+				clearInterval(timer);
+				num=0;
+			}
+		},perTime); 
+	} 
+}
+</script>
+</head>
+<body>
+<input type="button" value="按钮" id="btn"/>
+<div id="main">
+
+</div>
+</body>
+</html>
