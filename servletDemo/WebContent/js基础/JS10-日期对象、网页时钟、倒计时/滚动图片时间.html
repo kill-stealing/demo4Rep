@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<style>
+#div1{margin:50px auto;width:700px;height:80px;}
+#div1 ul{height:80px;position:relative;}
+#div1 ul li{height:80px;width:50px;position:relative;overflow:hidden;}
+#div1 ul li .item{height:80px;position:absolute;width:50px;}
+#div1 img{width:50px;height:80px;float:left;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=$("div1");
+	var oP=$("p1");
+	var divArr=oDiv.getElementsByTagName("div");
+	
+	function toTwo(num){
+		num=num<10?"0"+num:""+num;
+		console.log("24 num ",num);
+	}
+	
+	getTime();
+	
+	setInterval(function(){
+		getTime();
+		doMove(divArr[0],'top',10,-80,function(){
+		 	
+		});
+	},1000);
+	
+	function getTime(){
+		var time=new Date();
+		var iHours=time.getHours();
+		var iMinu=time.getMinutes();
+		var iSec=time.getSeconds();
+		console.log("iHours",iHours);
+		console.log("iMinu",iMinu);
+		console.log("iSec",iSec);
+		oP.innerHTML=toTwo(iHours)+toTwo(iMinu)+toTwo(iSec);
+	}
+}
+</script>
+</head>
+<body>
+<p id="p1"></p>
+<div id="div1">
+	<ul>
+		<li><div class="item"><img alt="" src="img/0.JPG"><img alt="" src="img/1.JPG"></div></li>
+	</ul>
+</div>
+</body>
+</html>

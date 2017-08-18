@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<style>
+#div1{margin:50px auto;width:700px;}
+#div1 img{width:50px;height:80px;margin:10px;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=$("div1");
+	var imgArr=oDiv.getElementsByTagName("img");
+	var len=8;
+	
+	var time=new Date();
+	var iHours=time.getHours();
+	var iMinu=time.getMinutes();
+	var iSec=time.getSeconds();
+	oDiv.innerHTML=toImg(iHours)+'<img alt="" src="img/colon.JPG">'
+				+toImg(iMinu)+'<img alt="" src="img/colon.JPG">'+toImg(iSec);
+	
+	setInterval(function(){
+		var time=new Date();
+		var iHours=time.getHours();
+		var iMinu=time.getMinutes();
+		var iSec=time.getSeconds();
+		
+		oDiv.innerHTML=toImg(iHours)+'<img alt="" src="img/colon.JPG">'
+					+toImg(iMinu)+'<img alt="" src="img/colon.JPG">'+toImg(iSec);
+	},1000);
+	
+	function toTwo(num){
+		num=num<10?"0"+num:""+num;
+	}
+	function toImg(num){
+		if(num<10){
+			num='<img alt="" src="img/0.JPG">'+'<img alt="" src="img/'+num+'.JPG">';
+		}else{
+			num=num+'';
+			
+			num='<img alt="" src="img/'+parseInt(num.charAt(0))+'.JPG">'+
+				'<img alt="" src="img/'+parseInt(num.charAt(1))+'.JPG">';
+		}
+		return num;
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

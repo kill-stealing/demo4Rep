@@ -8,20 +8,22 @@
 <style>
 #main{position:relative;width:400px;z-index:100;overflow:hidden;
 height:400px;margin:100px auto;border:5px solid #ccc;}
-#main ul{position:absolute;height:400px;width:1600px;}
+#main ul{position:absolute;height:400px;width:3200px;}
 #main img{height:400px;width:400px;}
-#main ul li{display:inline-block;float:left;}
+#main ul li{float:left;width:400px;height:400px;}
 .item{position:absolute;width:390px;height:90px;background:#000;opacity:0.5;
 line-height:90px;text-align:center;}
 .item .title{font-size:30px;color:#fff;}
 </style>
 <script>
 window.onload=function(){
-	var len=4;
+	 var len=8;
 	var oDiv=$("main");
 	var oUl=oDiv.getElementsByTagName("ul")[0];
 	var divList=oUl.getElementsByTagName("div");
 	var imgArr=[{src:'img/1.jpg',title:"图片1"},{src:'img/2.jpg',title:"图片2"},
+	            {src:'img/3.jpg',title:"图片3"},{src:'img/4.jpg',title:"图片4"},
+	            {src:'img/1.jpg',title:"图片1"},{src:'img/2.jpg',title:"图片2"},
 	            {src:'img/3.jpg',title:"图片3"},{src:'img/4.jpg',title:"图片4"}];
 	for(var i=0;i<len;i++){
 		var li=document.createElement("li");
@@ -35,13 +37,12 @@ window.onload=function(){
 	
 	var timer=null;
 	var num=0;
-	//timer=setInterval(function(){
+	
 	timer=setInterval(function(){
 		move(num);
 		num++;
-		if(num==4){
-			num=0;
-			//oUl.style.left="0px";
+		if(num==len){
+			num=4;
 		}
 	},5000);
 	
@@ -50,14 +51,15 @@ window.onload=function(){
 			doMove(divList[num],'top',5,300,function(){
 				setTimeout(function(){
 					doMove(divList[num],'top',5,400,function(){
-						if(num==3){
-							doMove(oUl,'left',1200,0,function(){});
+						if(num==len-1){
+							doMove(oUl,'left',-1200,-1200,function(){});
 						}
 					});
 				},2000);
 			});
 		});
-	}
+		
+	}   
 		
 		//num++;
 	//},5000);
