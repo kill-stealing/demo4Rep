@@ -41,21 +41,14 @@ window.onload=function(){
 			});
 			clearInterval(moveUpTimer);
 			moveUpTimer=setInterval(function(){
-				if(numMoveUp==len-1){
-					doMove(liArr[numMoveUp],'top',5,-150,function(){
-					
-					});
-					
-				}else{
-					doMove(liArr[numMoveUp],'top',5,-150,function(){});
-				}
+				doMove(liArr[numMoveUp],'top',5,-150,function(){});
 				doChangeOpacity(liArr[numMoveUp],50,0.1,0,function(){});
 				numMoveUp++;
 				if(numMoveUp==len){
 					numMoveUp=0;
 					clearInterval(moveUpTimer);
 				}
-			},400);
+			},100);
 			//changeOpacity();
 			//moveUp();
 		}

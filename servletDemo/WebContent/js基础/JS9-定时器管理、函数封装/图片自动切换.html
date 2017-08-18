@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<title>Insert title here</title>
+<style>
+#main{position:relative;width:400px;z-index:100;overflow:hidden;
+height:400px;margin:100px auto;border:5px solid #ccc;}
+#main ul{position:absolute;height:400px;width:1200px;}
+#main img{height:400px;width:400px;}
+#main ul li{display:inline-block;float:left;}
+.item{position:absolute;width:380px;margin:0 5px;height:90px;background:#000;top:0;
+line-height:90px;text-align:center;}
+.item .title{font-size:30px;color:#fff;}
+</style>
+<script>
+window.onload=function(){
+	var len=4;
+	var oDiv=$("main");
+	var oUl=oDiv.getElementsByTagName("ul")[0];
+	var imgArr=[{src:'img/1.jpg',title:"图片1"},{src:'img/2.jpg',title:"图片2"},
+	            {src:'img/3.jpg',title:"图片3"},{src:'img/4.jpg',title:"图片4"}];
+	for(var i=0;i<len;i++){
+		var li=document.createElement("li");
+		li.innerHTML='<img src="'+imgArr[i].src+'" /><div class="item">'+
+					'<span class="title">'+imgArr[i].title+'</span>'+
+					'</div>';
+		oUl.appendChild(li);
+	}
+	
+}
+</script>
+</head>
+<body>
+
+<div id="main">
+	<ul></ul>
+</div>
+
+</body>
+</html>

@@ -5,15 +5,15 @@ function $(id){return document.getElementById(id);}
 
 function doMove(obj,attr,step,target,endFn){
 	step=parseInt(getStyle(obj,attr))<target?step:-step;
-	clearInterval(obj.timer);
-	obj.timer=setInterval(function(){
+	clearInterval(obj.moveTimer);
+	obj.moveTimer=setInterval(function(){
 		var temp=parseInt(getStyle(obj,attr))+step;
 		if(temp>target&&step>0||temp<target&&step<0){
 			temp=target;
 		}
 		obj.style[attr]=temp+"px";
 		if(temp==target){
-			clearInterval(obj.timer);
+			clearInterval(obj.moveTimer);
 			endFn&&endFn();
 		}
 	},30);
@@ -42,28 +42,22 @@ function shake(obj,attr,endFn){
 }
 
 //perTime 
-function doChangeOpacity(obj,perTime,speed,target){
-	clearInterval(obj.timer);
+function doChangeOpacity(obj,perTime,speed,target,endFn){
+	clearInterval(obj.opacityTimer);
 	var num=0;
 	var opacity=getStyle(obj, "opacity");
-	if(!!opacity){
-		opacity=1;
-	}
-	obj.timer=setInterval(function(){
-		
-		if(obj.style.opacity==target){
-			obj.style.opacity=target;
+	speed=opacity<target?speed:-speed;
+	obj.opacityTimer=setInterval(function(){
+		temp=parseFloat(getStyle(obj, 'opacity'))+speed;
+		if(temp>target&&speed>0||temp<target&&speed<0){
+			temp=target;
 		}
-		
-		if(opacity>target){
-			obj.style.opacity=opacity-num*speed;
-		}else if(opacity<target){
-			obj.style.opacity=opacity+num*speed;
-		}
+		obj.style.opacity=temp;
 		num++;
 		if(obj.style.opacity==target){
-			clearInterval(obj.timer);
+			clearInterval(obj.opacityTimer);
 			num=0;
+			endFn&&endFn();
 		}
 	},perTime); 
 }
