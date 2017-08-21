@@ -8,23 +8,80 @@
 <style>
 #main{width:700px;height:400px;margin:100px auto;border:5px solid #ccc;}
 #main div{display:inline-block;float:left;border:1px solid #ccc;margin:5px;}
-#before,#after{padding:10px;width:260px;height:380px;}
-#after{background:#63EFF7;}
+#before,#after{width:260px;height:380px;}
+#before textarea{border:none;width:258px;height:378px;margin:0px;font-size:20px;resize:none;}
+#after{background:#63EFF7;padding:10px;font-size:20px;}
 #middle{width:140px;text-align:center;}
 #middle span,#middle ul{display:inline-block;width:100%;height:40px;line-height:40px;}
 #middle .span1{padding:0 10px;background:#F76300;color:#fff;cursor:pointer;}
 #middle .span1:hover{background:#E75000;}
-#middle ul{padding-top:10px;}
+#middle ul{padding-top:10px;display:none;}
 #middle ul li{height:10px;width:10px;display:inline-block;margin:5px;background:#FFFF00;};
 </style>
+<script>
+window.onload=function(){
+	var btn=$("btn");
+	var content=$("content");
+	var after=$("after");
+	var oUl=$("middle").getElementsByTagName("ul")[0];
+	var liList=$("middle").getElementsByTagName("li");
+	var span2=$("span2");
+	var num=0;
+	var strNum=0;
+	btn.onclick=function(){
+		if(!checkFtn()){
+			return false;
+		}
+		clearInterval(this.timer);
+		var str=content.value;
+		span2.innerHTML=strNum+"/"+str.length;
+		oUl.style.display="block";
+		strNum++;
+		this.timer=setInterval(function(){
+			for(var i=0;i<liList.length;i++){
+				liList[i].style.background="";
+			}
+			liList[num].style.background="#F76300";
+			content.value=str.substring(strNum);
+			after.innerHTML=str.substring(0,strNum);
+			span2.innerHTML=strNum+"/"+str.length;
+			strNum++;
+			num++;
+			if(num==liList.length){
+				num=0;
+			}
+			if(strNum==str.length+1){
+				strNum=0;
+				num=0;
+				oUl.style.display="none";
+				for(var i=0;i<liList.length;i++){
+					liList[i].style.background="";
+				}
+				clearInterval(btn.timer);
+			}
+		},50);
+	}
+	
+	function checkFtn(){
+		if(content.value==''||content.value==null){
+			alert("请填写文字");
+			return false;
+		}
+		return true;
+	}
+}
+</script>
 </head>
 <body>
 <div id="main">
 	<div id="before">
+		<textarea rows="5" cols="5" id="content">热高乐园度假区6周年！感恩有你，一路相伴。值此纪念之日，
+		热高乐园携手旗下“巴厘岛水世界、丛林欢乐世界、海底两万里、温泉养生世界、炫动体育世界”五大主题乐园，
+		联合奉上年度钜惠，原价1288元乐游卡，限时仅售798元，一年四季，五大乐园，不限次数，一卡通玩！</textarea>
 	</div>
 	<div id="middle">
-		<span class="span1">把文字右移</span>
-		<span class="span2">0/0</span>
+		<span class="span1" id="btn">把文字右移</span>
+		<span class="span2" id="span2">0/0</span>
 		<ul>
 			<li></li><li></li><li></li><li></li><li></li><li></li>
 		</ul>
