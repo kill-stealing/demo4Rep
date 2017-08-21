@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<script src="js/main.js" type="text/javascript"></script>
+<style>
+body{background:#ccc;}
+a{text-decoration:none;}
+input{height:30px;padding:0 10px;}
+#main{width:600px;height:500px;margin:100px;position:relative;}
+#content{width:500px;height:300px;background:#fff;padding:30px;}
+#btnDiv{position:absolute;right:5px;top:50px;background:#94948C;height:30px;line-height:30px;
+color:#fff;}
+#btnDiv .btn{padding:0 10px;cursor:pointer;}
+#btnDiv .btn:hover{background:#f1f1f1;}
+#btnDiv .btn1{display:none;padding:0 10px;background:#94948C;cursor:pointer;}
+#btnDiv .btn1:hover{background:#E76308;color:#000;}
+#bottom{position:absolute;left:0px;bottom:0px;height:150px;width:600px;
+padding:30px;border:5px solid red;background:#E7E7B5;display:none;}
+#delete{position:absolute;right:5px;top:5px;font-size:20px;cursor:pointer;}
+#bottom .btn{border-bottom:3px solid #E76308;margin-bottom:20px;}
+#bottom .btn a{display:inline-block;height:30px;line-height:30px;padding:0 10px;color:#000;}
+#bottom .btn a.active{background:#E76308;color:#fff;}
+#bottom input{display:inline-block;margin-right:10px;}
+#bottom #input2{display:none;}
+span{background:yellow;}
+</style>
+<script>
+window.onload=function(){
+	var btnDiv=$("btnDiv");
+	var btnList=btnDiv.getElementsByTagName("div");
+	var bottom=$("bottom");
+	var aList=bottom.getElementsByTagName("a");
+	var contentStr=$("content").innerHTML;
+	var isSearch=false;
+	
+	var ifDisplay=true;
+	btnList[0].onclick=function(){
+		if(ifDisplay){
+			btnList[1].style.display="block";
+			btnList[2].style.display="block";
+		}else{
+			btnList[1].style.display="none";
+			btnList[2].style.display="none";
+		}
+		ifDisplay=!ifDisplay;
+	}
+	
+	btnList[1].onclick=function(){
+		bottom.style.display='block';
+		aList[0].className='active';
+		aList[1].className='';
+		$("input2").style.display='none';
+		$("input3").value='查找';
+	}
+	
+	btnList[2].onclick=function(){
+		bottom.style.display='block';
+		aList[0].className='';
+		aList[1].className='active';
+		$("input2").style.display='inline-block';
+		$("input3").value='替换';
+	}
+	
+	for(var i=0;i<aList.length;i++){
+		aList[i].index=i;
+		aList[i].onclick=function(){
+			for(var i=0;i<aList.length;i++){
+				aList[i].className='';
+			}
+			this.className='active';
+			if(this.index==0){
+				$("input2").style.display='none';
+				$("input3").value='查找';
+			}else{
+				$("input2").style.display='inline-block';
+				$("input3").value='替换';
+			}
+		}
+	}
+	$("delete").onclick=function(){
+		bottom.style.display='none';
+	}
+	
+	$('input3').onclick=function(){
+		var input1=$("input1").value;
+		var input2=$("input2").value;
+		if(this.value=='查找'){
+			if(input1==''){
+				alert("请输入要查找的内容");
+				return;
+			}
+			if(contentStr.indexOf(input1)==-1){
+				alert("你好，你输入的字符串未找到");
+				return;
+			}
+			$("content").innerHTML=contentStr.split(input1).join("<span>"+input1+"</span>");
+		}else{
+			if(input1==''){
+				alert("请输入要被替换的内容");
+				return;
+			}
+			if(input2==''){
+				if(confirm("您是否确定要删除指定的内容吗?")){
+					$("content").innerHTML=contentStr.split(input1).join("");
+				}else{
+					return;
+				}
+			}
+			$("content").innerHTML=contentStr.split(input1).join("<span>"+input2+"</span>");
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="main">
+	<div id="content">
+		热高乐园度假区6周年！感恩有你，一路相伴。值此纪念之日，
+		热高乐园携手旗下“巴厘岛水世界、丛林欢乐世界、海底两万里、温泉养生世界
+		、炫动体育世界”五大主题乐园，联合奉上年度钜惠，原价1288元乐游卡，限时仅售798元
+		，一年四季，五大乐园，不限次数，一卡通玩！
+		热高乐园度假区6周年！感恩有你，一路相伴。值此纪念之日，
+		热高乐园携手旗下“巴厘岛水世界、丛林欢乐世界、海底两万里、温泉养生世界
+		、炫动体育世界”五大主题乐园，联合奉上年度钜惠，原价1288元乐游卡，限时仅售798元
+		，一年四季，五大乐园，不限次数，一卡通玩！
+	</div>
+	<div id="btnDiv">
+		<div class="btn" >展开</div>
+		<div class="btn1" >查找</div>
+		<div class="btn1" >替换</div>
+	</div>
+	<div id="bottom">
+		<div id="delete">X</div>
+		<div class="btn"><a href="#" class="active">查找</a><a href="#">替换</a></div>
+		<input type="text" id="input1" /><input type="text" id="input2" />
+		<input type="button" value="查找" id="input3"/>
+	</div> 
+</div>
+</body>
+</html>

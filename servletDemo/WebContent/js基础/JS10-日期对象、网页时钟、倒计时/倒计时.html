@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload=function(){
+	var input1=document.getElementsByTagName("input");
+	var timer=null;
+	
+	input1[2].onclick=function(){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			getValue();
+		},1000);
+	}
+	
+	function getValue(){
+		var iNow = new Date();
+		var iNew = new Date( input1[0].value);
+		var t = Math.floor((iNew - iNow)/1000);
+		// 毫秒 - 秒
+		var str = Math.floor(t/86400)+'天'+Math.floor(t%86400/3600)+'时'+Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+		if(str=='0天0时0分0秒'||Math.floor(t/86400)<0){
+			str='0天0时0分0秒';
+			clearInterval(timer);
+		}
+		input1[1].value=str;
+	}
+}
+</script>
+</head>
+<body>
+距离：<input class="t1" type="text" value="August 20,2017 12:12:12"/> <br />
+还剩：<input class="t1" type="text" />	<input type="button" value="开始倒计时吧" />
+</body>
+</html>
