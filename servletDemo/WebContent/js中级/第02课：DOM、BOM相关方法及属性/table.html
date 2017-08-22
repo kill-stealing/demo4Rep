@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var data=[
+		{'id':1,'name':"leo",'sex':'男'},
+		{'id':2,'name':"张三",'sex':'男'},
+		{'id':3,'name':"小梅",'sex':'女'},
+		{'id':4,'name':"赵四",'sex':'男'}
+	];
+	var tab1=document.getElementById("tab1");
+	var oTbody=tab1.tBodies[0];
+	
+	for(var i=0;i<data.length;i++){
+		var oTr=document.createElement("tr");
+		oTbody.appendChild(oTr);
+		
+		var oTd=document.createElement("td");
+		oTd.innerHTML=data[i].id;
+		oTr.appendChild(oTd);
+		
+		var oTd=document.createElement("td");
+		oTd.innerHTML=data[i].name;
+		oTr.appendChild(oTd);
+		
+		var oTd=document.createElement("td");
+		oTd.innerHTML=data[i].sex;
+		oTr.appendChild(oTd);
+		
+		var oTd=document.createElement("td");
+		oTr.appendChild(oTd);
+		
+		var oA=document.createElement("a");
+		oA.innerHTML="删除";
+		oA.onclick=function(){
+			oTbody.removeChild(this.parentNode.parentNode);
+			var oTrList=oTbody.getElementsByTagName("tr");
+			for(var j=0;j<oTrList.length;j++){
+				if(j%2==0){
+					oTrList[j].style.background="white";
+				}else{
+					oTrList[j].style.background="#ccc";
+				}
+				
+			}
+		}
+		oTd.appendChild(oA);
+	}
+	
+	var oTrList=oTbody.getElementsByTagName("tr");
+	for(var j=0;j<oTrList.length;j++){
+		if(j%2==0){
+			oTrList[j].style.background="white";
+		}else{
+			oTrList[j].style.background="#ccc";
+		}
+		
+	}
+	
+}
+</script>
+</head>
+<body>
+
+<table id='tab1' width="100%" border="1px">
+<thead>
+	<tr>
+		<th>编号</th>
+		<th>姓名</th>
+		<th>性别</th>
+		<th>操作</th>
+	</tr>
+</thead>
+<tbody></tbody>
+	<!-- <tr>
+		<td>1</td>
+		<td>leo</td>
+		<td>男</td>
+		<td><a href="javascript:;">删除</a></td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>leo</td>
+		<td>男</td>
+		<td><a href="javascript:;">删除</a></td>
+	</tr> -->
+</table>
+
+</body>
+</html>

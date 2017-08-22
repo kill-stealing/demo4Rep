@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var oBtn=document.getElementById("btn1");
+	var input1=document.getElementById("input1");
+	
+	oBtn.onclick=function(){
+		addClass(oDiv,input1.value);
+	}
+	function addClass(obj,className){
+		if(obj.className!=''){
+			var classArr=obj.className.split(" ");
+			if(ifHave(classArr,className)==-1){
+				obj.className+=" "+className;
+			}
+		}else{
+			obj.className=className;
+		}
+	}
+	
+	function ifHave(classArr,className){
+		for(var i=0;i<classArr.length;i++){
+			if(classArr[i]==className){
+				return i;
+			}
+		}
+		return -1;
+	}
+}
+</script>
+</head>
+<body>
+<input type="text" id="input1" />
+<input type="button" value="addClass" id="btn1" />
+<div id="div1"></div>
+</body>
+</html>
