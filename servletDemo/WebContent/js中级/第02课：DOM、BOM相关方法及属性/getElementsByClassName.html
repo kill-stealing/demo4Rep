@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	
+	var oUl1=document.getElementById("ul1");
+	var oUl2=document.getElementById("ul2");
+	var oDiv=document.getElementById("div1");
+	
+	var liList=getElementsByClassName(oDiv,'p','box');
+	for(var i=0;i<liList.length;i++){
+		liList[i].style.background="red";
+	}
+	
+	alert(liList.length);
+	
+	function getElementsByClassName(parent,tagName,className){
+		var aEls=parent.getElementsByTagName(tagName);
+		var arr=[];
+		for(var i=0;i<aEls.length;i++){
+			var aClassName=aEls[i].className.split(" ");
+			for(var j=0;j<aClassName.length;j++){
+				if(aClassName[j]==className){
+					arr.push(aEls[i]);
+					break;
+				}
+			}
+		}
+		return arr;
+	}
+}
+</script>
+</head>
+<body>
+<ul id="ul1">
+	<li>111</li>
+	<li class="box box">2222</li>
+	<li class="box1">3333</li>
+	<li class="box box2">4444</li>
+</ul>
+<ul id="ul2">
+	<li>111</li>
+	<li class="box box">2222</li>
+	<li class="box1">3333</li>
+	<li class="box box2">4444</li>
+</ul>
+<div id="div1">
+	<p class='box'>pppp</p>
+</div>
+</body>
+</html>

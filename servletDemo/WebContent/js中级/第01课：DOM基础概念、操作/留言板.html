@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/main.js"></script>
+<style type="text/css">
+#main{width:400px;height:500px;margin:50px auto;border:1px solid #ccc;}
+li.active{background:yellow;}
+</style>
+<script>
+window.onload=function(){
+	var input1=$("input1");
+	var oBtn=$("btn");
+	var oUl=$("ul1");
+	var oBtn1=$("btn1");
+	
+	oBtn.onclick=function(){
+		var li=document.createElement('li');
+		li.innerHTML=input1.value;
+		li.onclick=function(){
+			if(!this.onOff){
+				this.className='active';
+			}else{
+				this.className='';
+			}
+			this.onOff=!this.onOff;
+		}
+		oUl.insertBefore(li,oUl.children[0]);
+		
+		var liList=oUl.getElementsByTagName("li");
+		if(liList.length>5){
+			oUl.removeChild(oUl.lastElementChild);
+		}
+		
+		input1.value='';
+	}
+	
+	oBtn1.onclick=function(){
+		var liList=oUl.getElementsByTagName("li");
+		for(var i=0;i<liList.length;i++){
+			if(liList[i].onOff){
+				oUl.removeChild(liList[i]);
+				i--;
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="main">
+	<input type="text" id="input1" /><input type="button" value="按钮" id="btn"/>
+	<input type="button" value="批量删除" id="btn1" />
+	<hr />
+	<ul id="ul1"></ul>
+</div>
+</body>
+</html>
