@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+<style>
+body{height:2000px;}
+div{width:100px;height:200px;position:absolute;top:231px;
+background:red;border:5px solid #ccc;padding:10px;margin:10px;}
+#div3{width:100px;height:200px;
+background:red;border:5px solid #ccc;padding:10px;margin:10px;}
+#div1{left:0;}
+#div2{right:0;}
+</style>
+<script>
+	window.onscroll=function(){
+		
+		var div=document.getElementsByTagName("div");
+		//alert("scrollHeight "+document.body.scrollHeight);
+		//alert("scrollHeight documentElement "+document.documentElement.scrollHeight);
+		//alert("clientHeight documentElement "+document.documentElement.clientHeight);
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var clientHeight=document.documentElement.clientHeight;
+		alert("offsetHeight "+div[2].offsetHeight);
+		alert("clientHeight "+div[2].clientHeight);
+		alert("scrollHeight "+div[2].scrollHeight);
+		div[0].style.top=(clientHeight-div[0].offsetHeight)/2+scrollTop+"px";
+		div[1].style.top=(clientHeight-div[0].offsetHeight)/2+scrollTop+"px";
+		console.log((clientHeight-parseInt(getStyle(div[0],'height')))/2+"px");
+		//alert("clientHeight  "+document.body.clientHeight);
+	}	
+</script>
+<body>
+
+<div id="div1">
+
+</div>
+
+<div id="div2">
+
+</div>
+
+<div id="div3">
+
+</div>
+</body>
+</html>

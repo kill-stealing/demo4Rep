@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+body{height:2000px;}
+div{width:100px;height:100px;position:absolute;right:0;background:red;display:none;}
+</style>
+<script>
+window.onscroll=function(){
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;	
+	//alert(scrollTop);
+	var oDiv=document.getElementsByTagName("div")[0];
+	var clientHeight=document.documentElement.clientHeight;
+	var offsetHeight=oDiv.offsetHeight;
+	var temp=clientHeight-offsetHeight+scrollTop;
+	console.log(temp);
+	oDiv.style.top=temp+"px";
+	if(scrollTop>0){
+		//alert("aaa");
+		oDiv.style.display="block";
+	}else{
+		//alert("bb");
+		oDiv.style.display="none";
+	} 
+	
+	oDiv.onclick=function(){
+		document.documentElement.scrollTop=0;
+		document.body.scrollTop=0
+		oDiv.style.display="none";
+	}
+}
+</script>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+</html>
