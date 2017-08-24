@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{width:100px;height:100px;background:red;position:absolute;z-index:2;}
+img{position:absolute;left:400px;top:200px;}
+</style>
+<script type="text/javascript" src="js/main.js"></script>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var oImg=document.getElementsByTagName("img")[0];
+	oDiv.onmousedown=function(ev){
+		var ev=ev||event;
+		var disX=ev.clientX-this.offsetLeft;
+		var disY=ev.clientY-this.offsetTop;
+		document.onmousemove=function(ev){
+			var ev=ev||event;
+			
+			var x=ev.clientX-disX;
+			var _x=ev.clientX-disX+parseInt(getStyle(oDiv,'width'));
+			var _x1=_x+parseInt(getStyle(oImg,'width'));
+			var y=ev.clientY-disY;
+			var _y=ev.clientY-disY+parseInt(getStyle(oDiv,'height'));
+			var _y1=_y+parseInt(getStyle(oImg,'height'));
+			if((_x>oImg.offsetLeft&&_x<oImg.offsetLeft+parseInt(getStyle(oImg,'width'))
+			+parseInt(getStyle(oDiv,'width'))
+			&&_y>oImg.offsetTop&&_y<oImg.offsetTop+parseInt(getStyle(oImg,'height'))
+			+parseInt(getStyle(oDiv,'height')))){
+				//x=oImg.offsetLeft;
+				//y=oImg.offsetTop;
+				oImg.src="img/2.jpg";
+			}else{
+				oImg.src="img/1.jpg";
+			} 
+			oDiv.style.left=x+"px";
+			oDiv.style.top=y+"px";
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<img src="img/1.jpg" />
+</body>
+</html>

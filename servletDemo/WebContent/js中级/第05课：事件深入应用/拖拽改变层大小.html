@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/main.js"></script>
+<style>
+#div1{width:100px;height:100px;position:absolute;left:100px;top:100px;background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var range=10;
+	oDiv.onmousedown=function(ev){
+		var ev=ev||event;
+		var x=ev.clientX;
+		var y=ev.clientY;
+		
+		var pos="";
+		
+		var t=oDiv.offsetTop;
+		var b=t+oDiv.offsetHeight;
+		var l=oDiv.offsetLeft;
+		var r=l+oDiv.offsetWidth;
+		
+		var width=oDiv.offsetWidth;
+		var left=oDiv.offsetLeft;
+		var height=oDiv.offsetHeight;
+		var top=oDiv.offsetTop;
+		
+		if(x<l+range){
+			pos="left";
+		}
+		if(x>r-range){
+			pos="right";
+		}
+		if(y<t+range){
+			pos="top";
+		}
+		if(y>b-range){
+			pos="bottom";
+		}
+		document.onmousemove=function(ev){
+			var ev=ev||event;
+			var _x=ev.clientX;
+			var _y=ev.clientY;
+			switch(pos){
+				case "left":
+					oDiv.style.width=x-_x+width+"px";
+					oDiv.style.left=left+_x-x+"px";
+					break;
+				case "right":
+					oDiv.style.width=_x-x+width+"px";
+					break;
+				case "top":
+					oDiv.style.height=y-_y+height+"px";
+					oDiv.style.top=top+_y-y+"px";
+					break;
+				case "bottom":
+					oDiv.style.height=_y-y+height+"px";
+					break;
+			}	
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>
