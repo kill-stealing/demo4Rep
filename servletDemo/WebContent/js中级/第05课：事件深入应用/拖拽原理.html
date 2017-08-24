@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{width:100px;height:100px;position:absolute;background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	oDiv.onmousedown=function(ev){
+		
+		var ev=ev||event;
+		
+		var disX=ev.clientX-this.offsetLeft;
+		var disY=ev.clientY-this.offsetTop;
+		
+		console.log("disX "+disX);
+		console.log("disY "+disY);
+		
+		document.onmousemove=function(ev){
+			
+			var ev=ev||event;
+			oDiv.style.left=ev.clientX-disX+"px";
+			oDiv.style.top=ev.clientY-disY+"px";
+			console.log("oDiv.style.left "+oDiv.style.left);
+			console.log("oDiv.style.top "+oDiv.style.top);
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+		}
+	}
+	
+}
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+</body>
+</html>
