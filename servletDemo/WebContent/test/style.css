@@ -1,0 +1,45 @@
+body {
+	margin:0;
+	font: 12px "arial", "微软雅黑", "宋体";
+	background:#FFF; 
+	cursor:default;
+}
+
+#toolBar {
+	height:30px;
+	background:#ECF5FF;
+	border-bottom:1px solid #91B7D7;
+	margin:0px 0px 20px 0px;
+}
+
+#toolBar ul {
+	margin:0px; 
+	padding:0px;
+	list-style:none;
+}
+
+#toolBar li {
+	float:left;
+	width:200px;
+	height:30px;
+	line-height:30px;
+	border-left:1px solid #FFF;
+	border-right:1px solid #91B7D7;
+	padding-left:10px;
+	color:#004080;
+	font-weight:bold;
+	cursor:pointer;
+}
+#toolBar li:hover {
+	background:#FFFFDD;
+	color:#6A3500;
+}
+
+#toolBar .des {
+	font-weight:normal;
+	color:#C00;
+}
+
+#container {
+}
+
