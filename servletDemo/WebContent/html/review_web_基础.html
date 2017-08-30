@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+
+	background-position:100px 20px;
+	表示向右偏移100px，向下偏移20px
+	left|center|right top|center|bottom
+	
+	a 四个伪类的顺序
+	link visited hover active
+	
+	ul li 无序列表
+	ol li
+	dl dt dd
+	
+	语义化标签
+	time article section header footer nav
+	
+	选择器的优先级
+	js>行间样式>id>class>类型选择>通配符
+	
+	前端规范
+	内联元素不能嵌套块
+	p dt h标签里面不能嵌套块属性标签
+	
+	float浮动
+	文档流是文档中可现实对象在排列时所在的位置。
+	浮动的定义：使元素脱离文档流，按照指定的方向发生移动，遇到父级边界或者相邻的浮动元素停下来。
+	而此浮动元素在文档流中空出的位置，由后续的（非浮动）元素填充上去，块级元素直接填充上去，
+	若跟浮动元素的范围发生重叠，浮动元素覆盖块级元素。内联元素：有空隙就插入。
+	
+	清除浮动
+	浮动的副作用：边框不能显示，margin设置值不能正确显示。父级元素不能包住子元素。
+	1.加一个div。给这个div加清除浮动的样式。但有问题，ie6 7 下 div的最小高度是19px。
+	2.overflow:hidden;
+	3.用伪类 :after{content:"";clear:both;display:block;}
+	
+	vertical-align:垂直对齐方式
+	
+	绝对定位: absolute
+	1.使元素脱离文档流
+	2.使内嵌支持宽高
+	3.快属性标签内容撑开宽度
+	4.如果有定位父级，则相对父级进行偏移，没有定位父级，则相对于document发生偏移
+	5.相对定位一般与绝对定位配合使用
+	
+	绝对定位元素 固定定位元素 的浮动可以不用清除浮动
+	
+	透明度：
+	标准:opacity:0 - 1
+	ie：filter:alpha(opacity=40);
+	
+	实例： 优酷弹窗
+	
+	div 水平垂直居中：left:50%;top:50%;margin-top:-(height/2+border);
+	margin-left:-(width/2+border);
+	
+	table 表格
+	border-collapse:collapse;
+	
+	css 兼容问题
+	
+	1.margin-top: 传递到父级
+	解决方法：
+	1.给父级加border
+	2.给父级加padding：1px
+	3.加overflow:hidden;
+	
+	2.上下margin叠压
+	尽量使用同一方向的margin
+	
+	3.display:inline-block;
+	ie6 不支持inline-block 
+	解决方法：
+	*display:inline;
+	*zoom:1;
+	
+	4.ie6下最小高度问题 19px
+	overflow:hidden;
+	
+	5.ie6 ：双边距
+	当元素向左浮动后再设置margin那么就会产生双倍边距
+	解决方法：
+	display:inline;
+	
+	6.li里元素浮动，li在ie 6 7 下方会产生4px间隙问题
+	解决方案：针对ie6，7添加vertical-align: top;
+	
+	IE6 7父级元素的overflow:hidden是抱不住子级的relative
+	解决方案：针对IE6 7 给父级元素添加相对定位
+	
+	IE6下绝对定位元素和浮动元素并列绝对定位元素消失
+	解决方案：浮动元素和绝对定位元素是同级的话定位元素就会消失。
+	所以咱们只要让他们俩不处于同级就可以避免这个bug。
+	
+	
+	css hack
+	针对不同的浏览器写不同的css样式的过程，就叫css hack
+	
+	\9 ie10 及以下
+	* ie7及以下
+	_ ie6及以下
+	
+	background-color: blue\9;
+	*background-color: green;
+	_background-color: yellow;
+	
+	
+	
+	-->
+</body>
+</html>
