@@ -24,9 +24,9 @@ background:red;border:5px solid #ccc;padding:10px;margin:10px;}
 		//alert("clientHeight documentElement "+document.documentElement.clientHeight);
 		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
 		var clientHeight=document.documentElement.clientHeight;
-		alert("offsetHeight "+div[2].offsetHeight);
+		/* alert("offsetHeight "+div[2].offsetHeight);
 		alert("clientHeight "+div[2].clientHeight);
-		alert("scrollHeight "+div[2].scrollHeight);
+		alert("scrollHeight "+div[2].scrollHeight); */
 		div[0].style.top=(clientHeight-div[0].offsetHeight)/2+scrollTop+"px";
 		div[1].style.top=(clientHeight-div[0].offsetHeight)/2+scrollTop+"px";
 		console.log((clientHeight-parseInt(getStyle(div[0],'height')))/2+"px");

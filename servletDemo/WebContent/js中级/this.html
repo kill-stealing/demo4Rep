@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script>
+/* function a(){
+    var user = "追梦子";
+    console.log(this.user); //undefined
+    console.log(this); //Window
+}
+a(); */
+
+/* function a(){
+    var user = "追梦子";
+    console.log(this.user); //undefined
+    console.log(this);　　//Window
+}
+window.a(); */
+
+/* var o = {
+	    user:"追梦子",
+	    fn:function(){
+	        console.log(this.user);  //追梦子
+	    }
+	}
+	o.fn(); */
+/* 	var x=2;
+    function test(){
+    	var x=1;
+    	alert(this.x);
+    }
+    test(); */
+/* var o = {
+	    user:"追梦子",
+	    fn:function(){
+	        console.log(this.user); //追梦子
+	    }
+	}
+	window.o.fn(); */
+  /*   var a=13;
+    var o = {
+    	    a:10,
+    	    b:{
+    	        a:12,
+    	        fn:function(){
+    	            console.log(this.a); //undefined
+    	            console.log(this); //window
+    	        }
+    	    }
+    	}
+    	var j = o.b.fn;
+    	j(); */
+    	
+    	var a = {
+    		    user:"追梦子",
+    		    fn:function(e,d,f){
+    		        console.log(this.user); //追梦子
+    		        console.log(e,d,f); //10 1 2
+    		    }
+    		}
+    		var b = a.fn;
+    		var c = b.bind(a);
+    		c(1,2);
+</script>
+</head>
+<body>
+
+</body>
+</html>
