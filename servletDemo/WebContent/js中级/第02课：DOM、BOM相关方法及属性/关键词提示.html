@@ -21,14 +21,15 @@ window.onload=function(){
 		oSpan[i].onmouseover=function(){
 			oDiv.innerHTML="由于 SWF 是一种动画格式，不是标准的视频文件";
 			oDiv.style.display="block";
-			console.log(" this.offsetTop "+this.offsetTop);
+			console.log(" this.offsetLeft "+this.offsetLeft);
+			console.log(" this.clientWidth "+this.clientWidth);
 			if(this.offsetTop>divHeight/2){
 				//var pos=getPos(this);
-				oDiv.style.left=this.offsetLeft-this.clientHeight+"px";
-				oDiv.style.top=this.offsetTop-this.clientWidth+"px";
+				oDiv.style.left=this.offsetLeft-this.clientWidth+"px";
+				oDiv.style.top=this.offsetTop-this.clientHeight+"px";
 			}else{
-				oDiv.style.left=this.offsetLeft+this.clientHeight+"px";
-				oDiv.style.top=this.offsetTop+this.clientWidth+"px";
+				oDiv.style.left=this.offsetLeft+this.clientWidth+"px";
+				oDiv.style.top=this.offsetTop+this.clientHeight+"px";
 			}
 			
 			/* oDiv.cssText="left:'"+pos.left+"px';top:'"+pos.top+"px'";

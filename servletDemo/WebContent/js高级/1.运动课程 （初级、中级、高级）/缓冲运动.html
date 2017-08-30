@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{position:absolute;width:100px;height:100px;background:red;top:50px;left:50px;}
+span{position:absolute;height:400px;width:1px;background:black;left:400px;top:0;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var btn1=document.getElementById("btn1");
+	var timer=null;
+	var target=400;
+	btn1.onclick=function(){
+		clearInterval(timer);
+		var speed=10;
+		timer=setInterval(function(){
+			speed=(target-oDiv.offsetLeft)/20;
+			speed=Math.ceil(speed);
+			if(oDiv.offsetLeft>=target){
+				clearInterval(timer);
+				oDiv.style.left=target+"px";
+				document.title=oDiv.offsetLeft;
+			}else{
+				oDiv.style.left=oDiv.offsetLeft+speed+"px";
+			}
+		},30);
+	}
+}
+
+
+</script>
+</head>
+<body>
+<input type="button" value="按钮" id="btn1"/>
+<div id="div1"></div>
+<span></span>
+</body>
+</html>

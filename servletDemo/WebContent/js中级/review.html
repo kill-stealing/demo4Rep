@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+window.onload=function(){
+	/* var oDiv=document.getElementById("div1");
+	var oDiv1=oDiv;
+	var oDiv2=document.getElementById("div2"); */
+	/*var childNodesList=oDiv1.childNodes;
+    for(var i=0;i<childNodesList.length;i++){
+        alert(childNodesList[i]);
+    }
+
+    oDiv.children;
+    
+    oDiv.firstChild;
+    oDiv.firstElementChild;
+    
+    oDiv.lastChild;
+    oDiv.lastElementChild;
+    
+    oDiv.nextSibling;
+    oDiv.nextElementSibling;
+    
+    oDiv.previousSibling;
+    oDiv.previousElementSibling;
+    
+    oDiv.parentNode;
+    oDiv.offsetParent;
+    
+    oDiv.offsetLeft;
+    oDiv.offsetTop;
+    
+    oDiv.clientWidth;
+    oDiv.offsetWidth;
+    
+    function getPos(obj){
+    	var pos={left:0,top:0};
+    	while(obj){
+    		pos.left+=obj.offsetLeft;
+    		pos.top+=obj.offsetTop;
+    		obj=obj.offsetParent;
+    	}
+    	return obj;
+    }
+    
+    //oDiv.removeChild();
+    //oDiv.appendChild();
+    //oDiv.insertBefore(newObj,oldObj);//有兼容性的问题
+    if(oDiv.children[0]){
+    	oDiv.insertBefore(newObj,oDiv.children[0]);
+    }else{
+    	oDiv.appendChild(oDiv.children[0]);
+    }
+    
+    oDiv.replaceChild(newNode,oldNode);
+    
+    function getElementsByClassName(parentNode,tagName,className){
+    	var childs=parentNode.getElementsByTagName(tagName);
+    	var arr=[];
+    	for(var i=0;i<childs.length;i++){
+    		var temp=childs[i].className.split(" ");
+    		for(var j=0;temp.length;j++){
+    			if(temp[j]==className){
+    				arr.push(childs[i]);
+    				break;
+    			}
+    		}
+    	}
+    	return arr;
+    }
+    
+    function addClass(obj,className){
+    	var classN=obj.className.split(" ");
+    	if(obj.className.indexOf(className)==-1){
+    		obj.className=classN.push(className).join(" ");
+    	}
+    }
+    
+    function removeClass(obj,className){
+    	var classN=obj.className.split(" ");
+    	if(obj.className.indexOf(className)!=-1){
+    		for(var i=0;i<classN.length;i++){
+    			if(classN==className){
+    				classN.splice(i,1);
+    				break;
+    			}
+    		}
+    		obj.className=classN.join(" ");
+    	}
+    }
+    
+    //表格的操作
+    table.tBodies[0].rows[1].cells[1].innerHTML;
+    
+    form.onchange; 
+    
+    form.onsubmit;
+    form.onreset;
+    
+    */
+    /* var oForm=document.getElementById("form1");
+    var oBtn=document.getElementById("btn1");
+    var checkBox=document.getElementsByName("checkbox1");
+    oForm.children[0].checked=true;
+    oForm.children[0].onchange=function(){
+		alert(this.checked);
+		alert(this.value);
+    } 
+    
+    oBtn.onclick=function(){
+    	for(var i=0;i<checkBox.length;i++){
+    		alert(checkBox[i].checked);
+    	}
+    }
+    
+    oForm.radio1.onchange=function(){
+    	for(var i=0;i<checkBox.length;i++){
+    		alert(checkBox[i].checked);
+    	}
+    } */
+    
+   /*  alert(window.navigator.userAgent);
+    alert(window.location);
+    alert(window.location.search);
+    alert(window.location.href);
+    alert(window.location.hash);
+    
+    //窗口尺寸与大小
+    //可视区尺寸
+    document.doucmentElement.clientWidth;
+    document.documentElement.clientHeight;
+    //滚动距离
+    document.documentElement.scrollTop
+    document.body.scrollTop
+    //
+    
+    onscroll
+    onresize
+    //事件
+    onfocus
+    onblur */
+    
+   /*  //事件的冒泡
+    event.cancelBubble=true;
+    //绑定事件的第二种方式 
+    //ie attachEvent(事件名称，函数)
+    var oDiv=document.getElementById("div1");
+    var oDiv2=document.getElementById("div2");
+    if(oDiv.attachEvent){
+    	oDiv.attachEvent('onclick',function(){
+        	alert("aaaa");
+        });
+        oDiv2.attachEvent("onclick",function(){
+        	alert("bbb");
+        });
+    }else{
+    	oDiv.addEventListener('click',function(){
+    		alert("1111");
+    	},false);
+    	oDiv2.addEventListener('click',function(){
+    		alert("2222");
+    	},true);
+    }
+    function testCall(a,b){
+    	alert(a+b);
+    	alert(this);
+    }
+    testCall.call(oDiv,1,2); */
+    /* var x=2;
+    function test(){
+    	var x=1;
+    	alert(this.x);
+    }
+    test(); */
+    
+    //ie 
+   	/* var oDiv=document.getElementById("div1");
+    if(oDiv.attachEvent){
+    	oDiv.attachEvent("onclick",test);
+    }else{
+    	oDiv.addEventListener("click",test,false);
+    }
+    //oDiv.detachEvent('onclick',test);
+    oDiv.removeEventListener("click",test,false);
+    
+    function test(){
+    	alert("aaaa");
+    } */
+    
+    /* function preventDefa(e){
+    	if(window.event){
+    		window.event.returnValue=false;
+    	}else{
+    		e.preventDefault();
+    	}
+    } */
+    
+   /*  var oDiv1=document.getElementById("div1");
+    oDiv1.onclick=function(ev){
+		alert(ev);  
+		alert(window.event);
+		//alert(ev.cancelBubble);
+		alert(window.event.stopPropagation());
+    } */
+    
+    obj.setCapture();
+    obj.releaseCapture();
+}
+</script>
+<style>
+#div1{width:200px;height:200px;background:red;}
+#div2{width:100px;height:100px;background:blue;}
+</style>
+<body>
+<!-- 
+childNodes
+	
+ -->
+ <input type="button" value="按钮" id="btn1" />
+ <form id="form1">
+ 	<input type="radio" name="radio1" value="男"/>
+ 	<input type="radio" name="radio1" value="女"/>
+ 	<input type="checkbox" name="checkbox1" value="a1" />b1
+ 	<input type="checkbox" name="checkbox1" value="a2" />b2
+ 	<input type="checkbox" name="checkbox1" value="a3" />b3
+ 	<input type="checkbox" name="checkbox1" value="a4" />b4
+ </form>
+ <div id="div1">
+ 	<div id="div2"></div>
+ </div>
+</body>
+</html>
