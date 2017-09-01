@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+#ul1{width:366px;position:relative;margin:0 auto;}
+#ul1 li{list-style:none;height:100px;width:100px;border:1px solid black;background:#ccc;float:left;line-height:100px;margin:10px;}
+</style>
+<script>
+window.onload=function(){
+	var oUl1=document.getElementById("ul1");
+	var liList=oUl1.getElementsByTagName("li");
+	
+	for(var i=0;i<liList.length;i++){
+		liList[i].style.left=liList[i].offsetLeft+"px";
+		liList[i].style.top=liList[i].offsetTop+"px";
+	}
+	for(i=0;i<liList.length;i++){
+		liList[i].style.position='absolute';
+		liList[i].style.margin='0';
+	}
+	
+	var oBtn=document.getElementById("btn1");
+	oBtn.onclick=function(){
+		alert("afadsfas");
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="按钮" id="btn1" />
+<ul id="ul1">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+fdasfaf
+</body>
+</html>
