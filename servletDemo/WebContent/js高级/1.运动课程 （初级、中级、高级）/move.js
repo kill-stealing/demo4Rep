@@ -16,7 +16,6 @@ function startMove(obj,attr,iTarget,fn){
 		
 		var iSpeed=(iTarget-iCur)/8;
 		iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
-		console.log(iCur);
 		if(iCur==iTarget){
 			clearInterval(obj.timer);
 			if(fn){
@@ -49,7 +48,6 @@ function startMoveNew(obj,json,fn){
 			
 			var iSpeed=(json[attr]-iCur)/8;
 			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
-			console.log(iCur);
 			if(iCur!=json[attr]){
 				ifStop=false;
 			}

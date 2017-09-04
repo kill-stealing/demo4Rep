@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+#ul1{margin:100px auto;width:500px;border:1px solid black;min-height:400px;}
+#ul1 div{list-style:none;border-bottom:1px dashed #999;overflow:hidden;filter:alpha(opacity:0);opacity:0;padding:5px;}
+</style>
+<script>
+window.onload=function(){
+	var oText=document.getElementById("text1");
+	var oBtn=document.getElementById("btn1");
+	var oUl=document.getElementById("ul1");
+	
+	oBtn.onclick=function(){
+		var li=document.createElement("div");
+		var liList=oUl.getElementsByTagName("div");
+		li.innerHTML=oText.value;
+		if(oUl.children[0]){
+			oUl.insertBefore(li,oUl.children[0]);
+		}else{
+			oUl.appendChild(li);
+		}
+		
+		var height=li.offsetHeight;
+		li.style.height=0;
+		
+		startMoveNew(li,{height:height},function(){
+			startMoveNew(li,{opacity:100});
+		});
+		
+		oText.value="";
+	}
+}
+</script>
+<script src="move.js" type="text/javascript"></script>
+</head>
+<body>
+<textarea id="text1" rows="10" cols="10"></textarea>
+<input type="button" value="发布" id="btn1" />
+<div id="ul1">
+</div>
+</body>
+</html>

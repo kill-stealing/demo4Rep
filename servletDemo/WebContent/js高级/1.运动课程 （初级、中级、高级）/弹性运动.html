@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+#div1{position:absolute;width:100px;height:100px;background:red;left:100px;
+width:100px;}
+#div2{height:500px;width:1px;background:black;position:absolute;left:500px;}
+</style>
+<script>
+window.onload=function(){
+
+	var oBtn=document.getElementById("btn1");
+	var oDiv=document.getElementById("div1");
+	var speed=0;
+	var timer=null;
+	oBtn.onclick=function(){
+		timer=setInterval(function(){
+			/* if(oDiv.offsetLeft<500){
+				speed+=(500-oDiv.offsetLeft)/50;
+			}else{
+				speed-=(oDiv.offsetLeft-500)/50;
+			} */
+			speed=speed+(500-oDiv.offsetLeft)/50;
+			oDiv.style.left=oDiv.offsetLeft+speed+"px";
+		},30);
+	}
+	
+	
+}
+</script>
+</head>
+<body>
+<input type="button" value="开始运动" id="btn1" />
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>
