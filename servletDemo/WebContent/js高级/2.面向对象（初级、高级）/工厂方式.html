@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function createPerson(name,sex){	//构造函数
+	var obj=new Object();
+	obj.name=name;
+	obj.sex=sex;
+	obj.showName=function(){
+		alert("我的名字叫："+this.name);
+	}
+	obj.showSex=function(){
+		alert("我是"+this.sex+"的");
+	}
+	return obj;
+}
+
+var a=createPerson("blue", "男");
+a.showName();
+a.showSex();
+</script>
+</head>
+<body>
+
+</body>
+</html>

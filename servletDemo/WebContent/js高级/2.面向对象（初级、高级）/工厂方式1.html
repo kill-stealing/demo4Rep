@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+function createPerson(name,sex){	//构造函数
+	this.name=name;
+	this.sex=sex;
+}
+
+createPerson.prototype.showName=function(){
+	alert("我的名字叫："+this.name);
+}
+	
+
+createPerson.prototype.showSex=function(){
+	alert("我是"+this.sex+"的");
+}
+var a=new createPerson("blue", "男");
+var b=new createPerson("赵军","女");
+alert(a.showName===b.showName);
+a.showName();
+a.showSex();
+</script>
+</head>
+<body>
+
+</body>
+</html>
