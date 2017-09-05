@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{width:100px;height:100px;background:red;position:absolute;}
+div{width:3px;height:3px;background:black;position:absolute;}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("btn1");
+	var oDiv=document.getElementById("div1");
+	var timer=null;
+	var speedX=20;
+	var speedY=8;
+	var lastX=0;
+	var lastY=0;
+	function move(){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			speedY+=3;
+			var l=oDiv.offsetLeft+speedX;
+			var t=oDiv.offsetTop+speedY;
+			//document.getElementById("text1").value+=l+"\n";
+			document.title=l+" | "+speedY;
+			var width=document.documentElement.clientWidth;
+			var height=document.documentElement.clientHeight;
+			
+			if(t>=height-oDiv.offsetHeight){
+				speedY*=-0.8;
+				speedX*=0.8;
+				t=height-oDiv.offsetHeight;
+			}else if(t<=0){
+				t=0;
+				speedY*=-0.8;
+				speedX*=0.8;
+			}
+			
+			if(l>=width-oDiv.offsetWidth){
+				speedX*=-0.8;
+				l=width-oDiv.offsetWidth;
+			}else if(l<=0){
+				l=0;
+				speedX*=-0.8;
+			}
+			
+			if(Math.abs(speedX)<1){
+				speedX=0;
+			}
+			if(Math.abs(speedY)<1){
+				speedY=0;
+			}
+			
+			oDiv.style.left=l+"px";
+			oDiv.style.top=t+"px";
+		},30);
+	}
+	oBtn.onclick=function(){
+		move();
+	}
+	
+	oDiv.onmousedown=function(ev){
+		clearInterval(timer);
+		var ev=ev||event;
+		var x=ev.clientX-this.offsetLeft;
+		var y=ev.clientY-this.offsetTop;
+		
+		document.onmousemove=function(ev){
+			var ev=ev||event;
+			var l=ev.clientX-x;
+			var t=ev.clientY-y;
+			oDiv.style.left=l+"px";
+			oDiv.style.top=t+"px";
+			
+			speedX=l-lastX;
+			speedY=t-lastY;
+			lastX=l;
+			lastY=t;
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+			move();
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="start" id="btn1" />
+<div id="div1"></div>
+</body>
+</html>

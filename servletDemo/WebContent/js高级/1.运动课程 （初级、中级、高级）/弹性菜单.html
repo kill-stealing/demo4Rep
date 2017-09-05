@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+#main{width:405px;height:30px;margin:100px auto;position:relative;}
+#main a{text-decoration:none;color:black;height:30px;line-height:30px;
+display:inline-block;float:left;text-align:center;width:100px;border:1px solid #ccc;
+border-left:none;}
+#main a:first-child{border-left:1px solid #ccc;}
+#main #item{position:absolute;width:100px;height:5px;background:red;top:25px;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("main");	
+	var oA=oDiv.getElementsByTagName("a");
+	var oDiv1=document.getElementById("item");	
+	var left=0;
+	for(var i=0;i<oA.length;i++){
+		oA[i].index=i;
+		oA[i].onmouseover=function(){
+			var index=this.index;
+			move(oDiv1,index*100);
+		} 
+	}
+	
+	function move(obj,index){
+		clearInterval(obj.timer);
+		obj.speed=0;
+		obj.timer=setInterval(function(){
+			obj.speed=obj.speed+(index-obj.offsetLeft)/5;	
+			obj.speed*=0.7;
+			left+=obj.speed;
+			if(Math.abs(obj.speed)<1&&Math.abs(left-index)<1){
+				clearInterval(obj.timer);
+				obj.style.left=index+"px";
+			}else{
+				obj.style.left=left+"px";
+			}
+			document.title=obj.offsetLeft+" | "+index;
+		},30);
+	}
+}
+</script>
+</head>
+<body>
+<div id="main">
+	<a href="#">首页</a>
+	<a href="#">关于我们</a>
+	<a href="#">产品</a>
+	<a href="#">联系方式</a>
+	<div id="item"></div>
+</div>
+</body>
+</html>
