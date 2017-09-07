@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{height:800px;}
+img{width:200px;height:200px;}
+#div2{height:800px;}
+</style>
+<script>
+var img=new Image();
+var oImg=null;
+window.onload=function(){
+	oImg=document.getElementById("img1");
+	img.src="http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg";
+}
+
+window.onscroll=function(){
+	var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+	if(oImg.offsetTop-scrollTop<300){
+		oImg.src=img.src;
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<img id="img1" src="img/1.jpg" />
+<div id="div2"></div>
+</body>
+</html>
