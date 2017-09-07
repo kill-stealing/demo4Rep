@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	if(oDiv.attachEvent){
+		oDiv.attachEvent('onclick',function(){
+			alert("a");
+		});
+		oDiv.detachEvent('onclick',function(){
+			alert("b");
+		});
+	}
+	
+	
+}
+</script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{width:200px;height:200px;position:absolute;background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	oDiv.onmousewheel=function(ev){
+		var ev=ev||event;
+		if(ev.detail){
+			alert(ev.detail);
+		}
+	}
+	
+	oDiv.addEventListener("DOMMouseScroll",function(){
+		alert("b");
+	},false);
+	
+	function addMouseScroll(obj){
+		if(obj.){
+		
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
