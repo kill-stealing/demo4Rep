@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+#ul1{width:660px;margin:10px auto;position:relative;}
+#ul1 li{list-style:none;float:left;width:200px;margin:10px;}
+</style>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById("ul1");
+	var li=oUl.getElementsByTagName("li");
+	for(var i=0;i<li.length;i++){
+		li[i].style.left=li[i].offsetLeft+"px";
+		li[i].style.top=li[i].offsetTop+"px";
+	}
+	
+	for(var i=0;i<li.length;i++){
+		li[i].style.position="absolute";
+		li[i].style.margin=0;
+	}
+	
+	
+}
+</script>
+</head>
+<body> 
+<ul id="ul1">
+	<li><img alt="" src="img/zhaopianqiang/1.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/2.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/3.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/4.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/5.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/1.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/2.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/3.jpg"></li>
+	<li><img alt="" src="img/zhaopianqiang/4.jpg"></li>
+</ul>
+</body>
+</html>
