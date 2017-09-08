@@ -783,9 +783,33 @@
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.seniorweb.fileupload.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>TestServlet</display-name>
+  	<servlet-name>TestServlet</servlet-name>
+  	<servlet-class>com.servlet.TestServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>CorsServlet</display-name>
+  	<servlet-name>CorsServlet</servlet-name>
+  	<servlet-class>com.servlet.CorsServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestServlet</servlet-name>
+  	<url-pattern>
+  	/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CorsServlet</servlet-name>
+  	<url-pattern>
+  	/CorsServlet</url-pattern>
   </servlet-mapping>
 <!--   <filter>
       <filter-name>FirstFilter</filter-name>
