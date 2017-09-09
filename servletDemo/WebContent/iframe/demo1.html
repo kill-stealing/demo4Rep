@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("btn1");
+	var iframe=document.getElementById("iframe1");
+	oBtn.onclick=function(){
+		iframe.contentWindow.document.getElementById("div1").style.color="red";
+	}
+	
+}
+</script>
+</head>
+<body>
+<div id="div1">adfsaf</div>
+<input type="button" value="改变" id="btn1">
+<iframe src="iframe1.html" id="iframe1"></iframe>
+<iframe src="iframe2.html" id="iframe2"></iframe>
+</body>
+</html>

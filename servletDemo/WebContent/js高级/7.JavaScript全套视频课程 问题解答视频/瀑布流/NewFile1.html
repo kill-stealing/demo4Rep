@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+li{list-style:none;}
+#div1{width:705px;margin:20px auto;position:relative;}
+ul li{position:absolute;}
+</style>
+<script>
+window.onload=function(){
+	var oUl=document.getElementsByTagName("ul")[0];
+	var aHeight={L:[],C:[],R:[]};
+	var margin=5;
+	var num=1;
+	init();
+	
+	window.onscroll=function(){
+		var flag=false;
+		var viewHeight=document.documentElement.clientHeight;
+		var top=document.documentElement.scrollTop||document.body.scrollTop;
+		var _top=viewHeight+top;
+		var oLi=document.getElementsByTagName("li");
+		
+		for(var i=0;i<oLi.length;i++){
+			var pos=getPost(oLi[i]);
+			if(_top>=pos){
+				flag=true;
+				break;
+			}
+		}
+		
+		if(flag&&num<2){
+			var temp='';
+			for(var i=0;i<3;i++){
+				temp='<li><img alt="" src="img/'+(3*i+1)+'.jpg"><p>'+(3*i+1)+
+				'</p></li><li><img alt="" src="img/'+(3*i+2)+'.jpg"><p>'+(3*i+2)+'</p>'+
+					'</li><li><img alt="" src="img/'+(3*i+3)+'.jpg"><p>'+(3*i+3)+'</p></li>';
+				oUl.innerHTML+=temp;
+			}
+			num++;
+		}
+		init();
+	}
+	
+	function getPost(obj){
+		var top=0;
+		while(obj){
+			top+=obj.offsetTop;
+			obj=obj.offsetParent;
+		}
+		return top;
+	}
+	
+	function init(){
+		var li=document.getElementsByTagName("li");
+		var width=li[0].offsetWidth;
+		for(var i=0;i<li.length;i++){
+			var iNow=i%3;
+			switch(iNow){
+			case 0:
+				li[i].style.left=(margin+width)*iNow+"px";
+				aHeight.L.push(li[i].offsetHeight);
+				var step = Math.floor(i/3);
+				if(!step){
+					li[i].style.top=0;
+				}else{
+					var temp=0;
+					for(var j=0;j<step;j++){
+						temp+=aHeight.L[j]+margin;
+					}
+					li[i].style.top=temp+"px";
+				}
+				break;
+			case 1:
+				li[i].style.left=(margin+width)*iNow+"px";
+				aHeight.C.push(li[i].offsetHeight);
+				var step = Math.floor(i/3);
+				if(!step){
+					li[i].style.top=0;
+				}else{
+					var temp=0;
+					for(var j=0;j<step;j++){
+						temp+=aHeight.C[j]+margin;
+					}
+					li[i].style.top=temp+"px";
+				}
+				break;
+			case 2:
+				li[i].style.left=(margin+width)*iNow+"px";
+				aHeight.R.push(li[i].offsetHeight);
+				var step = Math.floor(i/3);
+				if(!step){
+					li[i].style.top=0;
+				}else{
+					var temp=0;
+					for(var j=0;j<step;j++){
+						temp+=aHeight.R[j]+margin;
+					}
+					li[i].style.top=temp+"px";
+				}
+				break;
+			}
+		}
+	}
+}
+
+
+</script>
+</head>
+<body>
+<div id="div1">
+	<ul>
+		<li><img alt="" src="img/1.jpg"><p>11111111</p></li>
+		<li><img alt="" src="img/2.jpg"><p>22222222</p></li>
+		<li><img alt="" src="img/3.jpg"><p>33333333</p></li>
+		<li><img alt="" src="img/4.jpg"><p>44444444</p></li>
+		<li><img alt="" src="img/5.jpg"><p>55555555</p></li>
+		<li><img alt="" src="img/6.jpg"><p>66666666</p></li>
+		<li><img alt="" src="img/7.jpg"><p>77777777</p></li>
+		<li><img alt="" src="img/8.jpg"><p>88888888</p></li>
+		<li><img alt="" src="img/9.jpg"><p>99999999</p></li>
+	</ul>
+</div>
+</body>
+</html>

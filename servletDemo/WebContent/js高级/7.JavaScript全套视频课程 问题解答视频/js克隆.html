@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script>
+var a={b:{c:10}};
+
+var d=deepClone(a);
+d.b.c=20;
+alert(a.b.c);
+
+function deepClone(obj){
+	if(typeof obj!='object'){
+		console.trace();
+		return obj;
+	}
+	
+	var newObj={};
+	for(var arr in obj){
+		newObj[arr]=deepClone(obj[arr]);
+	}
+	return newObj;
+}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
