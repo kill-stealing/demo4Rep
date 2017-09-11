@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a id="link" href="http://w3c.org">W3C 首页链接</a>   <script> // 在新窗口, 打开页面
+document.getElementById('link').onclick = function(ev) {
+	// 阻止浏览器默认动作 (页面跳转)
+	//ev.preventDefault();
+	ev.stopPropagation();
+	// 在新窗口打开页面
+	window.open(this.href);
+	return false;
+}; </script>
+</body>
+</html>
