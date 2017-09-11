@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{width:200px;height:200px;background:red;margin:200px;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var oUl=document.getElementById("ul1");
+	
+	oDiv.ondragenter=function(){
+		this.innerHTML="可以释放鼠标啦";
+	}
+	
+	oDiv.ondragleave=function(){
+		this.innerHTML="将文件拖拽到此区域";
+	}
+	
+	oDiv.ondragover=function(ev){
+		var ev=ev||event;
+		ev.preventDefault();
+	}
+	
+	oDiv.ondrop=function(ev){
+		var ev=ev||event;
+		ev.preventDefault();
+		var fileList=ev.dataTransfer.files;
+		for(var i=0;i<fileList.length;i++){
+			if(fileList[i].type.indexOf("image")!=-1){
+				var fd=new FileReader();
+				fd.readAsDataURL( fileList[i] );
+				fd.onload=function(){
+					var li=document.createElement("li");
+					var image=document.createElement("img");
+					image.src=this.result;
+					li.appendChild(image);
+					oUl.appendChild(li);
+				}
+				
+			}else{
+				alert("只能上传图片，谢谢合作");
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+<div id="div1">将文件拖拽到此区域</div>
+<ul id="ul1"></ul>
+</body>
+</html>

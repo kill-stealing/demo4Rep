@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("btn");
+	var oMyIframe=document.getElementById("myframe");
+	oBtn.onclick=function(){
+		//oMyIframe.contentWindow.document.body.style.background="red";
+		//var oDiv=oMyIframe.contentWindow.document.getElementById("div1").innerHTML="111111";
+		oMyIframe.contentWindow.document.body.style.background = 'red';
+	}
+}
+</script>
+</head>
+<body>
+hello 
+<input type="button" value="点击我 ，改变2.iframe.html的背景色" id="btn" />
+<iframe id="myframe" src="2.iframe.html"></iframe>
+</body>
+</html> 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById("btn");
+	oBtn.onclick=function(){
+		parent.document.body.style.background="red";
+		//parent.document.body.style.background = 'green';
+	}
+}
+</script>
+</head>
+<body>
+这里是a.com下的2.iframe.html的页面
+<input type="button" value="点击我，改变1.iframe.html的背景色" id="btn"/>
+<div id="div1"></div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#ul1 li{list-style:none;width:200px;height:50px;background:yellow;margin:10px;}
+#div1{width:200px;height:200px;margin:200px;background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById("ul1");
+	var li=oUl.getElementsByTagName("li");
+	var oDiv=document.getElementById("div1");
+	var length=li.length;
+	var num=0;
+	for(var i=0;i<length;i++){
+		li[i].index=i;
+		li[i].ondragstart=function(ev){
+			this.style.background="green";
+			ev.dataTransfer.setData("name",this.index);
+			ev.dataTransfer.effectAllowed="copy";
+			ev.dataTransfer.setDragImage(oDiv,0,0);
+		}
+		
+		li[i].ondragend=function(){
+			this.style.background="yellow";
+		}
+		
+		li[i].ondrag=function(){
+			document.title=num++;
+		}
+	}
+	
+	oDiv.ondragenter=function(){
+		this.style.background="blue";
+	}
+	
+	oDiv.ondragover=function(ev){
+		document.title=num++;
+		var ev=ev||event;
+		ev.preventDefault();
+	}
+	
+	oDiv.ondragleave=function(){
+		this.style.background="red";
+	}
+	
+	oDiv.ondrop=function(ev){
+		var a=ev.dataTransfer.getData("name");
+		oUl.removeChild(li[a]);
+		for(var i=0;i<li.length;i++){
+			li[i].index=i;
+		}
+	}
+}
+</script>
+</head>
+<body>
+<ul id="ul1">
+	<li draggable="true">a</li>
+	<li draggable="true">b</li>
+	<li draggable="true">c</li>
+</ul>
+<div id="div1"></div>
+</body>
+</html>
