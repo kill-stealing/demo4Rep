@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;}
+.wrap{width:200px;height:200px;border:2px solid #000;margin:100px auto;
+border-radius:50%;position:relative;}
+.wrap ul{height:200px;position:relative;}
+ .wrap ul li{list-style:none;position:absolute;height:12px;background:#000;width:2px;top:0;left:99px;
+-webkit-transform-origin:center 100px;}
+/*.wrap ul li:nth-of-type(1){height:10px;-webkit-transform:rotate(0deg);width:15px;}
+.wrap ul li:nth-of-type(2){height:10px;-webkit-transform:rotate(6deg);width:1px;}
+.wrap ul li:nth-of-type(3){height:10px;-webkit-transform:rotate(12deg);width:1px;}
+.wrap ul li:nth-of-type(4){height:10px;-webkit-transform:rotate(18deg);width:1px;}
+.wrap ul li:nth-of-type(5){height:10px;-webkit-transform:rotate(24deg);height:1px;} */
+
+.wrap #hour{position:absolute;width:6px;left:97px;top:50px;height:50px;background:black;
+-webkit-transform-origin:bottom;}
+.wrap #min{position:absolute;width:4px;left:98px;top:20px;height:80px;background:#ccc;
+-webkit-transform-origin:bottom;
+/* -webkit-transform:rotate(30deg);-webkit-transform-origin:bottom; */}
+.wrap #sec{position:absolute;width:2px;left:99px;top:10px;height:90px;background:red;
+-webkit-transform-origin:bottom;
+/* -webkit-transform:rotate(-60deg);-webkit-transform-origin:bottom; */}
+.wrap .center{width:20px;height:20px;border-radius:50%;background:black;position:absolute;
+left:90px;top:90px;}
+</style>
+<script>
+window.onload=function(){
+	var oUl=document.getElementsByTagName("ul")[0];
+	var hour=document.getElementById("hour");
+	var min=document.getElementById("min");
+	var sec=document.getElementById("sec");
+	var aLi="";
+	var deg=6;
+	for(var i=0;i<60;i++){
+		aLi=document.createElement("li");
+		aLi.style.height=i%5==0?12:6+"px";
+		aLi.style.webkitTransform="rotate("+i*6+"deg)";
+		oUl.appendChild(aLi);
+	}
+	var timer=null;
+	function toTime(){
+		var oDate=new Date();
+		var iSec=oDate.getSeconds();
+		var iMin=oDate.getMinutes();
+		var iHour=oDate.getHours();
+		hour.style.webkitTransform="rotate("+30*(iHour+iSec/3600+iMin/60)+"deg)";
+		min.style.webkitTransform="rotate("+6*(iMin+iSec/60)+"deg)";
+		sec.style.webkitTransform="rotate("+6*iSec+"deg)";
+	}
+	toTime();
+	setInterval(toTime,1000);
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+	<ul>
+	</ul>
+	<div id="hour"></div>
+	<div id="min"></div>
+	<div id="sec"></div>
+	<div class="center"></div>
+</div>
+</body>
+</html>

@@ -6,9 +6,34 @@
 <style>
 body{background:black;}
 h1{width:400px;font:bold 100px/100px "微软雅黑";margin:100px auto;color:rgba(255,255,255,0.3);
-background:#000;
+background:-webkit-linear-gradient(-30deg,rgba(255,255,255,0) 150px,rgba(255,255,255,1) 170px,
+rgba(255,255,255,1) 270px,rgba(0,0,0,0) 290px,rgba(0,0,0,0) 100%) no-repeat -350px 0; -webkit-background-clip:text;
 }
+h1:hover{background-position:400px 0;}
 </style>
+<script>
+window.onload=function(){
+	var h1=document.getElementsByTagName("h1")[0];
+	var left=-350;
+	function toMove(){
+		h1.timer=setInterval(function(){
+			left+=10;
+			if(left==400){
+				h1.style.backgroundPosition="-350px 0px";
+				left=-350;
+				clearInterval(h1.timer);
+			}else{
+				h1.style.backgroundPosition=left+"px 0px";
+			}
+		},20);
+	}
+	toMove();
+	
+	setInterval(function(){
+		toMove();
+	},3000);
+}
+</script>
 </head>
 <body>
 <h1>妙味课堂</h1>
