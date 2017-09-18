@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style id="css">
+*{margin:0;padding:0;list-style:none;}
+.wrap{width:800px;height:500px;margin:10px auto;position:relative;border:1px solid black;
+}
+
+#picList{width:800px;height:360px;border:1px solid black;
+-webkit-perspective:800px;
+}
+#picList li{width:40px;height:360px;position:relative;float:left;-webkit-transform-origin:center center -180px;
+-webkit-transform-style:preserve-3d;}
+#picList li a{width:100%;height:100%;position:absolute;left:0;top:0;}
+#picList li a:nth-of-type(1){background:url(img/1.jpg) no-repeat;}
+#picList li a:nth-of-type(2){background:url("img/2.jpg") no-repeat;display:block;top:-360px;
+-webkit-transform-origin:bottom;-webkit-transform:rotateX(90deg);}
+#picList li a:nth-of-type(3){background:url("img/3.jpg") no-repeat;display:block;
+-webkit-transform:translateZ(-360px) rotateX(180deg) ;}
+#picList li a:nth-of-type(4){background:url("img/4.jpg") no-repeat;display:block;
+-webkit-transform-origin:top;-webkit-transform:rotateX(-90deg);top:360px;}
+#picList li span{width:360px;height:360px;background:black;position:absolute;}
+#picList li span:nth-of-type(1){-webkit-transform-origin:left;-webkit-transform:rotateY(90deg);}
+#picList li span:nth-of-type(2){-webkit-transform-origin:left;-webkit-transform:translateX(40px) rotateY(90deg);}
+#btns{width:200px;height:50px;float:right;}
+#btns li{width:40px;height:40px;margin:5px;border-radius:50%;background:black;float:left;
+text-align:center;font:italic 30px/40px Arial;color:#fff;cursor:pointer;}
+#btns .active{background:#ccc;}
+</style>
+<script>
+window.onload=function(){
+	var oPicList=document.getElementById("picList");
+	var oBtns=document.getElementById("btns");
+	var btnArr=oBtns.getElementsByTagName("li");
+	var oCss=document.getElementById("css");
+	var oLiW=40;
+	var zIndex=1;
+	var length=oPicList.clientWidth/oLiW;
+	for(var i=0;i<length;i++){
+		i>length/2?zIndex--:zIndex++;
+		var temp='<li><a href="#"></a><a href="#"></a><a href="#"></a><a href="#"></a><span></span><span></span>';
+		oPicList.innerHTML+=temp;
+		var textCss="#picList li:nth-of-type("+(i+1)+") a{background-position:"+(-i*oLiW)+"px 0;}";
+		textCss+="#picList li:nth-of-type("+(i+1)+"){z-index:"+zIndex+";}";
+		oCss.innerHTML+=textCss;
+	}
+	
+	for(var i=0;i<btnArr.length;i++){
+		(function(a){
+			btnArr[a].onclick=function(){
+				for(var i=0;i<btnArr.length;i++){
+					btnArr[i].className="";
+				}
+				this.className="active";
+				
+				var picLi1=oPicList.children;
+				for(var i=0;i<picLi1.length;i++){
+					picLi1[i].style.transition="0.5s "+(i*50)+"ms";
+					picLi1[i].style.webkitTransform="rotateX("+90*(-a)+"deg)";
+				}
+			}
+		})(i);
+	} 
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+	<ul id="picList">
+		 <!--<li>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<span></span>
+			<span></span>
+		</li>
+		<li>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<span></span>
+			<span></span>
+		</li>
+		<li>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<span></span>
+			<span></span>
+		</li> -->
+	</ul>
+	<ol id="btns">
+		<li class="active">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ol>
+</div>
+</body>
+</html>

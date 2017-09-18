@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@-webkit-keyframes doMove{
+	0%{
+		left:0;top:0;
+	}
+	25%{
+		left:400px;
+		top:0;
+	}
+	50%{
+		left:400px;
+		top:400px;
+	}
+	75%{
+		left:0;
+		top:400px;
+	}
+	100%{
+		left:0;
+		top:0;
+	}
+}
+.wrap{width:500px;height:500px;position:relative;border:5px solid #000;
+}
+.wrap div{width:100px;height:100px;background:red;position:absolute;-webkit-animation:4s doMove infinite linear;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.wrap {border:1px solid black;width:100px;height:100px;margin:150px auto;padding:100px;
+-webkit-perspective:200px;-webkit-transform:scale(2);-webkit-perspective-origin:left center;}
+.box{width:100px;height:100px;position:relative;
+-webkit-transform-style:preserve-3d;transition:2s;-webkit-transform-origin:center center -50px;
+}
+.box div{width:100px;height:100px;position:absolute;text-align:center;line-height:100px;
+
+font-size:30px;color:#fff;}
+.box div:nth-of-type(1){background:#CCF;top:-100px;left:0;-webkit-transform-origin:bottom;-webkit-transform:rotateX(90deg);}
+.box div:nth-of-type(2){background:blue;top:0;left:-100px;-webkit-transform-origin:right;-webkit-transform:rotateY(-90deg);}
+.box div:nth-of-type(3){background:green;top:0;left:0;}
+.box div:nth-of-type(4){background:pink;top:0;left:100px;-webkit-transform-origin:left;-webkit-transform:rotateY(90deg);}
+.box div:nth-of-type(5){background:#69C;top:100px;left:0;-webkit-transform-origin:top;-webkit-transform:rotateX(-90deg);}
+.box div:nth-of-type(6){background:#CF3;top:0;left:0;-webkit-transform:translateZ(-100px) rotateX(180deg);}
+
+.wrap:hover .box{-webkit-transform:rotateX(180deg);} 
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="box">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+	</div>
+</div>
+</body>
+</html>
