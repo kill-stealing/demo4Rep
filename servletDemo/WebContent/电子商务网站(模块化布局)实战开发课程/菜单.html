@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#wrap{width:200px;height:200px;margin:10px auto;position:relative;}
+#wrap ul{width:200px;}
+#wrap ul li{height:50px;width:95px;border:1px solid black;background:#ccc;
+float:right;border-bottom:none;position:relative;z-index:2;}
+#wrap ul .active{height:51px;width:95px;border:1px solid black;
+border-bottom:none;background:#FFFFFF;float:left;}
+#wrap .con{width:198px;border:1px solid black;height:150px;background:yellow;
+position:absolute;top:51px;z-index:1;}
+.clear{zoom:1;}
+.clear:after{content:"";display:block;clear:both;}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<ul class="clear">
+		<li class="active"></li>
+		<li></li>
+	</ul>
+	<div class="con"></div>
+</div>
+</body>
+</html>
