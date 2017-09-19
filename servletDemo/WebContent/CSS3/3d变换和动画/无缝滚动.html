@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@-webkit-keyframes move{
+	0%{
+		left:0;
+	}
+	100%{
+		left:-400px;
+	}
+}
+*{margin:0;padding:0;list-style:none;}
+.wrap{width:400px;height:100px;margin:100px auto;
+border:1px solid black;position:relative;overflow:hidden;}
+.wrap ul{width:200%;height:100px;position:absolute;
+left:0;top:0;-webkit-animation:3s move infinite linear;}
+.wrap ul li{width:98px;height:98px;
+border:1px solid #fff;float:left;font:30px/98px Arial;
+color:#fff;background:black;text-align:center;}
+.wrap:hover ul{-webkit-animation-play-state:paused;}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</div>
+</body>
+</html>

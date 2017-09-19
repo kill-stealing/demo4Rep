@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+@-webkit-keyframes show{
+	0%
+	{
+		-webkit-transform:rotateX(-120deg);
+	}
+	25%
+	{
+		-webkit-transform:rotateX(30deg);
+	}
+	50%
+	{
+		-webkit-transform:rotateX(-15deg);
+	}
+	75%
+	{
+		-webkit-transform:rotateX(8deg);
+		box-shadow:inset 0 0 0 0 #ccc;
+	}
+	100%
+	{
+		-webkit-transform:rotateX(0deg);
+	}
+}
+@-webkit-keyframes hide{
+	0%{
+		-webkit-transform:rotateX(0deg);
+	}
+	100%{
+		-webkit-transform:rotateX(-120deg);
+	}
+}
+*{marign:0;padding:0;}
+#wrap{width:200px;margin:10px auto;position:relative;-webkit-perspective:800px;}
+#wrap h2{width:200px;height:50px;font:30px/50px Arial;background:blue;text-align:center;color:#fff;
+border:1px solid #fff;position:absolute;top:0;left:0;margin:0;z-index:10;}
+#wrap div{position:absolute;top:40px;-webkit-transform-style:preserve-3d;
+-webkit-transform-origin:top;-webkit-transform:rotateX(-120deg);}
+#wrap span{height:40px;display:block;width:200px;border:1px solid #fff;
+background:#CF3;color:#fff;box-shadow:inset 0 0 0 20px rgba(0,0,0,1);transition:1s;}
+#wrap>div:nth-of-type(1){top:50px;}
+#wrap .show{
+	-webkit-transform:rotateX(0deg);
+	-webkit-animation:2s show;
+}
+#wrap .show>span{
+	box-shadow:inset 0 0 0 20px rgba(0,0,0,0);
+}
+#wrap .hide{
+	-webkit-transform:rotateX(-120deg);
+	-webkit-animation:1s hide;
+}
+</style>
+<script>
+window.onload=function(){
+	var btn=document.getElementsByTagName("input");
+	var oWrap=document.getElementById("wrap");
+	var oDiv=oWrap.getElementsByTagName("div");
+	var ifClick=false;
+	var isNow=0;
+	var timer=null;
+	btn[0].onclick=function(){
+		if(timer){
+			return;
+		}
+		if(!ifClick){
+			timer=setInterval(function(){
+				oDiv[isNow].className="show";
+				isNow++;
+				if(isNow==oDiv.length){
+					clearInterval(timer);
+					isNow--;
+					timer=null;
+				}
+			},200);
+			this.value="收缩";
+		}else{
+			timer=setInterval(function(){
+				oDiv[isNow].className="hide";
+				isNow--;
+				if(isNow==-1){
+					clearInterval(timer);
+					isNow=0;
+					timer=null;
+				}
+			},200);
+			this.value="展开";
+		}
+		ifClick=!ifClick;
+		
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="展开" />
+<div id="wrap">
+	<h2>我是标题</h2>	
+	<div>
+		<span>标题1</span>
+		<div>
+			<span>标题2</span>
+			<div>
+				<span>标题3</span>
+				<div>
+					<span>标题4</span>
+					<div>
+						<span>标题5</span>
+						<div>
+							<span>标题6</span>
+							<div>
+								<span>标题7</span>
+							</div>	
+						</div>	
+					</div>	
+				</div>	
+			</div>	
+		</div>	
+	</div>	
+</div>
+</body>
+</html>
