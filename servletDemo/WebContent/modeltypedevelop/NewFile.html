@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.wrap{width:200px;height:200px;}
+.wrap .active{background:red;}
+.wrap div{width:100px;height:100px;border:1px solid red;display:none;}
+.wrap div:nth-of-type(1){display:block;}
+#div1{width:200px;height:200px;background:red;position:absolute;}
+</style>
+<script src="js/require.js" type="text/javascript" data-main="js/main"></script>
+</head>
+<body>
+<div class="wrap">
+	<input type="button" value="1" class="active"> 
+	<input type="button" value="2"> 
+	<input type="button" value="3">
+	<div>1111111</div> 
+	<div>2222222</div> 
+	<div>3333333</div> 
+</div>
+
+<div id="div1"></div>
+</body>
+</html>
