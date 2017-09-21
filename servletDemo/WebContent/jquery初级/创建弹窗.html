@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#login{width:200px;height:200px;position:absolute;border:1px solid black;}
+#login #close{position:absolute;right:0;top:0;}
+</style>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script>
+$(function(){
+	$('input').click(function(){
+		var oDiv=$("<div>");
+		$("body").append(oDiv);
+		oDiv.attr("id","login");
+		oDiv.append('<p>用户名:<input type="text" name="username"></p>')
+		.append('<p>密码:<input type="password" name="password"></p>')
+		.append('<div id="close">X</div>');
+		
+		var width=oDiv.outerWidth();
+		var clientWidth=$(window).width();
+		var height=oDiv.outerHeight();
+		var clientHeight=$(window).height();
+		oDiv.css({"left":(clientWidth-width)/2,"top":(clientHeight-height)/2});
+		
+		$(window).on('resize scroll',function(){
+			var width=oDiv.outerWidth();
+			var clientWidth=$(window).width();
+			var height=oDiv.outerHeight();
+			var clientHeight=$(window).height();
+			oDiv.css({"left":(clientWidth-width)/2,
+				"top":(clientHeight-height)/2+$(window).scrollTop()});
+		});
+	});	
+});
+</script>
+</head>
+<body style="height:2000px;">
+<input type="button" value="点击" />
+<!-- <div id="login">
+	<p>用户名:<input type="text" name="username"></p>
+	<p>密码:<input type="password" name="password"></p>
+	<div id="close">X</div>
+</div> -->
+</body>
+</html>
