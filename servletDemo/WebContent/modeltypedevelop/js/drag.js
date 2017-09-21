@@ -1,4 +1,4 @@
-define(["jquery"],function($){
+define(["jquery"],(function($){
 	var aaa = {
 			drag : function(obj){
 				var disX=0;
@@ -27,4 +27,4 @@ define(["jquery"],function($){
 		
 	})();
 	return aaa;
-});
+}));

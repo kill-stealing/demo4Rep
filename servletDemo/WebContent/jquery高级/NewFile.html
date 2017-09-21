@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-1.10.1.min.js"></script>
+<script>
+$(function(){
+	$("input").click(function(){
+		$.ajax({
+			$.ajax({
+					type: "POST",
+	            	url: contextRoot+"/start",
+	            	data: {
+	            		"whoStart":index
+	            	},
+	            	dataType:"json",
+	            	success: function(data){
+	            	alert(data);
+	                	console.log(data);
+	                	//window.sessionStorage.setItem("whoStart",index);
+						//window.location.href="vsPlayerProflieScore.html";
+	            	}
+				});
+		});
+	});
+});
+</script>
+</head>
+<body>
+<input type="button" value="点击" />
+</body>
+</html>

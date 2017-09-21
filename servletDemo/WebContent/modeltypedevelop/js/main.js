@@ -4,7 +4,7 @@ require.config({
 	}
 });
 
-
+var aaa111="aaa111";
 
 
 define("main",["jquery"],function($){
