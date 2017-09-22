@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/* var aaa=(function(){
+	var a=1;
+	function addA(){
+		a++;
+	}
+	function getA(){
+		return a;
+	}
+	return {
+		getA:getA,
+		addA:addA
+	};
+})();
+
+var b=aaa.getA();
+alert(aaa.getA());
+aaa.addA();
+alert(aaa.getA()); */
+
+window.onload=function(){
+	var li=document.getElementsByTagName("li");
+	for(var i=0;i<li.length;i++){
+	
+		li[i].onclick=(function(index){
+			return function(){
+				alert(index);
+			};
+		})(i);
+	}
+}
+
+</script>
+<style>ul li{height:100px;background:red;margin:10px;}</style>
+</head>
+<body>
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-1.10.1.min.js" type="text/javascript"></script>
+<script>
+
+var $="bbb";
+var aaa=$.noConflict();
+aaa(function(){
+	aaa(document).click(function(){
+		alert($);
+	});
+});
+</script>
+</head>
+<body>
+
+</body>
+</html>
