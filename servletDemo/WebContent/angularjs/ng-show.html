@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+<input type="checkbox" ng-model="status" />同意协议<br />
+<button ng-model="ifShow" ng-click="ifShow=!ifShow">查看协议</button><br />
+<textarea ng-show="ifShow">协议内容</textarea><br />
+<input type="button" value="提交" ng-disabled="!status"/>
+
+</body>
+</html>

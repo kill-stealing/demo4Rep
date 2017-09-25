@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	var data=[{name:"后盾网",url:"houdunwang.com"},{name:"后盾人",url:"houdunren.com"}];
+	var temp=[];
+	angular.extend(temp,data,[{name:"test1",url:"test.com"},{name:"test2",url:"test2.com"}]);
+	console.log(temp);
+	/* angular.forEach(data,function(v,k){
+		console.log("Key:"+k+" ,value:"+v);		
+	}); */
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+
+</body>
+</html>
