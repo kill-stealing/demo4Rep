@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script>
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.goods={
+		data:{"name":"商品1","price":100,"num":0},
+		add:function(){
+			$scope.goods.data.num=Math.min(++$scope.goods.data.num,6);
+		},
+		reduce:function(){
+			$scope.goods.data.num=Math.max(--$scope.goods.data.num,0);
+		}
+	};
+}]);
+</script>
+</head>
+<body ng-app="hd">
+<div ng-controller="ctrl">
+	商品名称:{{goods.data.name}}<br />
+	商品价格:{{goods.data.price}}<br />
+	商品数量:{{goods.data.num}}<br />
+	总价格:{{goods.data.num*goods.data.price}}
+	<input type="button" value="增加" ng-click="goods.add()"/><br />
+	<input type="button" value="减少" ng-click="goods.reduce()"/><br />
+	input ng-bind<input type="text" ng-bind="goods.data.num" /> <br />
+	input ng-value<input type="text" ng-value="goods.data.num" /><br />
+	span ng-bind<span ng-bind="goods.data.num"></span><br />
+	span ng-value <span ng-value="goods.data.num"></span><br />
+	div ng-bind<div ng-bind="goods.data.num"></div>
+	div ng-value <div ng-value="goods.data.num"></div><br />
+</div> 
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var m=angular.module("hd",[]);
+	m.controller("ctrl",["$scope",function($scope){
+		$scope.city="beijing";
+		$scope.data=[{name:"北京",value:"beijing"},{name:"上海",value:"shanghai"},{name:"广州",value:"guangzhou"}];
+	}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<select ng-model="city" ng-options="v.value as v.name for v in data">
+	</select>
+</body>
+</html>
