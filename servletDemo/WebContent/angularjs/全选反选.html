@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data=[{name:"name1",url:"url1"},
+				 {name:"name2",url:"url2"},
+				 {name:"name3",url:"url3"},
+				 {name:"name4",url:"url4"}];
+	
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<ul>
+		<li ng-repeat="(k,v) in data" style="{{k==0?'color:red':''}}">名称：{{v.name}}地址 :{{v.url}}</li>
+	</ul>
+	<table>
+		<tr>
+			<td><input type="checkbox" ng-model="all"/><span ng-value="all?'取消':'全选'"></span></td>
+			<td>标题</td>
+			<td>地址</td>
+		</tr>
+		<tr ng-repeat="v in data">
+			<td><input type="checkbox" ng-checked="all"/></td>
+			<td>{{v.name}}</td>
+			<td>{{v.url}}</td>
+		</tr>
+	</table>
+</body>
+</html>

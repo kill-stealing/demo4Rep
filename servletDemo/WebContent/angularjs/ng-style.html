@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<input type="text" ng-model="color" />
+	<input type="number" ng-model="size" />
+	<span ng-style="{color:color,fontSize:size+'px'}">后盾人</span>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<input type="text" ng-model="data" 
+	ng-model-options="{updateOn:'default blur',debounce:{default:1000,blur:0}}"/>{{data}}
+</body>
+</html>
