@@ -21,6 +21,7 @@
 			title : "后盾"
 		} ];
 
+		$scope.list=$scope.data;
 		$scope.orderBy = function(field) {
 			if(arguments.callee[field]==undefined)
 				arguments.callee[field]=false;
@@ -29,11 +30,7 @@
 		}
 		
 		$scope.$watch('search',function(n,o){
-			console.log("n",n);
-			console.log("o",o);
-			if(n!=undefined){
-				$scope.data = $filter('filter')(['\''+n+'\'']);
-			}
+			$scope.list = $filter('filter')($scope.data,n);
 		});  
 		
 	} ]);
@@ -47,7 +44,7 @@
 			<td>点击数</td>
 			<td>标题</td>
 		</tr>
-		<tr ng-repeat="v in data">
+		<tr ng-repeat="v in list">
 			<td>{{v.id}}</td>
 			<td>{{v.click}}</td>
 			<td>{{v.title}}</td>
