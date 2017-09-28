@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data={news:''};
+	$scope.data1="";
+	//监控普通的变量
+	$scope.$watch('data1',function(n,o){
+		console.log(n);
+	});
+	//监听对象
+	$scope.$watch('data',function(n,o){
+		console.log(n);
+	},true);
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<input type="text" ng-model="data1" />
+	<input type="text" ng-model="data.news" />
+</body>
+</html>

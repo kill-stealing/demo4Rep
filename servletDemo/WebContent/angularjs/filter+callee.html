@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var m = angular.module("hd", []);
+	m.controller("ctrl", [ "$scope", "$filter", function($scope, $filter) {
+		$scope.data = [ {
+			id : 1,
+			click : 300,
+			title : "后盾网"
+		}, {
+			id : 2,
+			click : 200,
+			title : "后盾人"
+		}, {
+			id : 3,
+			click : 100,
+			title : "后盾"
+		} ];
+
+		$scope.orderBy = function(field) {
+			if(arguments.callee[field]==undefined)
+				arguments.callee[field]=false;
+			arguments.callee[field]=!arguments.callee[field];
+			$scope.data = $filter('orderBy')($scope.data, field, arguments.callee[field]);
+		}
+		
+		$scope.status={id:false,click:false,title:false};
+		$scope.orderBy1 = function(field) {
+			$scope.status[field]=!$scope.status[field];
+			$scope.data = $filter('orderBy')($scope.data, field, $scope.status[field]);
+		}
+		
+	} ]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<table border="1">
+		<tr>
+			<td ng-click="orderBy1('id')">编号
+			<span ng-if="status.id==true">降序</span>
+			<span ng-if="!status.id==true">升序</span>
+			</td>
+			<td ng-click="orderBy1('click')">点击数</td>
+			<td ng-click="orderBy1('title')">标题</td>
+		</tr>
+		<tr ng-repeat="v in data">
+			<td>{{v.id}}</td>
+			<td>{{v.click}}</td>
+			<td>{{v.title}}</td>
+		</tr>
+		
+	</table>
+</body>
+</html>
