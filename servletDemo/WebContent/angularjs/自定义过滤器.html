@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.filter("filter1",function(){
+	return function(mobile,len){
+		len=len?len:3;
+		return mobile.substring(0,11-len)+new String("*").repeat(len);
+	};
+});
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data=[{id:1,name:"后盾网",mobile:"13840935238"},
+			{id:2,name:"后盾人",mobile:"15902473648"}];
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+	<table border="1">
+		<tr>
+			<td>编号</td>
+			<td>姓名</td>
+			<td>手机号</td>
+		</tr>
+		<tr ng-repeat="v in data">
+			<td>{{v.id}}</td>
+			<td>{{v.name}}</td>
+			<td>{{v.mobile|filter1:6}}</td>
+		</tr>
+	</table>
+</body>
+</html>

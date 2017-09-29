@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.directive("hdCms",[function(){
+return {
+	restrict:'AE',
+	template:"abc"
+}
+}]);
+</script>
+</head>
+<body ng-app="hd">
+	<div hd-cms></div>
+	<hdCms></hdCms>
+</body>
+</html>
