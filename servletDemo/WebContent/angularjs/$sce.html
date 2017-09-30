@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.filter("trustAsHtml",["$sce",function($sce){
+	return function(data){
+		return $sce.trustAsHtml(data);
+	};
+	
+}]);
+m.controller("ctrl",["$scope","$sce",function($scope,$sce){
+	$scope.data=$sce.trustAsHtml("<h1>houdunren.com</h1>");
+	$scope.title="<h1>houdunren.com</h1>";
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+<hr >
+<div ng-bind-html="data"></div>
+<hr>
+<div ng-bind-html="title|trustAsHtml"></div>
+</body>
+</html>

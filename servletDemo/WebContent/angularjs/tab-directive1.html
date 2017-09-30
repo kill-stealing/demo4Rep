@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data=[{a:"后盾人",url:["后盾人1","后盾人2","后盾人3"]},
+	     		{a:"后盾网",url:["后盾网1","后盾网2","后盾网3"]}];
+}]);
+m.directive("hdCms",[function(){
+return {
+	restrict:'AE',
+	templateUrl:"view/tab.html",
+	/* controller:["$scope",function($scope){
+		$scope.data=[{a:"后盾人",url:["后盾人1","后盾人2","后盾人3"]},
+		{a:"后盾网",url:["后盾网1","后盾网2","后盾网3"]}];
+	}], */
+	scope:{"data":"=data"},
+	link:function(scope,elem,attr){
+		$(elem).on("click","a",function(){
+			$("a").removeClass("active");
+			$(this).addClass("active");
+			$(".list").removeClass('active');
+			$(".list").eq($(this).index()).addClass("active");
+		})
+		/* $(elem).find("a").click(function(){
+			alert("aaa");
+			$("a").removeClass("active");
+			$(this).addClass("active");
+			$(".list").removeClass('active');
+			$(".list").eq($(this).index()-1).addClass("active");
+		}); */
+		/* $("a").on("click",function(){
+			alert("aaa");
+			$("a").removeClass("active");
+			$(this).addClass("active");
+			$(".list").removeClass('active');
+			$(".list").eq($(this).index()-1).addClass("active");
+		}); */
+		/* $(elem).delegate('a','click',function(){
+			$("a").removeClass("active");
+			$(this).addClass("active");
+			$(".list").removeClass('active');
+			$(".list").eq($(this).index()-1).addClass("active");
+		});  */
+	}
+}
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+	<hd-cms data="data"></hd-cms>
+</body>
+</html>

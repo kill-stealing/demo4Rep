@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data="aaa";
+}]);
+m.directive("hdCms",function(){
+	return {
+		restrict:"E",
+		template:"<span>{{data}}{{title}}{{fontColor}}</span><input type='text' ng-model='data' />",
+		scope:{
+			data:"=hdData",
+			title:"@",
+			fontColor:"@"
+		}
+	};
+});
+</script>
+</head>
+<body ng-app="hd">
+	<div ng-controller="ctrl">
+	{{data}}
+		<hd-cms hd-data="data" title="后盾人" font-color="red"></hd-cms>
+	</div>
+</body>
+</html>

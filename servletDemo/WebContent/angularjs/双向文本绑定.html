@@ -8,18 +8,23 @@
 <script type="text/javascript">
 var m=angular.module("hd",[]);
 m.directive("hdCms",[function(){
-return {
-	restrict:'AE',
-	template:function(elem,attr){
-		console.log(elem);
-		console.log(attr);
-		return "<span style='color:"+attr['color']+"'>"+$(elem).html()+"aaa</span>";
-	}
-}
+	return {
+		restrict:"AE",
+		template:'{{color}}<span style="color:{{color}}">后盾人</span><input type="text" ng-model="color" />',
+		scope:{color:'=hdColor'}
+	};
 }]);
+m.controller("ctrl1",["$scope",function($scope){
+	$scope.name="red";
+}]);
+
 </script>
 </head>
 <body ng-app="hd">
-	<div hd-cms color="red">你好后盾网</div>
+	<div ng-controller="ctrl1">
+		<input type="text" ng-model="name" />
+		<hr>
+		<hd-cms hd-color="name"></hd-cms>
+	</div>
 </body>
 </html>

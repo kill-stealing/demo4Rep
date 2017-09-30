@@ -809,4 +809,14 @@
     <servlet-name>UploadServlet1</servlet-name>
     <url-pattern>/UploadServlet1</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AngularHttp</display-name>
+    <servlet-name>AngularHttp</servlet-name>
+    <servlet-class>com.servlet.AngularHttp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AngularHttp</servlet-name>
+    <url-pattern>/AngularHttp</url-pattern>
+  </servlet-mapping>
 </web-app>

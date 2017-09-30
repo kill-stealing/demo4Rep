@@ -1,0 +1,18 @@
+<style>
+*{margin:0;padding:0;text-decoration:none;}
+a{color:black;border:1px solid #fff;background:#ccc;display:inline-block;}
+a.active{color:red;}
+.list {border:1px solid red;width:200px;height:200px;display:none;}
+.list.active{display:block;}
+</style>
+<hr>
+<div class="tab-directive">
+
+{{data}}
+	<a href="" ng-class="{active:$first}" ng-repeat="(k,v) in data" ng-click="show(k)">{{v.a}}</a>
+	<div  ng-repeat="(k,v) in data" class="list" ng-class="{active:k==0}">
+		<ul>
+			<li ng-repeat="value in v.url">{{value}}</li>
+		</ul>
+	</div>
+</div>

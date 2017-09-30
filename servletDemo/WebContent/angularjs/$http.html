@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl1",["$scope","$http",function($scope,$http){
+	$http({
+		method:"GET",
+		url:"/servletDemo/AngularHttp",
+		scriptCharset: 'utf-8'
+	}).then(function(success){
+		$scope.data=success.data;
+		console.log("success "+success.data);
+	},function(error){
+		$scope.data=success.error;
+		console.log("error "+error.data);
+	});
+}]);
+</script>
+</head>
+<body ng-app="hd" >
+<div ng-controller="ctrl1">
+	{{data}}
+	<hr >
+	
+	<table border="1" width="400">
+		<tr>
+			<td>名称</td>
+			<td>网址</td>
+		</tr>
+		<tr ng-repeat="v in data">
+			<td>{{v.name}}</td>
+			<td>{{v.url}}</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

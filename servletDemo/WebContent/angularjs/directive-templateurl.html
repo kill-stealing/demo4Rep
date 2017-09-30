@@ -7,19 +7,19 @@
 <script src="js/jquery-3.2.1.js" type="text/javascript"></script>
 <script type="text/javascript">
 var m=angular.module("hd",[]);
-m.directive("hdCms",[function(){
+m.directive("hdCms",[function(elem,attr){
+	
 return {
 	restrict:'AE',
-	template:function(elem,attr){
-		console.log(elem);
-		console.log(attr);
-		return "<span style='color:"+attr['color']+"'>"+$(elem).html()+"aaa</span>";
-	}
+	templateUrl:"view/1.html"
 }
 }]);
 </script>
 </head>
 <body ng-app="hd">
-	<div hd-cms color="red">你好后盾网</div>
+	<div hd-cms type="text"></div>
+	<div hd-cms type="radio"></div>
+	<div hd-cms type="pdf"></div>
+	
 </body>
 </html>

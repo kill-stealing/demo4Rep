@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope","$timeout","$interval",function($scope,$timeout,$interval){
+	$scope.data=1;
+	var time=$timeout(function(){
+		$scope.data++;
+	},2000);
+	$timeout.cancel(time);
+	
+	var time=$interval(function(){
+		$scope.data++;
+		if($scope.data==10){
+			$interval.cancel(time);
+		}
+	},1000);
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+</body>
+</html>

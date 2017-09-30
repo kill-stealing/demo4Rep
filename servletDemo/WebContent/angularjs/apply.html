@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl",["$scope",function($scope){
+	$scope.data="后盾人";
+	$scope.click=function(){
+		$scope.data="houdunren.com";
+	}
+	
+	$("#bt").click(function(){
+		$scope.data="bt.click";
+		$scope.$apply();
+	});
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+	<button ng-click="click()">点击</button>
+	<hr>
+	<button id="bt" >点击</button>
+</body>
+</html>

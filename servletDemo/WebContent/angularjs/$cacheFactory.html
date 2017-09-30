@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl1",["$scope","$cacheFactory",function($scope,$cacheFactory){
+	var obj=$cacheFactory("web");
+	obj.put("user",{name:"后盾人",url:"www.houdunren.com"});
+	$scope.data=obj.get("user").name;
+}]);
+m.controller("ctrl2",["$scope","$cacheFactory",function($scope,$cacheFactory){
+	var obj=$cacheFactory.get("web");
+	$scope.data=obj.get("user").url;
+}]);
+</script>
+</head>
+<body ng-app="hd" >
+<div ng-controller="ctrl1">
+	{{data}}
+</div>
+<hr>
+<div ng-controller="ctrl2">
+	{{data}}
+</div>
+</body>
+</html>

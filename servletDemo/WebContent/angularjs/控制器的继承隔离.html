@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.controller("ctrl1",["$scope",function($scope){
+	$scope.data={name:"后盾人"};
+}]);
+m.controller("ctrl2",["$scope",function($scope){
+	
+}]);
+m.controller("ctrl3",["$scope",function($scope){
+	
+}]);
+
+m.controller("ctrl11",["$scope",function($scope){
+	$scope.name="后盾人";
+}]);
+m.controller("ctrl21",["$scope",function($scope){
+	
+}]);
+m.controller("ctrl31",["$scope",function($scope){
+	
+}]);
+</script>
+</head>
+<body ng-app="hd">
+	<div ng-controller="ctrl1">
+		{{data.name}}<input type="text" ng-model="data.name" />
+		<div ng-controller="ctrl2">
+			{{data.name}}<input type="text" ng-model="data.name" />
+		</div>
+		<div ng-controller="ctrl3">
+		{{data.name}}
+		</div>
+	</div>
+	
+	<div ng-controller="ctrl11">
+		{{name}}<input type="text" ng-model="name" />
+		<div ng-controller="ctrl21">
+			{{name}}<input type="text" ng-model="name" />
+		</div>
+		<div ng-controller="ctrl31">
+		{{name}}
+		</div>
+	</div>
+</body>
+</html>

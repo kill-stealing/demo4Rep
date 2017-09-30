@@ -10,16 +10,20 @@ var m=angular.module("hd",[]);
 m.directive("hdCms",[function(){
 return {
 	restrict:'AE',
-	template:function(elem,attr){
-		console.log(elem);
-		console.log(attr);
-		return "<span style='color:"+attr['color']+"'>"+$(elem).html()+"aaa</span>";
+	/* templateUrl:"view/directive-controller-view.html",
+	replace:true, 
+	controller:["$scope",function($scope){
+		$scope.name="后盾人";
+		$("div").css({"background":"black","color":"#fff"});
+	}], */
+	link:function(scope,elem,attr){
+		$(elem).css({'background':attr['bgcolor'],'color':attr['fontColor']}).html(attr['title']);
 	}
 }
 }]);
 </script>
 </head>
 <body ng-app="hd">
-	<div hd-cms color="red">你好后盾网</div>
+	<hd-cms title="后盾人" bgcolor="red" font-color="white"></hd-cms>
 </body>
 </html>

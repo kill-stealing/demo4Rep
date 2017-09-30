@@ -10,16 +10,13 @@ var m=angular.module("hd",[]);
 m.directive("hdCms",[function(){
 return {
 	restrict:'AE',
-	template:function(elem,attr){
-		console.log(elem);
-		console.log(attr);
-		return "<span style='color:"+attr['color']+"'>"+$(elem).html()+"aaa</span>";
-	}
+	template:"<h1>后盾</h1><div ng-transclude=''></div>",
+	transclude:true
 }
 }]);
 </script>
 </head>
 <body ng-app="hd">
-	<div hd-cms color="red">你好后盾网</div>
+	<div hd-cms>你好后盾网</div>
 </body>
 </html>
