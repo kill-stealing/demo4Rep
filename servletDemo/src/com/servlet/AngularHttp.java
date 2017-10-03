@@ -25,8 +25,11 @@ public class AngularHttp extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
+		String name=request.getParameter("name");
+		String title=request.getParameter("title");
+		System.out.println(name+title);
 		PrintWriter out = response.getWriter();
-		String str = "[{\"name\":\"后盾网\",\"url\":\"www.houdunwang.com\"},{\"name\":\"后盾人\",\"url\":\"www.houdunren.com\"}]";
+		String str = "[{\"id\":1,\"name\":\"后盾网\",\"url\":\"www.houdunwang.com\"},{\"id\":2,\"name\":\"后盾人\",\"url\":\"www.houdunren.com\"}]";
 		JSONParser parser = new JSONParser();
 		JSONArray array = null;
 		try {

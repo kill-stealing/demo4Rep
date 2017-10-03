@@ -819,4 +819,34 @@
     <servlet-name>AngularHttp</servlet-name>
     <url-pattern>/AngularHttp</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AngularHttp1</display-name>
+    <servlet-name>AngularHttp1</servlet-name>
+    <servlet-class>com.servlet.AngularHttp1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AngularHttp1</servlet-name>
+    <url-pattern>/AngularHttp1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AngularHttp2</display-name>
+    <servlet-name>AngularHttp2</servlet-name>
+    <servlet-class>com.servlet.AngularHttp2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AngularHttp2</servlet-name>
+    <url-pattern>/AngularHttp2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AngularHttpFactory</display-name>
+    <servlet-name>AngularHttpFactory</servlet-name>
+    <servlet-class>com.servlet.AngularHttpFactory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AngularHttpFactory</servlet-name>
+    <url-pattern>/AngularHttpFactory</url-pattern>
+  </servlet-mapping>
 </web-app>

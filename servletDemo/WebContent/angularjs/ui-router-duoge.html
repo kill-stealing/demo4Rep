@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+var m=angular.module("hd",['ui.router']);
+m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+    //默认路由
+    $urlRouterProvider.otherwise("my");
+    $stateProvider
+        .state('my',{
+            url:"/my",
+            views:{
+                top:{
+                    templateUrl:"view/uirouterduoge/top.html"
+                },
+                left:{
+                    templateUrl:"view/uirouterduoge/left.html"
+                },
+                right:{
+                    templateUrl:"view/uirouterduoge/right.html"
+                }
+            }
+        })
+        .state('video',{
+            url:"/video",
+            views:{
+                top:{
+                    templateUrl:"view/uirouterduoge/top.html"
+                },
+                left:{
+                    templateUrl:"view/uirouterduoge/left_video.html"
+                },
+                right:{
+                    templateUrl:"view/uirouterduoge/right_video.html"
+                }
+            }
+        });
+}]);
+</script>
+<style>
+*{margin:0;padding:0;text-decoration:none;color:black;}
+div[ui-view=top]{height:200px;border: 1px solid #ccc;}
+div[ui-view=left]{height:400px;width:200px;border: 1px solid #ccc;float:left;}
+div[ui-view=right]{width:500px;height:400px;border: 1px solid #ccc;float:left;}
+</style>
+</head>
+<body>
+<div ng-app="hd">
+	<div ui-view="top"></div>
+	<div ui-view="left"></div>
+	<div ui-view="right"></div>
+</div>
+</body>
+</html>

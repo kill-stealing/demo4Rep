@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+var m=angular.module("hd",['ui.router']);
+m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+    //默认路由
+    $urlRouterProvider.otherwise("home");
+    $stateProvider
+        .state('home',{
+            url:"/home",
+            templateUrl:"view/home.html",
+            controller:"ctrl"
+        })
+        .state('lists',{
+            url:"/lists/{id}",
+            template:"<h1>列表页{{user.name}}</h1>",
+            controller:"ctrl"
+        });
+}]);
+m.controller("ctrl",["$scope","$state","$stateParams",function($scope,$state,$stateParams){
+	$scope.user=[{id:1,name:"向军"},{id:2,name:"鼓励老师"}];
+	$scope.go=function(url){
+		$state.go(url);
+	}
+    if($stateParams.id){
+        for(var i=0;i<$scope.user.length;i++){
+            if($scope.user[i].id==$stateParams.id){
+                $scope.user=$scope.user[i];
+            }
+        }
+    }
+}]);
+</script>
+</head>
+<body>
+<div ng-app="hd">
+    <a href="#/home">首页</a>
+    <a href="" ui-sref="lists">列表</a>
+    <div ui-view>后盾人提示你:你访问的页面不存在</div>
+</div>
+</body>
+</html>

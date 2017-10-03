@@ -1,0 +1,7 @@
+<div>后盾人 人人做后盾：{{name}}</div>
+<a href="" ng-click="go('lists')">跳转到lists页面</a>
+<ul>
+    <li ng-repeat="v in user">
+        <a href="" ui-sref="lists({id:v.id})">{{v.name}}</a>
+    </li>
+</ul>

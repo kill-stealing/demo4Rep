@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+var m=angular.module("hd",['ui.router']);
+m.config(['$stateProvider',"$urlRouterProvider",function($stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise("my");
+	
+	$stateProvider.state('my',{
+		url:"/my",
+		/* resolve:{
+			"http":['$http',function($http){
+				return $http({url:"/servletDemo/AngularHttp"});
+			}],
+			"user":function(){
+				return [{
+					id:1,
+					name:"后盾网"
+				},{
+					id:2,
+					name:"后盾人"
+				}];
+			}
+		}, */
+		template:"<h1>你好 后盾网</h1>",
+		// templateUrl:"view/resolve/1.html",
+		controller:"ctrl"
+	}).state('video',{
+        url:"/video",
+        templateUrl:"view/uirouterduoge/top.html"
+    });
+}]);
+/* m.controller("ctrl",["$scope","http","user",function($scope,http,user){
+ 	http().then(function(response){
+		$scope.data=response.data;
+	}); 
+	$scope.user=user;
+}]); */
+m.controller("ctrl",["$scope",function($scope){
+	/* 	http().then(function(response){
+			$scope.data=response.data;
+		}); */
+		/* $scope.user=user; */
+		$scope.data="aaaaaaaaaa";
+	}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+	<div ui-view="video"></div>
+</body>
+</html>

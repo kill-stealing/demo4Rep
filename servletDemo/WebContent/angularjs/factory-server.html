@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var m=angular.module("hd",[]);
+m.factory('videoServer',["$http",function($http){
+	return {
+		all:function(){
+			return $http({url:"/servletDemo/AngularHttp"});
+		}
+	};
+}]);
+m.factory("videoServer1",["$http",function($http){
+	return {
+		get:function(callback){
+			return $http({url:"/servletDemo/AngularHttp"}).then(function(response){
+				return callback(response);
+			});
+		}
+	};
+}]);
+m.controller("ctrl",["$scope","videoServer","videoServer1",function($scope,videoServer,videoServer1){
+	// videoServer.all().then(function(response){
+	// 	$scope.data=response.data;
+	// },function(){
+	// });
+
+	videoServer1.get(function(response){
+		$scope.data=response.data;
+	});
+}]);
+</script>
+</head>
+<body ng-app="hd" ng-controller="ctrl">
+{{data}}
+</body>
+</html>

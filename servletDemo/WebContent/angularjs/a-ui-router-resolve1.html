@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+var m=angular.module("hd",['ui.router']);
+m.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise("view");
+	$stateProvider.state("view",{
+		url:"/view",
+		views:{
+			view1:{
+			    templateUrl:"view/uirouterduoge/top.html"
+			}
+		}
+	});
+}]);
+</script>
+</head>
+<body>
+<div ng-app="hd">
+	<div ui-view="view1"></div>
+</div>
+</body>
+</html>

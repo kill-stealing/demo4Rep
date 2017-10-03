@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/angular.min.js"></script>
+<script src="../js/angular-ui-router.min.js"></script>
+<script src="../js/jquery-3.2.1.js"></script>
+<script>
+var m=angular.module("hd",['ui.router']);
+m.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise("view");
+	$stateProvider.state("view",{
+		url:"/view",
+		views:{
+			top:{
+			    templateUrl:"demo/top.html"
+			},
+			left:{
+			    templateUrl:"demo/left.html"
+			},
+			right:{
+			    templateUrl:"demo/right.html"
+			}
+		}
+	}).state("view.home",{
+		url:"/home",
+		templateUrl:"demo/1.html",
+		controllerUrl:"demo/1.js"
+	}).state("view.list",{
+		url:"/list",
+		template:"<h1>列表页面</h1>"
+	});
+}]);
+</script>
+<style>
+/* div[ng-app] div{width:200px;height:200px;border:1px solid #ccc;}
+div[ng-app] div:nth-of-type(odd){background:#f0f0f0;} */
+</style>
+</head>
+<body>
+<div ng-app="hd">
+	<div ui-view="top"></div>
+	<div ui-view="left"></div>
+	<div ui-view="right"></div>
+	<h1>欢迎来到后盾网</h1>
+</div>
+</body>
+</html>
