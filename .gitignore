@@ -19,4 +19,8 @@ servletDemo/WebContent/WEB-INF/classes/
 servletDemo/.settings/
 servletDemo/bin/
 
+mybatis/WebContent/WEB-INF/classes/
+mybatis/.settings/
+mybatis/bin/
+
 documents/servlet.docx
