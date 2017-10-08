@@ -23,4 +23,12 @@ mybatis/WebContent/WEB-INF/classes/
 mybatis/.settings/
 mybatis/bin/
 
+spring-mybatis/WebContent/WEB-INF/classes/
+spring-mybatis/.settings/
+spring-mybatis/bin/
+
+generator-mybatis/WebContent/WEB-INF/classes/
+generator-mybatis/.settings/
+generator-mybatis/bin/
+
 documents/servlet.docx
