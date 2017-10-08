@@ -1,26 +1,18 @@
 package com.lmy.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-public class User implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int id;
+public class CustomOrders extends Orders{
+	private int uid;
 	private String username;// 用户姓名
 	private String sex;// 性别
 	private Date birthday;// 生日
 	private String address;// 地址
-	private List<Orders> orders;
-
-	public int getId() {
-		return id;
+	public int getUid() {
+		return uid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 	public String getUsername() {
 		return username;
@@ -46,16 +38,5 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", sex=" + sex
-				+ ", birthday=" + birthday + ", address=" + address + "]";
-	}
-	public List<Orders> getOrders() {
-		return orders;
-	}
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
-	}
-
+	
 }

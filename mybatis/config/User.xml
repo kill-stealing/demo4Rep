@@ -4,6 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 命名空间，做sql隔离  -->
 <mapper namespace="test">
+	<sql id="user_where">
+		<where>
+			<if test="username!=null and username !=''">
+			and username like '%${username}%'
+			</if>
+			<if test="sex!=null and sex!=''">
+				and sex=#{sex}
+			</if>
+		</where>
+	</sql>
 	<!-- 
 		id:sql语句唯一标识
 		parameterType:指定传入参数类型
@@ -56,4 +66,92 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateUserById" parameterType="com.lmy.pojo.User">
 		update user set username=#{username} where id=#{id}
 	</update>
+	
+	<!-- <select id="findUserListResultMap" parameterType="queryVo" resultMap="userListResultMap"> 
+		select id id_,username username_,birthday birthday_ from user
+	</select> -->
+	
+	<resultMap type="user" id=""></resultMap>
+	
+	<select id="findUserByNameAndSex" parameterType="user" resultType="user">
+		select * from user where 1=1 
+		<if test="username!=null and username !=''">
+			and username like '%${username}%'
+		</if>
+		<if test="sex!=null and sex!=''">
+			and sex=#{sex}
+		</if>
+	</select>
+	
+	<select id="findUserByNameAndSex1" parameterType="user" resultType="user">
+		select * from user 
+		<where>
+			<if test="username!=null and username !=''">
+			and username like '%${username}%'
+			</if>
+			<if test="sex!=null and sex!=''">
+				and sex=#{sex}
+			</if>
+		</where>
+		
+	</select>
+	
+	<select id="findUserByNameAndSex2" parameterType="user" resultType="user">
+		select * from user 
+		<include refid="user_where"></include>		
+	</select>
+	
+	<select id="findUserByDynamicCondition" parameterType="java.util.List" resultType="user">
+		select * from user 
+		<where>
+			<if test="list!=null ">
+				<foreach collection="list" item="id" open=" id in (" close=" )" separator=",">
+					#{id}
+				</foreach>	
+			</if>
+		</where>
+	</select>
+	
+	<select id="findOrdersAndUsers" resultType="com.lmy.pojo.CustomOrders">
+		select a1.*,a2.id uid,a2.username,a2.sex,a2.birthday,a2.address
+ 		from orders a1,user a2 where a1.user_id=a2.id
+	</select>
+	
+	<resultMap type="com.lmy.pojo.Orders" id="ordersAndUsers">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="number" property="number"/>
+		<result column="createtime" property="createtime"/>
+		<result column="note" property="note"/>
+		<association property="user" javaType="com.lmy.pojo.User">
+			<id column="uid" property="id"/>
+			<result column="username" property="username"/>
+			<result column="sex" property="sex"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
+		</association>
+	</resultMap>
+	
+	<select id="findOrdersAndUsers1" resultMap="ordersAndUsers">
+		select a1.*,a2.id uid,a2.username,a2.sex,a2.birthday,a2.address
+ 		from orders a1,user a2 where a1.user_id=a2.id
+	</select>
+	<resultMap id="userAndOrders" type="com.lmy.pojo.User">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="sex" property="sex"/>
+		<result column="birthday" property="birthday"/>
+		<result column="address" property="address"/>
+		<collection property="orders" ofType="com.lmy.pojo.Orders">
+			<id column="order_id" property="id"/>
+			<result column="user_id" property="userId"/>
+			<result column="number" property="number"/>
+			<result column="createtime" property="createtime"/>
+			<result column="note" property="note"/>
+		</collection>
+	</resultMap>
+	<select id="findUserAndOrders" resultMap="userAndOrders">
+		select a1.*,a2.id order_id,a2.user_id,a2.number,a2.createtime,a2.note
+		 from user a1,orders a2 where a1.id=a2.user_id
+	</select>
 </mapper>
