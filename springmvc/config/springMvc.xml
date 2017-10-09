@@ -15,7 +15,7 @@
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         
         <!-- 配置@Controller注解扫描 -->
-        <context:component-scan base-package="cn.itheima.controller"></context:component-scan>
+        <context:component-scan base-package="com.lmy.controller"></context:component-scan>
         
         <!-- 如果没有显示的配置处理器映射器和处理器适配那么springMvc会去默认的dispatcherServlet.properties中查找,
         对应的处理器映射器和处理器适配器去使用,这样每个请求都要扫描一次他的默认配置文件,效率非常低,会降低访问速度,所以要显示的配置处理器映射器和
