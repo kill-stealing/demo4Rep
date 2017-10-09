@@ -13,6 +13,8 @@ public class Orders {
     private Date createtime;
 
     private String note;
+    
+    private User user;
 
     public Integer getId() {
         return id;
@@ -54,6 +56,11 @@ public class Orders {
         this.note = note == null ? null : note.trim();
     }
 
-    
-    
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

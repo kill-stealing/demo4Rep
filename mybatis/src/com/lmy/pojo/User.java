@@ -2,6 +2,7 @@ package com.lmy.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class User implements Serializable {
 	/**
@@ -13,6 +14,7 @@ public class User implements Serializable {
 	private String sex;// 性别
 	private Date birthday;// 生日
 	private String address;// 地址
+	private List<Orders> orders;
 
 	public int getId() {
 		return id;
@@ -49,8 +51,11 @@ public class User implements Serializable {
 		return "User [id=" + id + ", username=" + username + ", sex=" + sex
 				+ ", birthday=" + birthday + ", address=" + address + "]";
 	}
-
-	
-	
+	public List<Orders> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
 
 }
