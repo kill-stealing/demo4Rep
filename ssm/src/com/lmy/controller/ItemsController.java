@@ -1,0 +1,30 @@
+package com.lmy.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.lmy.pojo.Items;
+import com.lmy.service.ItemsService;
+
+@Controller
+public class ItemsController {
+	
+	@Autowired
+	private ItemsService itemsService;
+	
+	@RequestMapping("/items")
+	public ModelAndView getItemsById(){
+		List<Items> items=new ArrayList<>();
+		items=itemsService.getItemsByName("");
+		ModelAndView m=new ModelAndView();
+		m.addObject("itemList", items);
+		m.setViewName("itemList");
+		return m;
+	}
+	
+}

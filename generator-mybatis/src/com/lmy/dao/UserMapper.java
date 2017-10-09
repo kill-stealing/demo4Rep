@@ -1,4 +1,4 @@
-package com.lmy.mapper;
+package com.lmy.dao;
 
 import com.lmy.pojo.User;
 import com.lmy.pojo.UserExample;
