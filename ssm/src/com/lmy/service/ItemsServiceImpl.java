@@ -35,4 +35,9 @@ public class ItemsServiceImpl implements ItemsService{
 		List<Items> items=itemsMapper.selectByExample(ex);
 		return items;
 	}
+
+	@Override
+	public void updateItems(Items items) {
+		itemsMapper.updateByPrimaryKeyWithBLOBs(items);
+	}
 }
