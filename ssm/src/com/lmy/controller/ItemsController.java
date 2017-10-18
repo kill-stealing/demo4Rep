@@ -10,10 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lmy.pojo.Items;
+import com.lmy.pojo.User;
 import com.lmy.service.ItemsService;
 
 @Controller
@@ -52,13 +56,7 @@ public class ItemsController {
 	
 	//springMVC 可以直接接收基本数据类型，包括string.springMVC可以帮你自动转换类型。
 	@RequestMapping("/updateitem")
-	public String updateItem(int id,String name,float price,String detail){
-		Items items=new Items();
-		items.setId(id);
-		items.setName(name);
-		items.setPrice(price);
-		items.setDetail(detail);
-		items.setCreatetime(new Date());
+	public String updateItem(Items items){
 		itemsService.updateItems(items);
 		return "success";
 	}
@@ -72,6 +70,12 @@ public class ItemsController {
 			e.printStackTrace();
 		}
 		System.out.println(name);
+		return "itemList";
+	}
+	
+	@RequestMapping(value="/testRequestBody",method=RequestMethod.POST)
+	public String testRequestBody(@RequestBody List<User> lists){
+		System.out.println(lists);
 		return "itemList";
 	}
 }
