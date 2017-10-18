@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lmy.pojo.Items;
@@ -13,7 +15,7 @@ import com.lmy.pojo.Items;
 @Controller
 public class ItemsController {
 
-	@RequestMapping("/list")
+	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public ModelAndView getItemsList(@RequestBody Items user) {
 		List<Items> itemList = new ArrayList<>();
 
@@ -35,5 +37,11 @@ public class ItemsController {
 		m.addObject("itemList", itemList);
 		m.setViewName("itemList");
 		return m;
+	}
+	
+	@RequestMapping("/testGetRequest")
+	public String testGetRequest(String name,Model model){
+		System.out.println("name:"+name);
+		return "itemList";
 	}
 }
