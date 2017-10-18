@@ -1,16 +1,25 @@
 package com.lmy.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lmy.utils.DateJsonDeserializer;
+import com.lmy.utils.DateJsonSerializer;
 
-public class User {
+public class UserNew implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 
     private String username;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")  
+    @JsonSerialize(using=DateJsonSerializer.class)  
+    @JsonDeserialize(using=DateJsonDeserializer.class)
     private Date birthday;
 
     private String sex;
