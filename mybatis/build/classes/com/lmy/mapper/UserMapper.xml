@@ -55,4 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateUserById" parameterType="com.lmy.pojo.User">
 		update user set username=#{username} where id=#{id}
 	</update>
+	
+	<select id="findUserByVo" parameterType="com.lmy.pojo.QueryVo" resultType="com.lmy.pojo.User">
+	    select * from user where username like '%${user.username}%' and sex=#{user.sex}
+	</select>
 </mapper>

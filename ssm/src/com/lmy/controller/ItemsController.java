@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lmy.pojo.Items;
 import com.lmy.pojo.User;
 import com.lmy.service.ItemsService;
+import com.lmy.vo.QueryVO;
 
 @Controller
 public class ItemsController {
@@ -32,7 +33,7 @@ public class ItemsController {
 		items=itemsService.getItemsByName("");
 		ModelAndView m=new ModelAndView();
 		m.addObject("itemList", items);
-		m.setViewName("itemList");
+		m.setViewName("itemList1");
 		return m;
 	}
 	
@@ -77,5 +78,17 @@ public class ItemsController {
 	public String testRequestBody(@RequestBody List<User> lists){
 		System.out.println(lists);
 		return "itemList";
+	}
+	
+	@RequestMapping("/delAll")
+	public String delAll(Integer[] ids){
+		System.out.println(ids);
+		return  "";
+	}
+	
+	@RequestMapping("/updateAll")
+	public String updateALl(QueryVO vo){
+		System.out.println(vo.getItemsList());
+		return "";
 	}
 }

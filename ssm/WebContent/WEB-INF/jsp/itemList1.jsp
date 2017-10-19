@@ -10,7 +10,7 @@
 </head>
 <body> 
 <%-- <form action="${pageContext.request.contextPath }/item/queryitem.action" method="post"> --%>
-<form action="${pageContext.request.contextPath }/delAll.action" method="post">
+<form action="${pageContext.request.contextPath }/updateAll.action" method="post">
 查询条件：
 <table width="100%" border=1>
 <tr>
@@ -28,14 +28,17 @@
 	<td>商品描述</td>
 	<td>操作</td>
 </tr>
-<c:forEach items="${itemList }" var="item">
+<c:forEach items="${itemList }" var="item" varStatus="status">
 <tr>
-	<td><input type="checkbox" value="${item.id}" name="ids" /></td>
-	<td>${item.name }</td>
-	<td>${item.price }</td>
-	<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	<td>${item.detail }</td>
-	
+	<td>
+		<input type="checkbox" value="${item.id}" name="ids" />
+		<input type="hidden" value="${item.id}" name="itemsList[${status.index }].id" />
+	</td>
+	<td><input type="text" value="${item.name }" name="itemsList[${status.index }].name"/></td>
+	<td><input type="text" value="${item.price }" name="itemsList[${status.index }].price"/></td>
+	<td><input type="text" value="<fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/>" 
+	name="itemsList[${status.index }].createtime"/></td>
+	<td><input type="text" value="${item.detail }" name="itemsList[${status.index }].detail"/></td>
 	<td><a href="${pageContext.request.contextPath }/itemEdit.action?id=${item.id}">修改</a></td>
 
 </tr>
