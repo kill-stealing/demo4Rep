@@ -2,20 +2,20 @@ package com.lmy.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lmy.exception.CustomException;
 import com.lmy.pojo.Items;
 import com.lmy.pojo.User;
 import com.lmy.service.ItemsService;
@@ -25,12 +25,13 @@ import com.lmy.vo.QueryVO;
 public class ItemsController {
 	
 	@Autowired
+	@Qualifier("service")
 	private ItemsService itemsService;
 	
 	@RequestMapping("/items")
-	public ModelAndView getItemsById(){
+	public ModelAndView getItemsById(String name) throws CustomException{
 		List<Items> items=new ArrayList<>();
-		items=itemsService.getItemsByName("");
+		items=itemsService.getItemsByName1(name);
 		ModelAndView m=new ModelAndView();
 		m.addObject("itemList", items);
 		m.setViewName("itemList1");
