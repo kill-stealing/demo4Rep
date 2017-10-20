@@ -5,11 +5,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lmy.dao.ItemsMapper;
 import com.lmy.exception.CustomException;
 import com.lmy.exception.CustomException404;
+import com.lmy.jdbc.ItemsDao;
 import com.lmy.pojo.Items;
 import com.lmy.pojo.ItemsExample;
 import com.lmy.pojo.ItemsExample.Criteria;
@@ -18,6 +22,9 @@ import com.lmy.pojo.ItemsExample.Criteria;
 public class ItemsServiceImpl implements ItemsService{
 	@Resource
 	private ItemsMapper itemsMapper;
+	
+	@Resource
+	private ItemsDao itemsDao;
 	
 	@Override
 	public Items getItemsById(int id){
@@ -49,6 +56,7 @@ public class ItemsServiceImpl implements ItemsService{
 	@Override
 	public void updateItems(Items items) {
 		itemsMapper.updateByPrimaryKeyWithBLOBs(items);
+		//throw new CustomException("测试事务");
 	}
 
 	//抛出自定义异常
@@ -56,5 +64,11 @@ public class ItemsServiceImpl implements ItemsService{
 	public List<Items> getItemsByName1(String name){
 		List<Items> items=new ArrayList<>();
 		throw new CustomException("Hello",11);
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public void insertItems(Items items) {
+		itemsDao.insertItems(items);
 	}
 }

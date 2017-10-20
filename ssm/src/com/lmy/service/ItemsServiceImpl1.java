@@ -46,4 +46,10 @@ public class ItemsServiceImpl1 implements ItemsService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void insertItems(Items items) {
+		// TODO Auto-generated method stub
+		
+	}
 }

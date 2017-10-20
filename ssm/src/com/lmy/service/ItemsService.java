@@ -10,4 +10,6 @@ public interface ItemsService {
 	List<Items> getItemsByName(String name);
 	List<Items> getItemsByName1(String name);
 	void updateItems(Items items);
+	
+	void insertItems(Items items);
 }

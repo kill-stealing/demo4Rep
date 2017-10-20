@@ -2,6 +2,8 @@ package com.lmy.pojo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Items {
     private Integer id;
 
@@ -11,6 +13,7 @@ public class Items {
 
     private String pic;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")  
     private Date createtime;
 
     private String detail;
@@ -62,4 +65,11 @@ public class Items {
     public void setDetail(String detail) {
         this.detail = detail == null ? null : detail.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Items [id=" + id + ", name=" + name + ", price=" + price
+				+ ", pic=" + pic + ", createtime=" + createtime + ", detail="
+				+ detail + "]";
+	}
 }

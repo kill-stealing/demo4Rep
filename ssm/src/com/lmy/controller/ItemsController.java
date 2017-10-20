@@ -1,10 +1,14 @@
 package com.lmy.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.FetchProfile.Item;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -58,7 +62,8 @@ public class ItemsController {
 	
 	//springMVC 可以直接接收基本数据类型，包括string.springMVC可以帮你自动转换类型。
 	@RequestMapping("/updateitem")
-	public String updateItem(Items items){
+	public String updateItem(@RequestBody Items items){
+		System.out.println(items);
 		itemsService.updateItems(items);
 		return "success";
 	}
@@ -91,5 +96,13 @@ public class ItemsController {
 	public String updateALl(QueryVO vo){
 		System.out.println(vo.getItemsList());
 		return "";
+	}
+	
+	@RequestMapping("/insertItems")
+	public void insertItems(Items items,HttpServletResponse response) throws IOException{
+		
+		PrintWriter out=response.getWriter();
+		itemsService.insertItems(items);
+		out.println("success");
 	}
 }
