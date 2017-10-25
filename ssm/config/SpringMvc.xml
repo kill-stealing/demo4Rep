@@ -10,8 +10,9 @@
 
 	<context:component-scan base-package="com.lmy.controller"></context:component-scan>
 
-	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
-
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+ -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- jsp前缀 -->
@@ -20,14 +21,14 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="conversionService"
+	<!-- <bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
 				<bean class="com.lmy.utils.DateConverter" />
 			</set>
 		</property>
-	</bean>
+	</bean> -->
 
 	<!-- springmvc提供的简单异常处理器 -->
 	<!-- <bean
@@ -45,6 +46,37 @@
 		</property>
 	</bean> -->
 	
+	<mvc:interceptors>
+	    <!-- 多个拦截器的执行顺序等于spring配置文件中的顺序 -->
+	    <mvc:interceptor>
+	        <!-- 拦截请求的路径 要拦截所有必须配置成/** -->
+	        <mvc:mapping path="/**" />
+	        <!--指定拦截器的位置 -->
+	        <bean class="com.lmy.interceptor.Interceptor1"></bean>
+	    </mvc:interceptor>
+	    <mvc:interceptor>
+	        <!-- 拦截请求的路径 要拦截所有必须配置成/** -->
+	        <mvc:mapping path="/**" />
+	        <!--指定拦截器的位置 -->
+	        <bean class="com.lmy.interceptor.Interceptor2"></bean>
+	    </mvc:interceptor>
+	    <mvc:interceptor>
+	        <!-- 拦截请求的路径 要拦截所有必须配置成/** -->
+	        <mvc:mapping path="/**" />
+	        <!--指定拦截器的位置 -->
+	        <bean class="com.lmy.interceptor.LoginInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors>
+	
 	<bean class="com.lmy.exception.CustomExceptionResolver"></bean>
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean>
 	
 </beans>

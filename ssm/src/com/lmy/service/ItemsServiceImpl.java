@@ -5,14 +5,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lmy.dao.ItemsMapper;
 import com.lmy.exception.CustomException;
-import com.lmy.exception.CustomException404;
 import com.lmy.jdbc.ItemsDao;
 import com.lmy.pojo.Items;
 import com.lmy.pojo.ItemsExample;

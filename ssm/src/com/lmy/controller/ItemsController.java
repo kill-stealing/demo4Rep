@@ -1,10 +1,12 @@
 package com.lmy.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.mail.FetchProfile.Item;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lmy.exception.CustomException;
@@ -34,8 +40,9 @@ public class ItemsController {
 	
 	@RequestMapping("/items")
 	public ModelAndView getItemsById(String name) throws CustomException{
+		System.out.println("start call getItemsById");
 		List<Items> items=new ArrayList<>();
-		items=itemsService.getItemsByName1(name);
+		items=itemsService.getItemsByName(name);
 		ModelAndView m=new ModelAndView();
 		m.addObject("itemList", items);
 		m.setViewName("itemList1");
@@ -52,9 +59,8 @@ public class ItemsController {
 		return m;
 	}*/
 	
-	@RequestMapping("/itemEdit")
-	public String editItemsById(HttpServletRequest request,Model m){
-		int id=Integer.parseInt(request.getParameter("id"));
+	@RequestMapping("/itemEdit/{id}")
+	public String editItemsById(@PathVariable("id")Integer id,Model m){
 		Items items=itemsService.getItemsById(id);
 		m.addAttribute("item", items);
 		return "editItem";
@@ -62,10 +68,14 @@ public class ItemsController {
 	
 	//springMVC 可以直接接收基本数据类型，包括string.springMVC可以帮你自动转换类型。
 	@RequestMapping("/updateitem")
-	public String updateItem(@RequestBody Items items){
-		System.out.println(items);
+	public String updateItem(MultipartFile pictureFile, Items items,Model model)throws Exception{
+		String name=pictureFile.getOriginalFilename();
+		String newFileName=UUID.randomUUID().toString()+name.substring(name.lastIndexOf("."));
+		pictureFile.transferTo(new File("C:/img/"+newFileName));
+		items.setPic(newFileName);
 		itemsService.updateItems(items);
-		return "success";
+//		model.addAttribute("id", items.getId());
+		return "redirect:itemEdit/"+items.getId();
 	}
 	
 	@RequestMapping("/testGetRequest")
@@ -81,9 +91,10 @@ public class ItemsController {
 	}
 	
 	@RequestMapping(value="/testRequestBody",method=RequestMethod.POST)
-	public String testRequestBody(@RequestBody List<User> lists){
+	@ResponseBody
+	public List<User> testRequestBody(@RequestBody List<User> lists){
 		System.out.println(lists);
-		return "itemList";
+		return lists;
 	}
 	
 	@RequestMapping("/delAll")
