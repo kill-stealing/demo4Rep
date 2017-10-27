@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/angular.min.js" type="text/javascript"></script>
+<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var model=angular.module('myApp',[]);
+model.controller("parentCtrl",["$scope",function($scope){
+	$scope.user={"name":"hello"};
+	$scope.$watch("user.name",function(newVal,oldVal){
+		
+	});
+}]).controller("childCtr1",["$scope",function($scope){
+	$scope.user={"name":"hello1"};
+	$scope.$watch("user.name",function(newVal,oldVal){
+		$scope.$parent.user.name=newVal;
+	});
+}]).controller("childCtr2",["$scope",function($scope){
+	
+}]);
+</script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="parentCtrl">
+	{{user.name}}
+		<div ng-controller="childCtr1">child 1 name:
+			<input type="text" ng-model="name" ng-change="change(name)" />	
+			<input type="text" ng-model="user.name" />{{user.name}}
+		</div>
+		<div ng-controller="childCtr2">child 2 name:
+			<input type="text" ng-model="child2Name" />		
+		</div>
+	</div>
+</body>
+</html>

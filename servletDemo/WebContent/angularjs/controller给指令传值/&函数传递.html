@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/angular.min.js" type="text/javascript"></script>
+<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var model=angular.module('myApp',[]);
+model.controller("ctrl",["$scope",function($scope){
+	$scope.callback=function(name){
+		$scope.fruit=name;
+	}
+}]);
+
+model.directive("myTest",[function(){
+	 return {
+         restrict:"AE",
+         scope:{
+             tagfn:"&hdData" //属性不能有下划线
+         },
+         template:"<input type='text' ng-model='fruit'/><button ng-click='tagfn({name:fruit})'>水果名字</button>{{fruit}}"
+         //对象传入的属性名称和controller中方法传入的参数名称一致
+
+     };
+}]);
+</script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="ctrl">
+		Ctrl <input type="text" ng-model="fruit" />
+		<my-test hd-data="callback(name)"></my-test>
+	</div>
+</body>
+</html>

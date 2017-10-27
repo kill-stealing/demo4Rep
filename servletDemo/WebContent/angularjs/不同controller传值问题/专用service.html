@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/angular.min.js" type="text/javascript"></script>
+<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var model=angular.module('myApp',[]);
+model.factory('Data',function(){
+	return {
+		msg:"I'm data from a service"
+	};
+});
+model.factory('Data1',function(){
+	return "data1";
+});
+model.controller("parentCtrl",["$scope","Data","Data1",function($scope,Data,Data1){
+	$scope.data=Data;
+	$scope.data1=Data1;
+}]).controller("childCtr1",["$scope","Data","Data1",function($scope,Data,Data1){
+	$scope.data=Data;
+	$scope.data1=Data1;
+}]).controller("brotherCtrl",["$scope","Data","Data1",function($scope,Data,Data1){
+	$scope.data=Data;
+	$scope.data1=Data1;
+}]).controller("childCtr2",["$scope","Data","Data1",function($scope,Data,Data1){
+	$scope.data=Data;
+	$scope.data1=Data1;
+}]);
+</script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="parentCtrl">
+		{{data.msg}}
+		{{data1}}
+		<div ng-controller="childCtr1">child 1 name:
+			<input type="text" ng-model="name" ng-change="change(name)" />	
+			<input type="text" ng-model="data.msg" />{{data.msg}}
+		</div>
+	</div>
+	<div ng-controller="brotherCtrl">
+		{{data.msg}}
+		<div ng-controller="childCtr2">child 2 name:
+			<input type="text" ng-model="name" ng-change="change(name)" />	
+			<input type="text" ng-model="data.msg" />{{data.msg}}
+		</div>
+	</div>
+</body>
+</html>

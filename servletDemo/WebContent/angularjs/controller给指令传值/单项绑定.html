@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/angular.min.js" type="text/javascript"></script>
+<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+var model=angular.module('myApp',[]);
+model.controller("ctrl",["$scope",function($scope){
+	$scope.name="张三";
+}]);
+
+model.directive("myTest",[function(){
+	return {
+		restrict:"E",
+		template:"<h1>{{name}}<input type='text' ng-model='name' /></h1>",
+		transclude:true,
+		replace:false,
+		scope:{
+			name:"@data"
+		}
+	};
+}]);
+</script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="ctrl">
+		{{name}}
+		<my-test data="{{name}}"></my-test>
+	</div>
+</body>
+</html>
