@@ -29,6 +29,7 @@ import com.lmy.exception.CustomException;
 import com.lmy.pojo.Items;
 import com.lmy.pojo.User;
 import com.lmy.service.ItemsService;
+import com.lmy.test.GetApplicationContext;
 import com.lmy.vo.QueryVO;
 
 @Controller
@@ -115,5 +116,14 @@ public class ItemsController {
 		PrintWriter out=response.getWriter();
 		itemsService.insertItems(items);
 		out.println("success");
+	}
+	
+	@RequestMapping("/test/{id}")
+	public String getString(@PathVariable int id){
+		System.out.println(id);
+		ItemsController test = GetApplicationContext
+				.getApplicationContext().getBean(ItemsController.class);
+		System.out.println(test.getString(id));
+		return "test";
 	}
 }
