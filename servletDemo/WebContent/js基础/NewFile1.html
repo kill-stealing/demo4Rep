@@ -28,12 +28,20 @@ div{
 	opacity:0.5;
 }
 </style>
+<script>
+function test(){
+	window.location.href="http://www.baidu.com";
+	window.open("http://www.baidu.com","_self");
+}
+</script>
 </head>
 <body>
 <div class="box">
 	<div class="content"></div>
 	<div class="mark"></div>
 </div>
+	<button onclick="test()">点击</button>
+	<input type="text" name="aaa" />
 	
 </body>
 </html>
