@@ -41,4 +41,10 @@ ssm/.settings/
 ssm/bin/
 ssm/build/
 
+itcast-springboot/WebContent/WEB-INF/classes/
+itcast-springboot/.settings/
+itcast-springboot/bin/
+itcast-springboot/target/
+itcast-springboot/build/
+
 documents/servlet.docx
