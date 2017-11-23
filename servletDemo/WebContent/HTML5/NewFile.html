@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="gbk">
+<title>Creating OS notifications in HTML5</title>
+<script type="text/javascript">
+window.onload = function() {
+	if (window.webkitNotifications) {
+		if (window.webkitNotifications.checkPermission() == 0) {
+			setInterval(function() {
+				var popup = window.webkitNotifications.createNotification(
+						"", "如花温馨提醒：", "长时间面对电脑眼睛会瞎的，休息一下~！");
+				popup.show();
+			}, 1000 * 5);
+		} else {
+			window.webkitNotifications.requestPermission();
+		}
+	} else {
+		alert('浏览器不支持桌面通知～！');
+	}
+}
+function init() {
+			alert("aaa''");
+		}
+</script>
+</head>
+<body>
+	<input type="button" value="验证授权" onclick="init();" />
+	<input type="button" value="弹出消息" onclick="notify();" />
+
+
+
+</body>
+</html>
