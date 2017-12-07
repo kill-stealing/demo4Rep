@@ -1,0 +1,24 @@
+1.数据绑定的最佳实践 ：为什么通过对象的属性而不是对象本身呢。
+2.表单中自定义指令时候 $parsers $formatters
+3.directive template 可以设置成一个 可以接受两个参数的函数 参数为tElement和tAttrs.
+4.为什么在指令中 使用了嵌入，控制器中的作用域所反映的作用域可能与我们所期望的不一样，这种情况下，$scope对象无法保证可以被正常更
+
+新。
+5.指令中 require:'?^ngModel'  有什么用
+6.ng-router和ui-router路由的区别
+7.$http 为什么必须要在$apply()里面执行
+8.
+
+窍门：
+
+1.如果想在angularjs 中用jquery  ,需要在引入angularjs之前引入jquery
+http://www.ngnice.com/posts/28116df4d6f938
+2.angularjs中 假设我们需要在每次路由发生变化时，都执行一个函数来验证用户的权限，放置这个功能唯一合理的地方就是run方法。
+3.$location 服务不会重新加载整个页面，它只会单独地改变URL。如果我们想重新加载整个页面，需要用$window服务来设置地址。
+ $window.location.href="/reload/page";
+4.ngMin 预压缩工具
+5.指令中compile links controller 三个参数非常重要 
+6.angularjs中的promise 对象
+7.服务的装饰器 decorator.  $provide.decorator();  $delegate.newFn 
+
+
