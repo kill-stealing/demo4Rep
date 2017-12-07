@@ -20,5 +20,5 @@ http://www.ngnice.com/posts/28116df4d6f938
 5.指令中compile links controller 三个参数非常重要 
 6.angularjs中的promise 对象
 7.服务的装饰器 decorator.  $provide.decorator();  $delegate.newFn 
-
+8.缓存 cache:true  cacheFactory 结合使用 $httpProvider.defaults.cache = $cacheFactory('myNewDefaultCache',{capacity: 100 });   
 
