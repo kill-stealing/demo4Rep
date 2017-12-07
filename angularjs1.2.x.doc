@@ -1,1 +1,678 @@
+第6章 表达式
+6.1 解析angularjs 表达式
+
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$parse) {
+    $scope.$watch('expr',function(newVal,oldVal,scope){
+		if(newVal!=oldVal){
+			var parseFun=$parse('expr');
+			$scope.parsedValue=parseFun(scope);
+		}
+	});
+
+6.2 插值字符串 interpolate
+在AngularJS中使用字符串模板 
+
+如果你曾经使用过Handlerbars等模板引擎，你一定会觉得在AngularJS中进行开发非常的爽。在AngularJS中，你可以直接将DOM当做模板来使用，比如下面的例子： 
+
+<div>My name is {{name}}</div>  
+在AngularJS对页面施展魔法时，它会自动将{{name}}替换为当前作用域中的name属性值。这实在是太方便了，我们再也不需要在页面中加入<template>或者<script>来预定义我们的模板，并在需要使用时将它插入页面里面了。 
+
+但是，有时还是想要使用字符串模板，比如说要根据用户生成的具体数据来生成模板，而不是预先在DOM中定义的情况。在AngularJS中，这种情况也能轻松的得到解决，我们可以使用AngularJS内置的$interpolate service来达成我们的目标，
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	
+	<input ng-model="test" type="text" />
+	<h2>{{test}}</h2>
+	
+	<div>
+		TO:<input ng-model="to" type="email" placeholder="Recipient" />
+		Email Body:<textarea ng-model="emailBody"></textarea>
+	</div>
+	<div>
+		<pre>{{previewText}}</pre>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.factory("EmailParser",['$interpolate',function($interpolate){
+	return {
+		parse:function(text,context){
+			var template=$interpolate(text);
+			return template(context);
+		}
+	};
+}]);
+app.controller('myCtrl',['$scope','EmailParser',function($scope,EmailParser){
+	$scope.test="aaa";
+	$scope.$watch('emailBody',function(body){
+		if(body){
+			$scope.previewText=EmailParser.parse(body,{to:$scope.to});
+		}
+	});
+}]);
+
+</script>
+
+7 过滤器
+7.1 自定义过滤器
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	<input ng-model="test" type="text" />
+	<h2>{{test|filter:'ab':!'c'}}</h2>
+	{{ childrenArray | filter : 'a' }}
+	<h2>{{user|json}}</h2>
+	<h2>{{ childrenArray | uppercase }}</h2>
+	
+	<h2>{{'ginger loves dog treats'|filter1}}</h2>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.filter('filter1',function(){
+	return function(input){
+		if(input){
+			return input[0].toUpperCase()+input.slice(1);
+		}
+	}
+});
+app.controller('myCtrl',['$scope',function($scope){
+	$scope.test='abacccafdsafqwewq';
+	$scope.user={"username":"Jim","age":23};
+	$scope.childrenArray = [
+        {name:'kimi',age:3},
+        {name:'cindy',age:4},
+        {name:'anglar',age:4},
+        {name:'shitou',age:6},
+        {name:'tiantian',age:5}
+    ]
+}]);
+</script>
+</body>
+</html>
+
+7.2 表单验证
+Input 所有验证项 
+在表单中控制变量 $parsers $formatters 
+<div ng-app="myApp">
+	<div ng-controller="TestController">
+		<form name="signup_form" novalidate ng-submit="signupForm()">
+			<fieldset>
+				<legend>Signup</legend>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>Your Name</label>
+						<input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength="3"
+							   ng-maxlength="20" requried/>
+						<div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid">
+							<small class="error" ng-show="signup_form.name.$error.required">
+								Your name is required
+							</small>
+							<small class="error" ng-show="signup_form.name.$error.minlength">
+								Your name is required to be at least 3 characters.
+							</small>						
+							<small class="error" ng-show="signup_form.name.$error.maxlength">
+								Your name cannot be longer than 20 characters.
+							</small>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="button radius">Submit</button>
+			</fieldset>
+		</form> 
+	</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('TestController', function($scope) {
+	
+});
+</script>
+
+$filter(‘filter’)
+console.log($filter("filter")($scope.firstName,'j'));
+Ng-messages (1.3+)
+9 内置指令
+Ng-controller 
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApp" ng-controller="SomeController">
+	{{someModel.someValue}}
+	<button ng-click="someAction()">Communicate to child</button>
+	<div ng-controller="ChildController">
+		{{someModel.someValue}}
+		<button ng-click="childAction()">Communicate to parent</button>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('SomeController', function($scope) {
+    $scope.someModel={someValue:'hello computer'};
+	$scope.someAction=function(){
+		$scope.someModel.someValue='hello human,from parent';
+	}
+})
+.controller('ChildController',['$scope',function($scope){
+	$scope.childAction=function(){
+		$scope.someModel.someValue="hello human,from child";
+	}
+}]);
+</script>
+
+</body>
+</html>
+
+Ng-switch
+<div ng-app="myApp" ng-controller="SomeController">
+	<input type="text" ng-model="someModel.someValue" />
+	<div ng-switch on="someModel.someValue">
+		<p ng-switch-default>And the winner is</p>
+		<p ng-switch-when="Ari">aaa</p>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('SomeController', function($scope) {
+    //$scope.someModel={someValue:'hello computer'};
+});
+</script>
+
+Ng-repeat
+<ul>
+		<li ng-repeat="v in user">
+			<span ng-class="{even:!$even,odd:!$odd}">{{$even}} {{v.username}}</span>
+		<li>	
+	<ul>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('SomeController', function($scope) {
+    $scope.user=[{username:'a'},{username:'b'},{username:'c'}];
+});
+</script>
+
+{{}}用这种形式绑定数据时,如果数据太多,加载速度慢时 ,会出现闪烁的现象.
+用ng-bind 可以解决这个问题.
+用ng-cloak 可以解决这个问题
+<p ng-cloak>{{greeting}}</p>
+
+Ng-attr-(suffix)
+
+10 指令详解
+10.2指令的作用域问题
+
+用ng-controller 
+<div ng-app="myApp" ng-init="someProperty='some data'">
+	<div ng-init="siblingProperty='moredata'">
+		Inside Div Two:{{aThirdProperty}}
+		<div ng-init="aThirdProperty='data for 3rd property'" ng-controller="SomeController">
+				Inside Div Three:{{aThirdProperty}} {{siblingProperty}} {{someProperty}}
+			<div ng-controller="SecondController">
+				Inside Div Four:{{aThirdProperty}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.directive('myDirective',function(){
+	return {
+		restrict:"AE",
+		template:function(tElement,tAttrs){
+			console.log(JSON.stringify(tAttrs));
+			console.log(JSON.stringify(tElement));
+			return tAttrs.$attr;
+		}
+	};
+});
+app.controller('SomeController', function($scope) {
+	
+});
+app.controller('SecondController',['$scope',function($scope){
+	
+}]);
+</script>
+
+通过指令改变作用域
+
+<div ng-app="myApp" ng-init="someProperty='some data'">
+	<div ng-init="siblingProperty='moredata'">
+		Inside Div Two:{{aThirdProperty}}
+		<div ng-init="aThirdProperty='data for 3rd property'" ng-controller="SomeController">
+			Inside Div Three:{{aThirdProperty}} {{siblingProperty}} {{someProperty}}
+			<div ng-controller="SecondController">
+				Inside Div Four:{{aThirdProperty}}
+				<br >
+				Outside myDirective:{{myProperty}}
+				<div my-directive ng-init="myProperty='wow ,this is cool'">
+					Inside myDirective :{{myProperty}}
+					<input type="text" ng-model="myProperty" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.directive('myDirective',function(){
+	return {
+		restrict:"AE",
+		scope:false
+	};
+});
+app.controller('SomeController', function($scope) {
+	
+});
+app.controller('SecondController',['$scope',function($scope){
+	
+}]);
+</script>
+
+Scope中的几种绑定策略:  @  =  &
+ 
+<div ng-app="myApp">
+	<div ng-controller="MainController">
+		<div class="my-info">我的名字是：<span ng-bind="name"></span>
+
+            <br/>我的年龄是：<span ng-bind="age"></span>
+            <br />
+        </div>
+        <div class="my-directive" my-directive my-name="{{name}}" age="age"  change-my-age="changeAge()"></div>
+	</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.directive('myDirective',function(){
+	return{
+        restrict: "AE",
+        scope: {
+            name: '@myName',
+            age: '=',
+            changeAge: '&changeMyAge'
+        },
+        replace: true,
+        template: "<div class='my-directive'>" +
+            "<h3>下面部分是我们创建的指令生成的</h3>" +
+            "我的名字是：<span ng-bind='name'></span><br/>" +
+            "我的年龄是：<span ng-bind='age'></span><br/>" +
+            "在这里修改名字：<input type='text' ng-model='name'><br/>" +
+            "<button ng-click='changeAge()'>修改年龄</button>" +
+            " </div>"
+    };
+});
+app.controller('MainController', function($scope) {
+	$scope.name="abc";
+	$scope.age=222;
+	$scope.changeAge=function(){
+		$scope.age++;
+	}
+});
+</script>
+
+Transclude  ng-transclude 配合使用
+<div ng-app="myApp" ng-controller="myCtrl">
+	<div sidebox title="Links">
+		<ul>
+			<li>First Link</li>
+			<li>Second Link</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.directive('sidebox',function(){
+	return {
+		restrict:"EA",
+		scope:{
+			title:'@'
+		},
+		transclude:true,
+		template:'<div class="sidebox">'+
+		'<div class="content">'+
+		'<h2 class="header">{{title}}</h2>'+
+		'<span class="content" ng-transclude></span>'+
+		'</div>'+
+		'</div>'
+	};
+});
+app.controller('myCtrl', function($scope) {
+    
+});
+</script>
+
+如果指令使用了transclude 参数,那么在控制其中就无法正常监听数据模型的变化了.这就是最佳实践总是建议在链接函数里使用$watch服务的原因了.
+<div ng-app="myApp" ng-controller="myCtrl">
+	{{text}} {{title}}
+	<expander class="expander" expander-title="title">
+		{{text}}
+	</expander>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.directive('expander',function(){
+	return {
+		restrict:"EA",
+		replace:true,
+		transclude:true,
+		scope:{
+			title:"=expanderTitle"
+		},
+		template:"<div><div class='title' ng-click='toggle()'>{{title}}</div>"+
+		"<div class='body' ng-show='showMe' ng-transclude></div>"+
+		"<input type='text' ng-model='title' />"+
+		"</div>",
+		link:function(scope,element,attr){
+			scope.showMe=false;
+			scope.toggle=function(){
+				scope.showMe=!scope.showMe;
+			}
+		}
+	};
+});
+app.controller('myCtrl', function($scope) {
+    $scope.title="点击展开";
+	$scope.text="这是内部显示的内容";
+});
+</script>
+
+$transclude
+如果想在angularjs 中用jquery  ,需要在引入angularjs之前引入jquery
+
+http://www.ngnice.com/posts/28116df4d6f938
+
+transclude到多个位置
+
+通过link 链接函数实现 
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	<button-bar>
+		<button class="primary" ng-click="btn1Click()">{{primaryTitle}}</button>
+		<button class="primary" ng-click="btn1Click()">primary 2</button>
+		<button class="secondary" ng-click="btn2Click()">secondary</button>
+	</button-bar>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', ['$scope',function($scope) {
+	$scope.btn1Click=function(){
+		alert("btn1 click");
+	}
+	$scope.primaryTitle="primary 1";
+	$scope.btn2Click=function(){
+		alert("btn2 click");
+	}
+}]);
+app.directive('buttonBar',function(){
+	return {
+		restrict:"E",
+		replace:true,
+		transclude:true,
+		template:'<div class="span4 well clearfix"><div class="primary-block pull-right"></div><div class="secondary-block"></div>'+
+			'<div ng-transclude class="transcluded"></div></div>',
+		link:function(scope,elem,attrs){
+			var btn1=elem.find("div.primary-block");
+			var btn2=elem.find("div.secondary-block");
+			var transDiv=elem.find('div.transcluded');
+			var btns=transDiv.children().filter("button");
+			angular.forEach(btns,function(element){
+				if(angular.element(element).hasClass("primary")){
+					btn1.append(element);
+				}else if(angular.element(element).hasClass("secondary")){
+					btn2.append(element);
+				}
+			});
+		}
+	};
+});
+app.directive('primary',function(){
+	return {
+		restrict:"C",
+		link:function(scope,elem,attrs){
+			elem.addClass("btn btn-primary");
+		}
+	};
+});
+app.directive('secondary',function(){
+	return {
+		restrict:"C",
+		link:function(scope,elem,attrs){
+			elem.addClass("btn");
+		}
+	};
+});
+</script>
+
+通过compile 编译函数实现
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	<button-bar>
+		<button class="primary" ng-click="btn1Click()">{{primaryTitle}}</button>
+		<button class="primary" ng-click="btn1Click()">primary 2</button>
+		<button class="secondary" ng-click="btn2Click()">secondary</button>
+	</button-bar>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', ['$scope',function($scope) {
+	$scope.btn1Click=function(){
+		alert("btn1 click");
+	}
+	$scope.primaryTitle="primary 1";
+	$scope.btn2Click=function(){
+		alert("btn2 click");
+	}
+}]);
+app.directive('buttonBar',function(){
+	return {
+		restrict:"E",
+		replace:true,
+		transclude:true,
+		template:'<div class="span4 well clearfix"><div class="primary-block pull-right"></div><div class="secondary-block"></div>'+
+			'</div>',
+		compile:function(elem,attrs,transcludeFn){
+			return function(scope,element,attrs){
+				transcludeFn(scope,function(clone){
+					var btn1=elem.find("div.primary-block");
+					var btn2=elem.find("div.secondary-block");
+					var btns=clone.filter('button');
+					angular.forEach(btns,function(e){
+						if(angular.element(e).hasClass("primary")){
+							btn1.append(e);
+						}else if(angular.element(e).hasClass("secondary")){
+							btn2.append(e);
+						}
+					});
+				});
+			}
+		}
+	};
+});
+app.directive('primary',function(){
+	return {
+		restrict:"C",
+		link:function(scope,elem,attrs){
+			elem.addClass("btn btn-primary");
+		}
+	};
+});
+app.directive('secondary',function(){
+	return {
+		restrict:"C",
+		link:function(scope,elem,attrs){
+			elem.addClass("btn");
+		}
+	};
+});
+</script>
+
+通过controller 实现
+
+controller:['$scope','$element','$transclude',function($scope,$element,$transclude){
+			$transclude(function(clone){
+				var btn1=$element.find("div.primary-block");
+				var btn2=$element.find("div.secondary-block");
+				var btns=clone.filter('button');
+				angular.forEach(btns,function(e){
+					if(angular.element(e).hasClass("primary")){
+						btn1.append(e);
+					}else if(angular.element(e).hasClass("secondary")){
+						btn2.append(e);
+					}
+				});
+			});
+		}]
+
+buttonBar指令在parentController下面创建了一个孤立作用域，而根据Angular文档，transclude也创建了另外一个作用域，因此指令的隔离作用域跟transclude作用域是基于同一个父作用域的兄弟作用域。
+
+13 依赖注入
+
+ 
+
+14 服务
+Decorator 装饰器
+<script type="text/javascript">
+            var myapp = angular.module("myapp", []);
+			myapp.config(function($provide){
+				$provide.decorator('testService',function($delegate){
+					$delegate.testAlert=function(){
+						alert("bbbb");
+					}
+					return $delegate;
+				});
+			});
+			myapp.factory('testService',function(){
+				return {
+					println:"aaa"
+				};
+			});
+            myapp.controller("MyController", ['$scope','testService', function($scope,testService) {
+                $scope.name = "mario";
+                $scope.age = "13";
+				console.log(testService.println);
+				testService.testAlert();
+            }]);
+        </script>
+        <style type="text/css">
+        </style>
+    </head>
+    <body ng-app="myapp">
+        <div class="container" ng-controller="MyController">
+            <cust ng-model="name" atts="{{name}}"></cust>
+            <cust ng-model="age" atts="{{age}}"></cust>
+        </div>
+</body>
+
+Promise 对象
+https://segmentfault.com/a/1190000002788733
+
+<script type="text/javascript">
+            var myapp = angular.module("myapp", []);
+            myapp.controller("MyController", ['$scope','$q', function($scope,$q) {
+            	$scope.flag=true;
+				
+            $scope.handle = function () {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+
+            promise.then(function (result) {
+                result = result + "you have passed the first then()";
+                $scope.status = result;
+                return result;
+            }, function (error) {
+                error = error + "failed but you have passed the first then()";
+                $scope.status = error;
+                return error;
+            }).then(function (result) {
+                alert("Success: " + result);
+            }, function (error) {
+                alert("Fail: " + error);
+            })
+
+            if ($scope.flag) {
+                deferred.resolve("you are lucky!");
+            } else {
+                deferred.reject("sorry, it lost!");
+            }
+        }
+            }]);
+        </script>
+        <style type="text/css">
+        </style>
+    </head>
+    <body ng-app="myapp">
+        <div class="container" ng-controller="MyController">
+			<label>成功</label>
+			<input type="checkbox" ng-model="flag" />
+			<hr>
+			<input type="button" value="点击我" ng-click="handle()"/>
+        </div>
+    </body>
+
+缓存
+http://lib.csdn.net/article/angularjs/30992
+
+cache:true 告诉$http service要在$http的默认缓存中缓存特定的请求响应结果。除此之外，你什么都不用做。
+如果你想要引用这个$http的默认缓存来获取其中的项目，移除其中的项目，清空缓存等等。你只需要在任何地方注入$cahcheFactory即可，然后我们就可以通过
+下面的代码来引用默认$http缓存：
+
+var $httpDefaultCache = $cacheFactory.get($http);   
+你也可以使用你进行GET请求的绝对路径来获取相应的请求相应结果：
+
+var cacheDate = $httpDefaultCache.get('http://example.com/foo/bar/123'); // { foo : 'bar'}   
+你可以从缓存中移除项目：
+
+$httpDefaultCache.remove('http://example.com/foo/bar/123');   
+或者清空整个缓存：
+
+$httpDefaultCache.removeAll();   
+
+LRU 缓存
+
+如果你不想要$http来存储每一次相应怎么办?这也很简单：你只需要将它设置为LRU缓存即可（Least Recently Used）。
+
+var lruCache = $cacheFactory('lruCache',{ capacity : 10 });  
+
+$http.get('/foo/bar/' + itemId, { cache: lruCache })
+  .success(function (data) {
+    data; // { foo: 'bar' }
+  })
+  .error(function (data, status, headers, config) {
+    // 一些错误处理代码  
+  });   
+每个针对/foo/bar/:itemId请求的响应都会被缓存，但是在上面的代码中缓存次数只有十次。当发送第十一次请求时，最早一次的缓存会从缓存中被移除。
+这里的缓存按顺序包含着一个项目列表以便它在进行一次新的请求时知道应该移除哪一个旧的缓存项目。
+
+设置一个默认缓存
+
+正如前面的LRU的例子所示，你可以告诉$http请求使用一个自定义的缓存而不是$http默认缓存，但是如果你想要改变$http默认缓存怎么办？这也很简单：
+
+$httpProvider.defaults.cache = $cacheFactory('myNewDefaultCache',{capacity: 100 });   
+$http现在就回使用myNewDefaultCache作为它的默认缓存。
+
+高级缓存
+
+如果你想使用缓存来改善用户体验，但是数据可能在一天或者几个小时之内就发生一次改变该怎么办？你可能想要确保你的缓存数据一天或者几个十分钟就清空一次。
+但是不幸的是，Angular中的$cacheFactory并没有提供这次额功能。
+
+你可以使用setInterval()或者setTimeout()来进行一些修改，但是你可能并不想干这些事情。为了解决这个问题
+，我们可以使用一个叫做angular-cache的第三方模块。使用这个模块，你可以定期清理你的缓存。当设置一个缓存时你可以指定maxAge，
+它用来表明该缓存中某个项目的最长存续时间。或者你可以对整个缓存指定maxAge，它将运用在添加到该缓存中的所有项目之上。
 
