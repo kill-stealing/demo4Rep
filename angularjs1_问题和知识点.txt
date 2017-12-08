@@ -7,7 +7,27 @@
 5.指令中 require:'?^ngModel'  有什么用
 6.ng-router和ui-router路由的区别
 7.$http 为什么必须要在$apply()里面执行
-8.
+8.$on 有什么用  拦截器的实现
+http://www.jb51.net/article/110906.htm
+
+$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+ if(toState.name=='login')return;// 如果是进入登录界面则允许
+ // 如果用户不存在
+ if(!$rootScope.user || !$rootScope.user.token){
+ event.preventDefault();// 取消默认跳转行为
+ $state.go("login",{from:fromState.name,w:'notLogin'});//跳转到登录界面
+ }
+});
+9.  15.9.4 $resource 实例是异步的 和 他的附加属性
+
+$resource 如果：之前的参数是空的,那么URL中的这部分会被压缩成一个.符号。 141页
+restangular 具体怎么用 还不是很熟悉
+restangular 元素转换 有什么用. 好像是把 response的结果 修改 或者加方法
+
+RestangularProvider.addElementTransformer('authors',false,function(element){
+ element.fetchedAt=new Date();
+ return element;
+})
 
 窍门：
 
@@ -20,5 +40,26 @@ http://www.ngnice.com/posts/28116df4d6f938
 5.指令中compile links controller 三个参数非常重要 
 6.angularjs中的promise 对象
 7.服务的装饰器 decorator.  $provide.decorator();  $delegate.newFn 
-8.缓存 cache:true  cacheFactory 结合使用 $httpProvider.defaults.cache = $cacheFactory('myNewDefaultCache',{capacity: 100 });   
+8.缓存 cache:true  cacheFactory 结合使用 $httpProvider.defaults.cache = $cacheFactory('myNewDefaultCache',{capacity: 100 });   
+9.$resource 可以同支持restful的服务端数据源进行交互。
+10.restangular 非常强大 。 $resource  $http        ajax请求
+同样的服务端访问使用：Restangular
+11.js中 有X2JS库来将xml解析成json，或者将json解析成xml。
 
+var app = angular.module(‘MetronicApp‘);
+app.config(function (RestangularProvider) {        //配置基础路由路径
+      RestangularProvider.setBaseUrl(‘/Api‘);
+});
+app.controller(‘appCtrl‘, function appCtrl($scope, Restangular) {     //注入Restangular 服务
+     (function getUsers() {     //此立即执行的函数，可以省略。。。
+           Restangular.one("Users").getList().then(function (data) {
+                  $scope.users = new wijmo.collections.CollectionView(data);
+            }, function(err){
+                 //console.log(‘请求错误:‘ + err);
+                  alert("请求错误-----OKKKKKK!");
+          });
+      })();
+}
+
+需要动手实践的内容：
+1.restangular responseInterceptors  如果服务器返回的数据将我们需要的数据藏在了嵌套的资源中，可以用responseInterceptors 把这些数据挖出来。
