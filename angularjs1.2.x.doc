@@ -676,3 +676,13 @@ $http现在就回使用myNewDefaultCache作为它的默认缓存。
 ，我们可以使用一个叫做angular-cache的第三方模块。使用这个模块，你可以定期清理你的缓存。当设置一个缓存时你可以指定maxAge，
 它用来表明该缓存中某个项目的最长存续时间。或者你可以对整个缓存指定maxAge，它将运用在添加到该缓存中的所有项目之上。
 
+15.7 使用$resource
+
+需要在angular.module('myApp',['ngResource']);
+
+var User=$resource('/api/users/:userId.json',{
+	userId:'@id'
+})
+
+
+
