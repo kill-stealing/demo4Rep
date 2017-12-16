@@ -1,0 +1,14 @@
+angular.module('myController',[])
+.controller('IndexController',['$scope','githubService',function($scope,githubService){
+    $scope.user="aaa";
+    $scope.show=true;
+    $scope.progress=0;
+    githubService.getPullRequests().then(function(result){
+        $scope.data=result;
+    },function(error){
+        $scope.data="error!";
+    },function(progress){
+        $scope.progress=progress;
+        $scope.show=false;
+    });
+}]);
