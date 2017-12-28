@@ -50,4 +50,11 @@ itcast-springboot/build/
 documents/servlet.docx
 
 spring-mybatis1226/target/
-spring-mybatis1226/.settings
+spring-mybatis1226/.settings/
+
+spring-boot-jsp/target/
+spring-boot-jsp/.settings/
+
+springboot3/target/
+springboot3/.settings/
+
